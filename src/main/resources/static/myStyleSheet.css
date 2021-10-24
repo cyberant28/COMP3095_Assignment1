@@ -1,0 +1,31 @@
+.container{
+    clear:both;
+    overflow:auto;
+}
+
+nav{
+    float:right;
+    margin-right: 50px;
+}
+
+
+
+.logo img{
+    float:left;
+}
+
+ul li{
+    display: inline-block; padding:10px;
+    font-size:20px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+ul li a {
+    color: #1d2f4e;
+    text-decoration: none;
+}
+
+ul li:visited{
+    color: #1d2f4e;
+    text-decoration: none;
+}
