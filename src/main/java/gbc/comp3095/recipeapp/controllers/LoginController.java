@@ -44,5 +44,10 @@ public class LoginController {
         return "index/recipeBook";
     }
 
+    @GetMapping("/createRecipe")
+    public String createRecipe(){
+        return "index/createRecipe";
+    }
+
 
 }

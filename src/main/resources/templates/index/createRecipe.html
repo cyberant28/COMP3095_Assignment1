@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type= "text/css" href="/myStyleSheet.css">
+    <title>Title</title>
+    <style>
+
+        .loginContainer{
+            width: 1200px;
+            height: auto;
+            background-color: lightgray;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 200px;
+        }
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="/recipeBook">Recipe book</a></li>
+            <li><a href="/listOfRecipes">List of recipes</a></li>
+            <li><a href="/planner">Planner</a></li>
+            <li><a href="/search" >Search</a></li>
+            <li><a href="/home">Profile</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<h1>Create new recipe</h1>
+<div class="loginContainer">
+    <label for="recipeTitel">Recipe titel</label>
+    <br>
+    <input type="text" id="recipeTitel"  name="recipeTitel" required>
+    <br><br>
+    <label for="description">Description</label>
+    <br>
+    <input type="text" id="description" name="description" required>
+    <br><br>
+    <label for="contents">Contents</label>
+    <br>
+    <input type="text" id="contents" name="contents" required>
+    <br><br>
+    <label for="category">Category</label>
+    <br>
+    <select id="category" name="category">
+        <option value="test1">test1</option>
+        <option value="test2">test2</option>
+
+    </select>
+    <br><br>
+    <label for="levelOfDificulty">Level of dificulty (1-5)</label>
+    <br>
+    <input type="number" id="levelOfDificulty" name="levelOfDificulty" required>
+    <br><br>
+    <button type="saveRecipe">Save recipe</button>
+    <button type="cancel">Cancel</button>
+
+
+
+</div>
+</body>
+</html>
