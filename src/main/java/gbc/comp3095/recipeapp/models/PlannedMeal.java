@@ -14,7 +14,7 @@ public class PlannedMeal {
 
     private String title;
     private String description;
-    private Date datecreated;
+    private Date mealDate;
 
     @ManyToMany()
     @JoinTable(name = "recipe_meal", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
@@ -39,10 +39,10 @@ public class PlannedMeal {
         this.users = users;
     }
 
-    public PlannedMeal(String title, String description, Date datecreated, Set<Recipe> recipes, Set<User> users) {
+    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes, Set<User> users) {
         this.title = title;
         this.description = description;
-        this.datecreated = datecreated;
+        this.mealDate = mealDate;
         this.recipes = recipes;
         this.users = users;
     }
@@ -59,9 +59,9 @@ public class PlannedMeal {
 
     public void setDescription(String description) { this.description = description; }
 
-    public Date getDatecreated() { return datecreated; }
+    public Date getMealDate() { return mealDate; }
 
-    public void setDatecreated(Date datecreated) { this.datecreated = datecreated; }
+    public void setMealDate(Date mealDate) { this.mealDate = mealDate; }
 
     public Set<Recipe> getRecipes() { return recipes; }
 
@@ -75,8 +75,8 @@ public class PlannedMeal {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlannedMeal plannedmeal = (PlannedMeal) o;
-        return Objects.equals(id, plannedmeal.id);
+        PlannedMeal plannedMeal = (PlannedMeal) o;
+        return Objects.equals(id, plannedMeal.id);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class PlannedMeal {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", datecreated=" + datecreated +
+                ", datecreated=" + mealDate +
                 ", recipes=" + recipes +
                 ", users=" + users +
                 '}';

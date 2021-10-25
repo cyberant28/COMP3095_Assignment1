@@ -26,12 +26,12 @@ public class StartUp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user1 = new User("Ryan", "Murphy", "12345");
+        User user1 = new User("Ryan Murphy", "12345");
         Recipe recipe1 = new Recipe("Pizza");
         PlannedMeal meal1 = new PlannedMeal("Monday lunch");
 
         user1.getRecipes().add(recipe1);
-        user1.getPlannedmeals().add(meal1);
+        user1.getPlannedMeals().add(meal1);
 
         userRepository.save(user1);
         recipeRepository.save(recipe1);
@@ -41,7 +41,7 @@ public class StartUp implements CommandLineRunner {
 
         System.out.println(user1.getRecipes());
         System.out.println("User ID: " + user1.getId());
-        System.out.println(user1.getPlannedmeals());
+        System.out.println(user1.getPlannedMeals());
         System.out.println(recipe1.getId());
         System.out.println(meal1.getTitle());
 

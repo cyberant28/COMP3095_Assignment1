@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RecipeController {
 
-    private final RecipeRepository reciperepository;
-    public RecipeController(RecipeRepository reciperepository) { this.reciperepository = reciperepository; }
+    private final RecipeRepository recipeRepository;
+    public RecipeController(RecipeRepository recipeRepository) { this.recipeRepository = recipeRepository; }
 
     @RequestMapping("/recipes")
     public String getUsers(Model model){
-        model.addAttribute("recipes", reciperepository.findAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
 
         return "recipes/list";
     }

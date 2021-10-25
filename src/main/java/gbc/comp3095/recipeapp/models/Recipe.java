@@ -21,7 +21,7 @@ public class Recipe {
     private Set<User> users = new HashSet<>();
 
     @ManyToMany()
-    private Set<PlannedMeal> plannedmeals = new HashSet<>();
+    private Set<PlannedMeal> plannedMeals = new HashSet<>();
 
     public Recipe() {
     }
@@ -30,11 +30,11 @@ public class Recipe {
         this.title = title;
     }
 
-    public Recipe(String title, String directions, Set<User> users, Set<PlannedMeal> plannedmeals) {
+    public Recipe(String title, String directions, Set<User> users, Set<PlannedMeal> plannedMeals) {
         this.title = title;
         this.directions = directions;
         this.users = users;
-        this.plannedmeals = plannedmeals;
+        this.plannedMeals = plannedMeals;
     }
 
     public Long getId() { return id; }
@@ -53,9 +53,9 @@ public class Recipe {
 
     public void setUsers(Set<User> users) { this.users = users; }
 
-    public Set<PlannedMeal> getPlannedmeals() { return plannedmeals; }
+    public Set<PlannedMeal> getPlannedMeals() { return plannedMeals; }
 
-    public void setPlannedmeals(Set<PlannedMeal> plannedmeals) { this.plannedmeals = plannedmeals; }
+    public void setPlannedMeals(Set<PlannedMeal> plannedmeals) { this.plannedMeals = plannedmeals; }
 
     @Override
     public boolean equals(Object o) {
@@ -77,7 +77,7 @@ public class Recipe {
                 ", title='" + title + '\'' +
                 ", directions='" + directions + '\'' +
                 ", users=" + users +
-                ", plannedmeals=" + plannedmeals +
+                ", plannedMeals=" + plannedMeals +
                 '}';
     }
 }

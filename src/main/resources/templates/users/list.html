@@ -10,14 +10,12 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>User Name</th>
     </tr>
 
     <tr th:each="user :${users}">
         <td th:text="${user.id}"></td>
-        <td th:text="${user.firstname}"></td>
-        <td th:text="${user.lastname}"></td>
+        <td th:text="${user.userName}"></td>
     </tr>
 
 </table>
