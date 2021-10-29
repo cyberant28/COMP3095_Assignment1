@@ -24,7 +24,7 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private Set<Recipe> recipes = new HashSet<>();
 
-    @ManyToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "mealAuthor")
     private Set<PlannedMeal> plannedMeals = new HashSet<>();
 
 

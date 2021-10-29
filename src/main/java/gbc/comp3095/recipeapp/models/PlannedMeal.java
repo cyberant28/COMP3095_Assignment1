@@ -2,6 +2,7 @@ package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,9 +21,11 @@ public class PlannedMeal {
     @JoinTable(name = "recipe_meal", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
     private Set<Recipe> recipes;
 
-    @ManyToMany()
+    @ManyToOne()
     @JoinTable(name = "user_meals", joinColumns = @JoinColumn( name = "user_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
-    private Set<User> users;
+    private User mealAuthor;
+
+
 
 
 
@@ -33,18 +36,18 @@ public class PlannedMeal {
         this.title = title;
     }
 
-    public PlannedMeal(String title, Set<Recipe> recipes, Set<User> users) {
+    public PlannedMeal(String title, Set<Recipe> recipes, User mealAuthor) {
         this.title = title;
         this.recipes = recipes;
-        this.users = users;
+        this.mealAuthor = mealAuthor;
     }
 
-    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes, Set<User> users) {
+    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes, User mealAuthor) {
         this.title = title;
         this.description = description;
         this.mealDate = mealDate;
         this.recipes = recipes;
-        this.users = users;
+        this.mealAuthor = mealAuthor;
     }
 
     public Long getId() { return id; }
@@ -67,9 +70,9 @@ public class PlannedMeal {
 
     public void setRecipes(Set<Recipe> recipes) { this.recipes = recipes; }
 
-    public Set<User> getUsers() { return users; }
+    public User getMealAuthor() { return mealAuthor; }
 
-    public void setUsers(Set<User> users) { this.users = users; }
+    public void setMealAuthor(User author) { this.mealAuthor = author; }
 
     @Override
     public boolean equals(Object o) {
@@ -92,7 +95,7 @@ public class PlannedMeal {
                 ", description='" + description + '\'' +
                 ", datecreated=" + mealDate +
                 ", recipes=" + recipes +
-                ", users=" + users +
+                ", author=" + mealAuthor +
                 '}';
     }
 }
