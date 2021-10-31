@@ -21,11 +21,11 @@ public class PlannedMeal {
 
     //TODO: why dont these relations work?
     @ManyToMany()
-    @JoinTable(name = "recipe_meal", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
-    private Set<Recipe> recipes;
+    @JoinTable(name = "recipe_meal", joinColumns = @JoinColumn( name = "meal_id"),  inverseJoinColumns = @JoinColumn( name = "recipe_id"))
+    private Set<Recipe> recipes = new HashSet<>();;
 
     @ManyToOne()
-    @JoinTable(name = "user_meals", joinColumns = @JoinColumn( name = "user_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
+    @JoinTable(name = "user_meals", joinColumns = @JoinColumn( name = "meal_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private User mealAuthor;
 
 
@@ -77,7 +77,7 @@ public class PlannedMeal {
 
     public void setMealDate(Date mealDate) { this.mealDate = mealDate; }
 
-    public Set<Recipe> getRecipes() { return recipes; }
+    public Set<Recipe> getRecipes() { return this.recipes; }
 
     public void setRecipes(Set<Recipe> recipes) { this.recipes = recipes; }
 
@@ -106,7 +106,6 @@ public class PlannedMeal {
                 ", description='" + description + '\'' +
                 ", datecreated=" + mealDate +
                 ", recipes=" + recipes +
-                ", author=" + mealAuthor +
                 '}';
     }
 }

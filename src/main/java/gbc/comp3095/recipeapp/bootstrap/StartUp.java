@@ -29,35 +29,55 @@ public class StartUp implements CommandLineRunner {
          * TODO: use cases to test
          * user can create a recipe //done
          * get recipes by user
-         * user can add a recipe to favourite
+         * user can add a recipe to favourite //done for one recipe
          * search all recipe in system by created date
-         * user can add a meal
+         * user can add a meal //done
+         * user can add recipes to that meal
          * get all meals for user
          * get all meals for user within certain date range
          */
         User user1 = new User("Ryan Murphy", "12345");
+        User user2 = new User("Lex Luthor", "010110");
+
         Recipe recipe1 = new Recipe("Pizza", user1);
         Recipe recipe2 = new Recipe("Sushi", user1);
+        Recipe recipe3 = new Recipe("Soup", user2);
         PlannedMeal meal1 = new PlannedMeal("Monday lunch", user1);
+
+        meal1.getRecipes().add(recipe1);
+
 
 
         user1.getRecipes().add(recipe1);
+        user1.getRecipes().add(recipe2);
+
+        user2.getRecipes().add(recipe3);
+
+        user1.getPlannedMeals().add(meal1);
+
+        user1.getFavouritedRecipes().add(recipe1);
+        recipe1.getFavouritedBy().add(user1);
 
 
         userRepository.save(user1);
+        userRepository.save(user2);
         recipeRepository.save(recipe1);
+        recipeRepository.save(recipe2);
+
+        recipeRepository.save(recipe3);
         plannedMealRepository.save(meal1);
 
 
 
 
         System.out.println(user1.getRecipes());
+        System.out.println(user2.getRecipes());
         System.out.println("User ID: " + user1.getId());
         System.out.println(user1.getPlannedMeals());
         System.out.println(recipe1.getId());
         System.out.println(meal1.getTitle());
+        System.out.println(recipe1.getFavouritedBy());
 
-        System.out.println("Number of recipes " + recipeRepository.count());
 
 
     }

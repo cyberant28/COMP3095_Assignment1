@@ -20,15 +20,16 @@ public class Recipe {
 
     //TODO: why dont these relations work?
     @ManyToMany()
-    @JoinTable(name = "user_favourited_by", joinColumns = @JoinColumn( name = "user_id"),  inverseJoinColumns = @JoinColumn( name = "recipe_id"))
+    @JoinTable(name = "user_favourited_by", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private Set<User> favouritedBy = new HashSet<>();
 
     @ManyToOne()
-    @JoinTable(name = "user_author", joinColumns = @JoinColumn( name = "user_id"))
+    @JoinTable(name = "recipe_author", joinColumns = @JoinColumn( name = "recipe_id"))
     private User recipeAuthor;
 
-    @ManyToMany()
-    private Set<PlannedMeal> plannedMeals = new HashSet<>();
+
+    //@ManyToMany()
+    //private Set<PlannedMeal> plannedMeals = new HashSet<>();
 
 
 
@@ -41,12 +42,11 @@ public class Recipe {
         this.recipeAuthor = recipeAuthor;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<PlannedMeal> plannedMeals) {
+    public Recipe(String title, String directions, User recipeAuthor, Set<User> users) {
         this.title = title;
         this.directions = directions;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
-        this.plannedMeals = plannedMeals;
     }
 
     public Long getId() { return id; }
@@ -67,9 +67,6 @@ public class Recipe {
 
     public void addFavouritedBy(User user) { this.favouritedBy.add(user); }
 
-    public Set<PlannedMeal> getPlannedMeals() { return plannedMeals; }
-
-    public void setPlannedMeals(Set<PlannedMeal> plannedmeals) { this.plannedMeals = plannedmeals; }
 
     @Override
     public boolean equals(Object o) {
@@ -90,8 +87,6 @@ public class Recipe {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", directions='" + directions + '\'' +
-                ", favouritedBy=" + favouritedBy +
-                ", plannedMeals=" + plannedMeals +
                 '}';
     }
 }

@@ -16,6 +16,8 @@ public class User {
     private String userName;
     private String password;
 
+
+
     //TODO: why dont these relations work?
     @ManyToMany(mappedBy = "favouritedBy")
     private Set<Recipe> favouritedRecipes = new HashSet<>();
@@ -70,6 +72,22 @@ public class User {
     public Set<PlannedMeal> getPlannedMeals() { return plannedMeals; }
 
     public void setPlannedMeals(Set<PlannedMeal> plannedMeals) { this.plannedMeals = plannedMeals; }
+
+    public Set<Recipe> getFavouritedRecipes() {
+        return favouritedRecipes;
+    }
+
+    public void setFavouritedRecipes(Set<Recipe> favouritedRecipes) {
+        this.favouritedRecipes = favouritedRecipes;
+    }
+
+    public Set<Recipe> getCreatedRecipes() {
+        return createdRecipes;
+    }
+
+    public void setCreatedRecipes(Set<Recipe> createdRecipes) {
+        this.createdRecipes = createdRecipes;
+    }
 
     @Override
     public boolean equals(Object o){
