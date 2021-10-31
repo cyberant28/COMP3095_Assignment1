@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 public class PlannedMeal {
 
+    //Data members:
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -17,6 +18,8 @@ public class PlannedMeal {
     private String description;
     private Date mealDate;
 
+
+    //TODO: why dont these relations work?
     @ManyToMany()
     @JoinTable(name = "recipe_meal", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "meal_id"))
     private Set<Recipe> recipes;
@@ -49,6 +52,14 @@ public class PlannedMeal {
         this.recipes = recipes;
         this.mealAuthor = mealAuthor;
     }
+
+    public PlannedMeal(String title, User user) {
+        this.title = title;
+        this.mealAuthor = user;
+
+    }
+
+
 
     public Long getId() { return id; }
 

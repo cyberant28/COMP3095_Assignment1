@@ -1,8 +1,7 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -10,30 +9,43 @@ import java.util.Set;
 @Entity
 public class Recipe {
 
+    //Data members:
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
-    private String directions;
 
+    private String title;
+    private String directions; //TODO: should be an array of strings
+    private Date dateCreated;  //TODO: store date created when user creates recipe
+
+    //TODO: why dont these relations work?
     @ManyToMany()
-    @JoinTable(name = "user_recipe", joinColumns = @JoinColumn( name = "user_id"),  inverseJoinColumns = @JoinColumn( name = "recipe_id"))
-    private Set<User> users = new HashSet<>();
+    @JoinTable(name = "user_favourited_by", joinColumns = @JoinColumn( name = "user_id"),  inverseJoinColumns = @JoinColumn( name = "recipe_id"))
+    private Set<User> favouritedBy = new HashSet<>();
+
+    @ManyToOne()
+    @JoinTable(name = "user_author", joinColumns = @JoinColumn( name = "user_id"))
+    private User recipeAuthor;
 
     @ManyToMany()
     private Set<PlannedMeal> plannedMeals = new HashSet<>();
 
+
+
+
     public Recipe() {
     }
 
-    public Recipe(String title) {
+    public Recipe(String title, User recipeAuthor) {
         this.title = title;
+        this.recipeAuthor = recipeAuthor;
     }
 
-    public Recipe(String title, String directions, Set<User> users, Set<PlannedMeal> plannedMeals) {
+    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<PlannedMeal> plannedMeals) {
         this.title = title;
         this.directions = directions;
-        this.users = users;
+        this.recipeAuthor = recipeAuthor;
+        this.favouritedBy = users;
         this.plannedMeals = plannedMeals;
     }
 
@@ -49,9 +61,11 @@ public class Recipe {
 
     public void setDirections(String directions) { this.directions = directions; }
 
-    public Set<User> getUsers() { return users; }
+    public Set<User> getFavouritedBy() { return favouritedBy; }
 
-    public void setUsers(Set<User> users) { this.users = users; }
+    public void setFavouritedBy(Set<User> users) { this.favouritedBy = users; }
+
+    public void addFavouritedBy(User user) { this.favouritedBy.add(user); }
 
     public Set<PlannedMeal> getPlannedMeals() { return plannedMeals; }
 
@@ -76,7 +90,7 @@ public class Recipe {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", directions='" + directions + '\'' +
-                ", users=" + users +
+                ", favouritedBy=" + favouritedBy +
                 ", plannedMeals=" + plannedMeals +
                 '}';
     }

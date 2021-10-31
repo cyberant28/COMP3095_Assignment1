@@ -25,17 +25,29 @@ public class StartUp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        /**
+         * TODO: use cases to test
+         * user can create a recipe //done
+         * get recipes by user
+         * user can add a recipe to favourite
+         * search all recipe in system by created date
+         * user can add a meal
+         * get all meals for user
+         * get all meals for user within certain date range
+         */
         User user1 = new User("Ryan Murphy", "12345");
-        Recipe recipe1 = new Recipe("Pizza");
-        PlannedMeal meal1 = new PlannedMeal("Monday lunch");
+        Recipe recipe1 = new Recipe("Pizza", user1);
+        Recipe recipe2 = new Recipe("Sushi", user1);
+        PlannedMeal meal1 = new PlannedMeal("Monday lunch", user1);
+
 
         user1.getRecipes().add(recipe1);
-        user1.getPlannedMeals().add(meal1);
+
 
         userRepository.save(user1);
         recipeRepository.save(recipe1);
         plannedMealRepository.save(meal1);
+
 
 
 
