@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type= "text/css" href="/myStyleSheet.css">
+    <title>Title</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto 75%;
+            grid-gap: 10px;
+            padding: 10px;
+        }
+
+        .grid-container > div {
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+        }
+        .grid-container1 {
+            display: grid;
+            grid-template-columns: 25% 25%  25%  25% ;
+            height: 600px;
+            padding: 10px;
+        }
+
+        .grid-container1 > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .grid-container2 {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            height: 200px;
+
+
+
+        }
+
+        .grid-container2 > div {
+            background-color: lightgray;
+            border: 1px solid black;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="/favorites">Favorites</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="/recipeBook">Recipe book</a></li>
+            <li><a href="/planner">Planner</a></li>
+            <li><a href="/home">Profile</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="grid-container">
+    <div>Collection/Recipe</div>
+    <div>
+        <input type="search" id="gsearch" name="gsearch">
+        <input type="submit" value="Search">
+    </div>
+</div>
+
+<div class="grid-container1">
+    <div>Create collection</div>
+    <div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <h3>Dish1</h3>
+        <p>Number of recipes</p>
+    </div>
+
+    <div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <h3>Dish2</h3>
+        <p>Number of recipes</p>
+    </div>
+
+    <div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <div class="grid-container2">
+            <div>1</div>
+            <div>2</div>
+        </div>
+        <h3>Dish3</h3>
+        <p>Number of recipes</p>
+    </div>
+
+    </div>
+</div>
+
+</body>
+</html>

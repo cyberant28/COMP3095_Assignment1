@@ -3,7 +3,6 @@ package gbc.comp3095.recipeapp.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -17,7 +16,6 @@ public class LoginController {
     public String register(){
         return "index/register";
     }
-
 
     @GetMapping("/home")
     public String home(Model model){
@@ -34,9 +32,9 @@ public class LoginController {
         return "index/planner";
     }
 
-    @GetMapping("/listOfRecipes")
-    public String listOfRecipes(){
-        return "index/listOfRecipes";
+    @GetMapping("/forum")
+    public String forum(){
+        return "index/forum";
     }
 
     @GetMapping("/recipeBook")
@@ -47,6 +45,11 @@ public class LoginController {
     @GetMapping("/createRecipe")
     public String createRecipe(){
         return "index/createRecipe";
+    }
+
+    @GetMapping("/favorites")
+    public String favorites(){
+        return "index/favorites";
     }
 
 

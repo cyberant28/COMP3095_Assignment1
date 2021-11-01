@@ -14,7 +14,7 @@
             margin-left: auto;
             margin-top: 200px;
         }
-        input[type=text], select {
+        input[type=text], select, textarea {
             width: 100%;
             padding: 12px 20px;
             display: inline-block;
@@ -30,6 +30,7 @@
 <div class="container">
     <nav>
         <ul>
+            <li><a href="/favorites">Favorites</a></li>
             <li><a href="/recipeBook">Recipe book</a></li>
             <li><a href="/listOfRecipes">List of recipes</a></li>
             <li><a href="/planner">Planner</a></li>
@@ -51,7 +52,7 @@
     <br><br>
     <label for="contents">Contents</label>
     <br>
-    <input type="text" id="contents" name="contents" required>
+    <textarea id="contents" name="contents" style="height: 300px" required></textarea>
     <br><br>
     <label for="category">Category</label>
     <br>
