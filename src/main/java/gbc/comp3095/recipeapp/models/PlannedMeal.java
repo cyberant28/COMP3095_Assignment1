@@ -93,10 +93,7 @@ public class PlannedMeal extends BaseEntity{
         return Objects.equals(getId(), plannedMeal.getId());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
+
 
     @Override
     public String toString() {

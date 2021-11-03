@@ -29,9 +29,6 @@ public class User extends BaseEntity{
 
 
 
-
-
-
     public User() {
     }
 
@@ -95,8 +92,7 @@ public class User extends BaseEntity{
         return Objects.equals(getId(), getId());
     }
 
-    @Override
-    public int hashCode() { return Objects.hash(getId()); }
+
 
     @Override
     public String toString() {

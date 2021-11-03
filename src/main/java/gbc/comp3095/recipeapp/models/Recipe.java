@@ -76,10 +76,7 @@ public class Recipe extends BaseEntity{
         return Objects.equals(getId(), recipe.getId());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
+
 
     @Override
     public String toString() {
