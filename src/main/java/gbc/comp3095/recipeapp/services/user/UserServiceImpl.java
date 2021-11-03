@@ -1,4 +1,4 @@
-package gbc.comp3095.recipeapp.services;
+package gbc.comp3095.recipeapp.services.user;
 
 import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service @Transactional
 public class UserServiceImpl implements UserService{
@@ -39,18 +40,33 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRecipeToFavourites(String username, String title) {
-        User user = userRepository.findUserByUserName(username);
+    public void addRecipeToFavourites(long userId, long recipeId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        User user = optionalUser.get();
+
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
+        Recipe recipe = optionalRecipe.get();
+
+        user.getFavouritedRecipes().add(recipe);
+
+        userRepository.save(user);
+
+
+
 
     }
 
     @Override
-    public User getUser(String username) {
-        return null;
+    public User getUser(long userId) {
+
+        Optional<User> optionalUser = userRepository.findById(userId);
+        return optionalUser.get();
     }
 
     @Override
     public List<User> getUsers() {
-        return null;
+        List<User> allUsers = (List<User>) userRepository.findAll();
+
+        return allUsers;
     }
 }

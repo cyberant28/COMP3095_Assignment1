@@ -1,4 +1,4 @@
-package gbc.comp3095.recipeapp.services;
+package gbc.comp3095.recipeapp.services.user;
 
 import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
@@ -11,8 +11,10 @@ public interface UserService {
     PlannedMeal savePlannedMeal(PlannedMeal meal);
     Recipe saveRecipe(Recipe recipe);
 
-    void addRecipeToFavourites(String username, String title);
-    User getUser(String username);
+
+    void addRecipeToFavourites(long userId, long recipeId);
+
+    User getUser(long userId);
     List<User> getUsers();
 
 

@@ -7,15 +7,16 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Recipe {
+public class Recipe extends BaseEntity{
 
     //Data members:
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+
+    @Column(name = "title")
     private String title;
+    @Column(name = "direction")
     private String directions; //TODO: should be an array of strings
+    @Column(name = "date_created")
     private Date dateCreated;  //TODO: store date created when user creates recipe
 
     //TODO: why dont these relations work?
@@ -49,9 +50,8 @@ public class Recipe {
         this.favouritedBy = users;
     }
 
-    public Long getId() { return id; }
+    public Long getId() { return super.getId(); }
 
-    public void setId(Long id) { this.id = id; }
 
     public String getTitle() { return title; }
 
@@ -73,18 +73,18 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return Objects.equals(id, recipe.id);
+        return Objects.equals(getId(), recipe.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
     @Override
     public String toString() {
         return "Recipe{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", title='" + title + '\'' +
                 ", directions='" + directions + '\'' +
                 '}';

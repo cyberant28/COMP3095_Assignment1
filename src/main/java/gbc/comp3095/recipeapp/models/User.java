@@ -6,14 +6,13 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User extends BaseEntity{
 
     //Data members:
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+    @Column(name = "user_name")
     private String userName;
+    @Column(name = "password")
     private String password;
 
 
@@ -49,9 +48,8 @@ public class User {
     }
 
 
-    public Long getId() { return id; }
+    public Long getId() { return super.getId(); }
 
-    public void setId(Long id) { this.id = id; }
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -94,16 +92,16 @@ public class User {
         if (this == o) return true;
         if( o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id);
+        return Objects.equals(getId(), getId());
     }
 
     @Override
-    public int hashCode() { return Objects.hash(id); }
+    public int hashCode() { return Objects.hash(getId()); }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", userName='" + userName +
                 ", password='" + password + '\'' +
                 ", createdRecipes=" + createdRecipes +

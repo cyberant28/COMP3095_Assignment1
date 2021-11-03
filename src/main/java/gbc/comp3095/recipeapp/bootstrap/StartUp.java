@@ -6,6 +6,8 @@ import gbc.comp3095.recipeapp.models.User;
 import gbc.comp3095.recipeapp.repositories.PlannedMealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.repositories.UserRepository;
+import gbc.comp3095.recipeapp.services.user.UserService;
+import gbc.comp3095.recipeapp.services.user.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -59,13 +61,24 @@ public class StartUp implements CommandLineRunner {
         recipe1.getFavouritedBy().add(user1);
 
 
-        userRepository.save(user1);
+
+
+
+        UserService userService = new UserServiceImpl(userRepository, recipeRepository, plannedMealRepository);
+        userService.saveUser(user1);
         userRepository.save(user2);
         recipeRepository.save(recipe1);
         recipeRepository.save(recipe2);
 
         recipeRepository.save(recipe3);
         plannedMealRepository.save(meal1);
+
+
+       // userService.addRecipeToFavourites(user1.getId(), recipe3.getId());
+
+
+
+
 
 
 
