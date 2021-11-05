@@ -13,7 +13,7 @@ public class RecipeController {
     public RecipeController(RecipeRepository recipeRepository) { this.recipeRepository = recipeRepository; }
 
     @RequestMapping("/recipes")
-    public String getUsers(Model model){
+    public String getRecipes(Model model){
         model.addAttribute("recipes", recipeRepository.findAll());
 
         return "recipes/list";

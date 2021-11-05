@@ -3,25 +3,27 @@ package gbc.comp3095.recipeapp.bootstrap;
 import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.repositories.AbstractRepository;
 import gbc.comp3095.recipeapp.repositories.PlannedMealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
-import gbc.comp3095.recipeapp.repositories.UserRepository;
-import gbc.comp3095.recipeapp.services.user.UserService;
-import gbc.comp3095.recipeapp.services.user.UserServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StartUp implements CommandLineRunner {
 
-    private UserRepository userRepository;
+    private AbstractRepository userRepository;
     private RecipeRepository recipeRepository;
     private PlannedMealRepository plannedMealRepository;
 
-    public StartUp(UserRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository plannedMealRepository) {
+    private UserServiceImpl userService;
+
+    public StartUp(AbstractRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository plannedMealRepository, UserServiceImpl userService) {
         this.userRepository = userRepository;
         this.recipeRepository = recipeRepository;
         this.plannedMealRepository = plannedMealRepository;
+        this.userService = userService;
     }
 
 
@@ -64,9 +66,9 @@ public class StartUp implements CommandLineRunner {
 
 
 
-        UserService userService = new UserServiceImpl(userRepository, recipeRepository, plannedMealRepository);
-        userService.saveUser(user1);
-        userRepository.save(user2);
+
+        userService.save(user1);
+        userService.save(user2);
         recipeRepository.save(recipe1);
         recipeRepository.save(recipe2);
 
@@ -90,6 +92,8 @@ public class StartUp implements CommandLineRunner {
         System.out.println(recipe1.getId());
         System.out.println(meal1.getTitle());
         System.out.println(recipe1.getFavouritedBy());
+        System.out.println("FROM SERVICE");
+        System.out.println(userService.find(user1));
 
 
 
