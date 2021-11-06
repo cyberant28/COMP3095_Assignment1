@@ -1,7 +1,9 @@
 package gbc.comp3095.recipeapp.services.Implementations.user;
 
+import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.repositories.PlannedMealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.repositories.UserRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
@@ -15,11 +17,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
+    private final PlannedMealRepository mealRepository;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository mealRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
+        this.mealRepository = mealRepository;
     }
 
     @Override
@@ -56,12 +61,41 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(object);
 
     }
+    //TODO: is this really necessary?
+    private Recipe findRecipe(Recipe recipe){
+        Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
+        Recipe foundRecipe = searchRecipe.get();
+        return foundRecipe;
+    }
 
 
     @Override
-    public void addFavouriteRecipeToUser(User user, Recipe recipe) {
-        Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
-        Recipe foundRecipe = searchRecipe.get();
+    public void createMeal(User user, PlannedMeal meal) {
+        meal.setMealAuthor(user);
+        user.getPlannedMeals().add(meal);
+        mealRepository.save(meal);
+        userRepository.save(user);
+
+    }
+
+    @Override
+    public Recipe createRecipe(User user, Recipe recipe) {
+        recipe.setRecipeAuthor(user);
+
+        user.getCreatedRecipes().add(recipe);
+        recipe.setRecipeAuthor(user);
+
+        recipeRepository.save(recipe);
+        userRepository.save(user);
+
+        return recipe;
+    }
+
+
+    @Override
+    public void addFavouriteRecipe(User user, Recipe recipe) {
+
+        Recipe foundRecipe = findRecipe(recipe);
 
         user.getFavouriteRecipes().add(foundRecipe);
         recipe.getFavouritedBy().add(user);
@@ -71,18 +105,5 @@ public class UserServiceImpl implements UserService {
         );
         userRepository.save(user);
         recipeRepository.save(recipe);
-    }
-
-    @Override
-    public void createNewRecipe(User user, Recipe recipe) {
-        Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
-        Recipe foundRecipe = searchRecipe.get();
-
-        user.getCreatedRecipes().add(foundRecipe);
-        foundRecipe.setRecipeAuthor(user);
-
-        recipeRepository.save(foundRecipe);
-        userRepository.save(user);
-
     }
 }
