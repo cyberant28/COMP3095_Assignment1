@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type= "text/css" href="/myStyleSheet.css">
+    <title>Title</title>
+    <style>
+
+        .addRecipe{
+            width: 60%;
+            height: auto;
+            background-color: lightgray;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 200px;
+        }
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<div class="addRecipe">
+    <h1>Create new recipe</h1>
+    <label for="recipeTitle">Recipe title</label>
+    <br>
+    <input type="text" id="recipeTitle"  name="recipeTitel" required>
+    <br><br>
+    <label for="description">Description</label>
+    <br>
+    <input type="text" id="description" name="description" required>
+    <br><br>
+    <label for="category">Category</label>
+    <br>
+    <select id="category" name="category">
+        <option value="test1">Lunch</option>
+        <option value="test2">Dinner</option>
+    </select>
+    <br><br>
+    <button type="saveRecipe">Save recipe</button>
+    <button type="cancel">Cancel</button>
+
+
+
+</div>
+</body>
+</html>
