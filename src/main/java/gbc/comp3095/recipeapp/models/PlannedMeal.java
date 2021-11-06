@@ -1,10 +1,7 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class PlannedMeal extends BaseEntity{
@@ -17,7 +14,7 @@ public class PlannedMeal extends BaseEntity{
     @Column(name = "description")
     private String description;
     @Column(name = "mealDate")
-    private Date mealDate;
+    private Calendar mealDate;
 
 
     //TODO: why dont these relations work?
@@ -31,32 +28,24 @@ public class PlannedMeal extends BaseEntity{
 
 
 
+public PlannedMeal(){
 
+}
 
-    public PlannedMeal() {
-    }
-
-    public PlannedMeal(String title) {
+    public PlannedMeal(String title, Calendar mealDate) {
         this.title = title;
+        this.mealDate = mealDate;
     }
 
-    public PlannedMeal(String title, Set<Recipe> recipes) {
-        this.title = title;
-        this.recipes = recipes;
-    }
 
-    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes) {
+    public PlannedMeal(String title, User mealAuthor, Calendar mealDate, String description) {
         this.title = title;
         this.description = description;
         this.mealDate = mealDate;
-        this.recipes = recipes;
+        this.mealAuthor = mealAuthor;
     }
 
-    public PlannedMeal(String title, User user) {
-        this.title = title;
-        this.mealAuthor = user;
 
-    }
 
 
 
@@ -69,9 +58,9 @@ public class PlannedMeal extends BaseEntity{
 
     public void setDescription(String description) { this.description = description; }
 
-    public Date getMealDate() { return mealDate; }
+    public Calendar getMealDate() { return mealDate; }
 
-    public void setMealDate(Date mealDate) { this.mealDate = mealDate; }
+    public void setMealDate(Calendar mealDate) { this.mealDate = mealDate; }
 
     public Set<Recipe> getRecipes() { return this.recipes; }
 

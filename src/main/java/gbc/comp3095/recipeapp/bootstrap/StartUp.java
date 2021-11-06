@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 @Component
 public class StartUp implements CommandLineRunner {
 
@@ -30,32 +33,31 @@ public class StartUp implements CommandLineRunner {
     public void run(String... args) throws Exception {
         /**
          * TODO: use cases to test
-         * user can add a recipe to favourite //done for one recipe
          * search all recipe in system by created date
-         * user can add a meal //done
-         * user can add recipes to that meal
-         * get all meals for user
          * get all meals for user within certain date range
          */
+
+
         User user1 = new User("Ryan Murphy", "12345");
 
         Recipe recipe1 = new Recipe("Jam pudding");
 
         Recipe recipe2 = new Recipe("Toast Sandwich");
 
-        PlannedMeal meal1 = new PlannedMeal("My first meal");
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        PlannedMeal meal1 = new PlannedMeal("My first meal", today);
 
 
         userService.save(user1);
-
         userService.createRecipe(user1, recipe1);
         userService.createRecipe(user1, recipe2);
-
         userService.createMeal(user1, meal1);
-
         mealService.addRecipe(meal1, recipe1);
-
         userService.addFavouriteRecipe(user1, recipe2);
+
+
+
 
 
 

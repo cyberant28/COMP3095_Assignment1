@@ -29,12 +29,6 @@ public class Recipe extends BaseEntity{
     private User recipeAuthor;
 
 
-    //@ManyToMany()
-    //private Set<PlannedMeal> plannedMeals = new HashSet<>();
-
-
-
-
     public Recipe() {
     }
 

@@ -8,7 +8,6 @@ import java.util.Set;
 @Entity
 public class User extends BaseEntity{
 
-    //Data members:
 
     @Column(name = "user_name")
     private String userName;
@@ -16,8 +15,6 @@ public class User extends BaseEntity{
     private String password;
 
 
-
-    //TODO: why dont these relations work?
     @ManyToMany(mappedBy = "favouritedBy")
     private Set<Recipe> favouriteRecipes = new HashSet<>();
 
