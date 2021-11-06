@@ -31,13 +31,14 @@
 
 <div class="addRecipe">
     <h1>Create new recipe</h1>
+    <form action="#" th:action="@{/addrecipe}" th:object="${recipe}" method="post">
     <label for="recipeTitle">Recipe title</label>
     <br>
-    <input type="text" id="recipeTitle"  name="recipeTitel" required>
+    <input type="text" id="recipeTitle"  name="recipeTitle" th:field="*{title}" required>
     <br><br>
-    <label for="description">Description</label>
+    <label for="directions" th:field="*{directions}">Directions</label>
     <br>
-    <input type="text" id="description" name="description" required>
+    <input type="text" id="directions" name="directions" required>
     <br><br>
     <label for="category">Category</label>
     <br>
@@ -46,7 +47,7 @@
         <option value="test2">Dinner</option>
     </select>
     <br><br>
-    <button type="saveRecipe">Save recipe</button>
+    <button type="submit" value="Submit">Save recipe</button>
     <button type="cancel">Cancel</button>
 
 
