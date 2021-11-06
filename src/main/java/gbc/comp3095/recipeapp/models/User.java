@@ -19,7 +19,7 @@ public class User extends BaseEntity{
 
     //TODO: why dont these relations work?
     @ManyToMany(mappedBy = "favouritedBy")
-    private Set<Recipe> favouritedRecipes = new HashSet<>();
+    private Set<Recipe> favouriteRecipes = new HashSet<>();
 
     @OneToMany(mappedBy = "recipeAuthor")
     private Set<Recipe> createdRecipes = new HashSet<>();
@@ -68,12 +68,20 @@ public class User extends BaseEntity{
 
     public void setPlannedMeals(Set<PlannedMeal> plannedMeals) { this.plannedMeals = plannedMeals; }
 
-    public Set<Recipe> getFavouritedRecipes() {
-        return favouritedRecipes;
+    public Set<Recipe> getFavouriteRecipes() {
+        return this.favouriteRecipes;
     }
 
-    public void setFavouritedRecipes(Set<Recipe> favouritedRecipes) {
-        this.favouritedRecipes = favouritedRecipes;
+    public void setFavouriteRecipes(Set<Recipe> favouriteRecipes) {
+        this.favouriteRecipes = favouriteRecipes;
+    }
+
+    public Boolean addFavouriteRecipeToUser(Recipe recipe) {
+     //   return this.favouriteRecipes.add(recipe);
+        this.favouriteRecipes.add(recipe);
+        System.out.println("initial: "+this.getFavouriteRecipes());
+
+        return true;
     }
 
     public Set<Recipe> getCreatedRecipes() {
@@ -100,8 +108,6 @@ public class User extends BaseEntity{
                 "id=" + getId() +
                 ", userName='" + userName +
                 ", password='" + password + '\'' +
-                ", createdRecipes=" + createdRecipes +
-                ", plannedMeals=" + plannedMeals +
                 '}';
     }
 

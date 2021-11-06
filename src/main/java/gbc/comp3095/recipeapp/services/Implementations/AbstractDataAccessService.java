@@ -2,23 +2,33 @@ package gbc.comp3095.recipeapp.services.Implementations;
 
 import gbc.comp3095.recipeapp.models.BaseEntity;
 import gbc.comp3095.recipeapp.repositories.AbstractRepository;
+import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public class AbstractDataAccessService<T extends BaseEntity, ID extends Long> {
+public class AbstractDataAccessService<T extends BaseEntity, ID extends Long> implements CrudService<T, ID>{
 
 
 
     protected AbstractRepository abstractRepository;
 
+    protected CrudRepository<T, ID> getRepository() {
+        return null;
+    }
+
     public AbstractDataAccessService(AbstractRepository abstractRepository) {
         this.abstractRepository = abstractRepository;
     }
 
-    protected Optional<T> findById(ID id) {
+    public Optional<T> findById(ID id) {
             return abstractRepository.findById(id);
     }
 
+    @Override
+    public Optional<T> find(T object) {
+        return Optional.empty();
+    }
 
 
     public T save(T object) {
@@ -34,10 +44,10 @@ public class AbstractDataAccessService<T extends BaseEntity, ID extends Long> {
         public Iterable <T> findAll() {
             return abstractRepository.findAll();
         }
-        void delete(T object) {
+        public void delete(T object) {
             abstractRepository.delete(object);
         }
-        void deleteById(ID id){
+        public void deleteById(ID id){
             abstractRepository.deleteById(id);
         }
 

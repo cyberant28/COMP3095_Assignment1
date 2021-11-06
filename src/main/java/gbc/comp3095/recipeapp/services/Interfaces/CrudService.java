@@ -1,7 +1,6 @@
 package gbc.comp3095.recipeapp.services.Interfaces;
 
 import gbc.comp3095.recipeapp.models.BaseEntity;
-import gbc.comp3095.recipeapp.models.User;
 
 import java.util.Optional;
 

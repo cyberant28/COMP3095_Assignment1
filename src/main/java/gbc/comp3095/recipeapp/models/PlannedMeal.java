@@ -101,7 +101,6 @@ public class PlannedMeal extends BaseEntity{
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", datecreated=" + mealDate +
-                ", recipes=" + recipes +
                 '}';
     }
 }
