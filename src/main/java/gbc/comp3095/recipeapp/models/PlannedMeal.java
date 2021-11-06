@@ -40,18 +40,16 @@ public class PlannedMeal extends BaseEntity{
         this.title = title;
     }
 
-    public PlannedMeal(String title, Set<Recipe> recipes, User mealAuthor) {
+    public PlannedMeal(String title, Set<Recipe> recipes) {
         this.title = title;
         this.recipes = recipes;
-        this.mealAuthor = mealAuthor;
     }
 
-    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes, User mealAuthor) {
+    public PlannedMeal(String title, String description, Date mealDate, Set<Recipe> recipes) {
         this.title = title;
         this.description = description;
         this.mealDate = mealDate;
         this.recipes = recipes;
-        this.mealAuthor = mealAuthor;
     }
 
     public PlannedMeal(String title, User user) {

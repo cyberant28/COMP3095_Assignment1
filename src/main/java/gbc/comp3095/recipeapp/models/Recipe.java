@@ -38,9 +38,8 @@ public class Recipe extends BaseEntity{
     public Recipe() {
     }
 
-    public Recipe(String title, User recipeAuthor) {
+    public Recipe(String title) {
         this.title = title;
-        this.recipeAuthor = recipeAuthor;
     }
 
     public Recipe(String title, String directions, User recipeAuthor, Set<User> users) {
@@ -85,5 +84,13 @@ public class Recipe extends BaseEntity{
                 ", title='" + title + '\'' +
                 ", directions='" + directions + '\'' +
                 '}';
+    }
+
+    public User getRecipeAuthor() {
+        return recipeAuthor;
+    }
+
+    public void setRecipeAuthor(User recipeAuthor) {
+        this.recipeAuthor = recipeAuthor;
     }
 }

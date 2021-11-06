@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService {
         Recipe foundRecipe = searchRecipe.get();
 
         user.getFavouriteRecipes().add(foundRecipe);
-        user.setUserName("CHANGED USERNAME");
         recipe.getFavouritedBy().add(user);
 
         recipe.setFavouritedBy(
@@ -72,5 +71,18 @@ public class UserServiceImpl implements UserService {
         );
         userRepository.save(user);
         recipeRepository.save(recipe);
+    }
+
+    @Override
+    public void createNewRecipe(User user, Recipe recipe) {
+        Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
+        Recipe foundRecipe = searchRecipe.get();
+
+        user.getCreatedRecipes().add(foundRecipe);
+        foundRecipe.setRecipeAuthor(user);
+
+        recipeRepository.save(foundRecipe);
+        userRepository.save(user);
+
     }
 }

@@ -1,60 +1,34 @@
 package gbc.comp3095.recipeapp.services.Implementations;
 
-import gbc.comp3095.recipeapp.models.BaseEntity;
-import gbc.comp3095.recipeapp.repositories.AbstractRepository;
-import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
-import org.springframework.data.repository.CrudRepository;
+import gbc.comp3095.recipeapp.models.Recipe;
+import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.services.Implementations.meal.PlannedMealServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+@Service
+public class AbstractDataAccessService {
 
-public class AbstractDataAccessService<T extends BaseEntity, ID extends Long> implements CrudService<T, ID>{
+    private final PlannedMealServiceImpl plannedMealService;
+    private final UserServiceImpl userService;
+    private final RecipeServiceImpl recipeService;
 
-
-
-    protected AbstractRepository abstractRepository;
-
-    protected CrudRepository<T, ID> getRepository() {
-        return null;
+    @Autowired
+    public AbstractDataAccessService(PlannedMealServiceImpl plannedMealService, UserServiceImpl userService, RecipeServiceImpl recipeService) {
+        this.plannedMealService = plannedMealService;
+        this.userService = userService;
+        this.recipeService = recipeService;
     }
 
-    public AbstractDataAccessService(AbstractRepository abstractRepository) {
-        this.abstractRepository = abstractRepository;
+    //TODO: why does saving recipe here auto increment id?
+    public void createRecipe(User user, Recipe recipe){
+        recipe.setRecipeAuthor(user);
+        recipeService.save(recipe);
+        userService.save(user);
+        userService.createNewRecipe(user, recipe);
+
+
     }
-
-    public Optional<T> findById(ID id) {
-            return abstractRepository.findById(id);
-    }
-
-    @Override
-    public Optional<T> find(T object) {
-        return Optional.empty();
-    }
-
-
-    public T save(T object) {
-            if(object != null){
-                abstractRepository.save(object);
-            }
-            else {
-                throw new RuntimeException("Object cannot be null");
-            }
-            return object;
-        }
-
-        public Iterable <T> findAll() {
-            return abstractRepository.findAll();
-        }
-        public void delete(T object) {
-            abstractRepository.delete(object);
-        }
-        public void deleteById(ID id){
-            abstractRepository.deleteById(id);
-        }
-
-
-
-
-
-
-
 }

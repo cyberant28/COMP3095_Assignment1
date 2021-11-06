@@ -3,6 +3,7 @@ package gbc.comp3095.recipeapp.bootstrap;
 import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.services.Implementations.AbstractDataAccessService;
 import gbc.comp3095.recipeapp.services.Implementations.meal.PlannedMealServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
@@ -19,13 +20,15 @@ public class StartUp implements CommandLineRunner {
     private UserServiceImpl userService;
     private RecipeServiceImpl recipeService;
     private PlannedMealServiceImpl mealService;
+    private AbstractDataAccessService dataAccessService;
 
 
     @Autowired
-    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, PlannedMealServiceImpl mealService) {
+    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, PlannedMealServiceImpl mealService, AbstractDataAccessService dataAccessService) {
         this.userService = userService;
         this.recipeService = recipeService;
         this.mealService = mealService;
+        this.dataAccessService = dataAccessService;
     }
 
 
@@ -44,15 +47,18 @@ public class StartUp implements CommandLineRunner {
          */
         User user1 = new User("Ryan Murphy", "12345");
 
-        Recipe recipe1 = new Recipe("Jam pudding", user1);
+        Recipe recipe1 = new Recipe("Jam pudding");
 
-        PlannedMeal meal1 = new PlannedMeal("My first meal", user1);
+        Recipe recipe2 = new Recipe("Toast Sandwich");
+
+        PlannedMeal meal1 = new PlannedMeal("My first meal");
 
 
 
         userService.save(user1);
 
         recipeService.save(recipe1);
+
 
         mealService.save(meal1);
 
@@ -61,6 +67,9 @@ public class StartUp implements CommandLineRunner {
         System.out.println(mealService.findAll());
 
         userService.addFavouriteRecipeToUser(user1, recipe1);
+        userService.createNewRecipe(user1, recipe1);
+
+        dataAccessService.createRecipe(user1, recipe2);
 
 
 
