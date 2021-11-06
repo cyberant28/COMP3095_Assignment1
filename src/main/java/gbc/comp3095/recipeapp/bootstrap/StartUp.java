@@ -40,6 +40,7 @@ public class StartUp implements CommandLineRunner {
 
         User user1 = new User("Ryan Murphy", "12345");
 
+
         Recipe recipe1 = new Recipe("Jam pudding");
 
         Recipe recipe2 = new Recipe("Toast Sandwich");
