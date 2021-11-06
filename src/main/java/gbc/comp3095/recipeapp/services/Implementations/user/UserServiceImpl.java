@@ -2,6 +2,7 @@ package gbc.comp3095.recipeapp.services.Implementations.user;
 
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.repositories.UserRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RecipeRepository recipeRepository;
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository) {
         this.userRepository = userRepository;
 
+        this.recipeRepository = recipeRepository;
     }
 
     @Override
@@ -57,7 +60,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addFavouriteRecipeToUser(User user, Recipe recipe) {
-        user.addFavouriteRecipeToUser(recipe);
+        Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
+        Recipe foundRecipe = searchRecipe.get();
+
+        user.getFavouriteRecipes().add(foundRecipe);
+        user.setUserName("CHANGED USERNAME");
+        recipe.getFavouritedBy().add(user);
+
+        recipe.setFavouritedBy(
+                recipe.getFavouritedBy()
+        );
         userRepository.save(user);
+        recipeRepository.save(recipe);
     }
 }

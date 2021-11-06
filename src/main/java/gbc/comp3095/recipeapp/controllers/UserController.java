@@ -21,8 +21,6 @@ public class UserController {
     @RequestMapping("/users")
     public String getUsers(Model model){
 
-        Optional<User> user = userService.findById(1L);
-        System.out.println(user.get().getFavouriteRecipes());
         model.addAttribute("users", userService.findAll());
 
         return "users/list";

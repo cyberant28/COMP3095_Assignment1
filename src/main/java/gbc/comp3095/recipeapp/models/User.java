@@ -76,13 +76,7 @@ public class User extends BaseEntity{
         this.favouriteRecipes = favouriteRecipes;
     }
 
-    public Boolean addFavouriteRecipeToUser(Recipe recipe) {
-     //   return this.favouriteRecipes.add(recipe);
-        this.favouriteRecipes.add(recipe);
-        System.out.println("initial: "+this.getFavouriteRecipes());
 
-        return true;
-    }
 
     public Set<Recipe> getCreatedRecipes() {
         return createdRecipes;
