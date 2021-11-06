@@ -1,29 +1,204 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+
+
 <head>
+    <link rel="stylesheet" type= "text/css" href="/style.css">
+    <link rel="stylesheet" type= "text/css" href="/bootstrap.css">
+    <!--    <script src="/scripts.js"></script>-->
+    <script src="/datepicker.js"></script>
+    <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
     <meta charset="UTF-8">
-    <title>Recipes</title>
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <title>Main Page</title>
 </head>
+
+
+
 <body>
 
-<h1>Recipe List</h1>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Favourited By:</th>
-    </tr>
 
-    <tr th:each="recipe :${recipes}">
-        <td th:text="${recipe.id}"></td>
-        <td th:text="${recipe.title}"></td>
-        <td th:text="${recipe.recipeAuthor}"></td>
-        <td th:text="${recipe.getFavouritedBy()}"></td>
 
-    </tr>
+<div class="container">
 
-</table>
+    <h1 class="mT50" style="color: white!important;">Recipe List</h1>
+
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Title</th>-->
+<!--        <th>Author</th>-->
+<!--        <th>Favourited By:</th>-->
+<!--    </tr>-->
+
+<!--    <tr th:each="recipe :${recipes}">-->
+<!--        <td th:text="${recipe.id}"></td>-->
+<!--        <td th:text="${recipe.title}"></td>-->
+<!--        <td th:text="${recipe.recipeAuthor}"></td>-->
+<!--        <td th:text="${recipe.getFavouritedBy()}"></td>-->
+<!--    </tr>-->
+
+<!--</table>-->
+
+    <!-- MAIN CONTENT -->
+    <div class="row text-center" style="width: 75%; margin: 25px auto">
+
+        <div class="col-xs-2" th:each="recipe :${recipes}">
+            <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+            <div class="titleStyle" th:text="${recipe.title}"></div>
+            <!-- Button trigger Create Recipe Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                Edit
+            </button>
+        </div>
+
+    </div>
+    <!-- End of MAIN CONTENT -->
+
+
+    <div class="col-centered text-center">
+        <!-- Button trigger Create Recipe Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRecipe">
+            Create Recipe
+        </button>
+    </div>
+
+
+
+    <!-- View Recipe Modal -->
+    <div class="modal fade" id="viewRecipe" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle">"[Name of the selected recipe]"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="height: 500px!important;">Contents here</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of View Recipe Modal -->
+
+
+
+    <div class="modal fade" id="editRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="editRecipeTitle">Title</label>
+                            <input type="text" class="form-control" id="editRecipeTitle" placeholder="<Pre-populated>">
+                        </div>
+                        <div class="form-group">
+                            <label for="FormControlSelect1">Level of Difficulty</label>
+                            <select class="form-control" id="FormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="FormControlTextarea1">Instructions</label>
+                            <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Edit Recipe Modal -->
+
+    <!-- Create Recipe Modal -->
+    <div class="modal fade" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="recipeTitle">Create Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Title</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Level of Difficulty</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Create Recipe Modal -->
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/datepicker.js"></script>
+<script>
+    $(function() {
+        $('[data-toggle="datepicker"]').datepicker({
+            autoHide: true,
+            zIndex: 2048,
+        });
+    });
+</script>
+
+
+<!-- To be able to use certain Icons -->
+<script src="https://kit.fontawesome.com/2184cbeaba.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
 
 </body>
 </html>

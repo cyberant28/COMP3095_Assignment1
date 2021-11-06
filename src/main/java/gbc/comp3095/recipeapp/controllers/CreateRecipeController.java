@@ -28,6 +28,14 @@ public class CreateRecipeController {
         return "recipes/createRecipe";
     }
 
+//    @RequestMapping("/addrecipe")
+//    public String getRecipes(Model model){
+//        model.addAttribute("recipe", new Recipe());
+//        return "recipes/list";
+//    }
+
+
+
     @PostMapping("/addrecipe")
     public String addRecipe(@ModelAttribute Recipe recipe, Model model) {
         model.addAttribute("recipe", recipe);

@@ -4,6 +4,7 @@ import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,4 +21,5 @@ public class RecipeController {
         model.addAttribute("recipes", recipeService.findAll());
         return "recipes/list";
     }
+
 }
