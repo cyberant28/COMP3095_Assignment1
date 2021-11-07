@@ -5,7 +5,6 @@
 
 <head>
     <link rel="stylesheet" type= "text/css" href="/style.css">
-    <link rel="stylesheet" type= "text/css" href="/bootstrap.css">
     <!--    <script src="/scripts.js"></script>-->
     <script src="/datepicker.js"></script>
     <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
@@ -28,7 +27,7 @@
 
 <div class="container">
 
-    <h1 class="mT50" style="color: white!important;">Recipe List</h1>
+    <h1 class="mT50 tfontColor titleFont stroke text-center">Recipe List</h1>
 
 <!--<table>-->
 <!--    <tr>-->
@@ -51,8 +50,8 @@
     <div class="row text-center" style="width: 75%; margin: 25px auto">
 
         <div class="col-xs-2" th:each="recipe :${recipes}">
-                            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                            <div class="titleStyle" th:text="${recipe.title}"></div>
+                            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
+                            <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
                             <!-- Button trigger Create Recipe Modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
                                 Edit
@@ -85,7 +84,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="container" style="height: 500px!important;">
-                                    Contents here
+                                    <h5>Instructions</h5>
                                     <div th:text="${recipe.getDirections()}"></div>
                                 </div>
                             </div>

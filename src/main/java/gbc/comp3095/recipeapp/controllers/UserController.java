@@ -26,4 +26,12 @@ public class UserController {
         return "users/list";
     }
 
+    @RequestMapping("/login")
+    public String login(Model model){
+
+        model.addAttribute("users", userService.findAll());
+
+        return "fragments/login";
+    }
+
 }

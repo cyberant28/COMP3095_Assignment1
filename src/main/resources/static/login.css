@@ -42,19 +42,12 @@
   color: white;
 }
 
-.titleFont {
-  font-family: 'Irish Grover', cursive;
-  font-size: 50px!important;
-  font-weight: bolder;
-}
+
 
 .stroke {
-  -webkit-text-stroke: 0.02vw rgba(252, 93, 57, 0.5);
+  -webkit-text-stroke: 0.01vw rgba(255, 255, 255, 0.9);
 }
 
-.tfontColor {
-  color: white!important;
-}
 
 *,
 *::before,
