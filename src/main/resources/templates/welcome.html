@@ -41,8 +41,360 @@
             </div>
         </div>
     </div>
+
+
+    <div id="menu1" class="tab-pane fade">
+        <!-- Edit Recipe Modal -->
+        <div class="modal fade" id="editRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Title</label>
+                                <input type="text" class="form-control" id="editRecipeTitle" placeholder="<Pre-populated>">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Level of Difficulty</label>
+                                <select class="form-control" id="FormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Instructions</label>
+                                <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Edit Recipe Modal -->
+
+
+        <!-- MAIN CONTENT -->
+        <div class="row text-center" style="width: 75%; margin: 25px auto">
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Ratatouille</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Fetuccini Alfredo</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Lobster Ravioli</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">McDo Style Hamburgers</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Sushi</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Chicken Cacciatore</div>
+                <!-- Button trigger Create Recipe Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                    Edit
+                </button>
+            </div>
+        </div>
+        <!-- End of MAIN CONTENT -->
+
+        <!-- View Recipe Modal -->
+        <div class="modal fade" id="viewRecipe" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle">"[Name of the selected recipe]"</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="height: 500px!important;">Contents here</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of View Recipe Modal -->
+    </div>
+
+
+
+    <!-- Start of Small Tab Menu PLANNED MEALS -->
+    <div id="menu2" class="tab-pane fade">
+        <!-- Div for Create Recipe Modal Button -->
+        <div class="col-centered text-center">
+            <!-- Button trigger Create Recipe Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planMeal">
+                Plan Meals
+            </button>
+        </div>
+
+        <!-- Plan Meal Modal -->
+        <div class="modal fade" id="planMeal" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="planMealTitle">Plan Meal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Available Recipes</label>
+                                <select class="form-control" id="planMealFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="datePicker">Select day</label>
+                                <input type='text' class="form-control" id="datePicker" data-toggle="datepicker"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Plan Meal Modal -->
+
+        <div class="row text-center" style="width: 75%; margin: 25px auto">
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Title of Meal</div>
+                <div class="titleStyle">[DATE]</div>
+            </div>
+        </div>
+
+
+        <!-- View Planned Meal Modal -->
+        <div class="modal fade" id="plannedMeal" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="plannedMealTitle">Plan Meal Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>CONTENT HERE</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of View Planned Meal Modal -->
+
+
+    </div>
+    <!-- End of Small Tab Menu PLANNED MEALS -->
+
+
+    <!-- Start of Small Tab Menu MY RECIPES -->
+    <div id="menu3" class="tab-pane fade">
+        <!-- Div for Create Recipe Modal Button -->
+        <div class="col-centered text-center">
+            <!-- Button trigger Create Recipe Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRecipe">
+                Create Recipe
+            </button>
+        </div>
+
+        <!-- Create Recipe Modal -->
+        <div class="modal fade" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="recipeTitle">Create Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Title</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Level of Difficulty</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Create Recipe Modal -->
+
+
+        <!-- CONTENT -->
+        <div class="row text-center" style="width: 75%; margin: 25px auto">
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Ratatouille</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Spaguettinni Pannini</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Mac and Cheese</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Continental Breakfast</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Lasagna</div>
+            </div>
+            <div class="col-xs-2">
+                <a class="cursor" data-toggle="modal" data-target="#viewRecipe1"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
+                <div class="titleStyle">Vodka Pasta</div>
+            </div>
+        </div>
+        <!-- END of CONTENT -->
+
+        <!-- View Recipe Modal -->
+        <div class="modal fade" id="viewRecipe1" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle1">"[Name of the selected recipe]"</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="height: 500px!important;">Contents here</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of View Recipe Modal -->
+
+
+    </div>
+    <!-- End of Small Tab Menu MY RECIPES -->
+
+
+
+
+
+
+
 </div>
-    <!-- End of Main Menu - PROFILE -->
+
+
+
+
+
+
+
+
+
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 
 </body>
 
