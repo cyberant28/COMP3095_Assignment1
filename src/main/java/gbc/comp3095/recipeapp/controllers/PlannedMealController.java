@@ -26,6 +26,9 @@ public class PlannedMealController {
 
     @RequestMapping("/createmeal")
     public String getMeals(Model model){
+
+
+
         model.addAttribute("meals", mealService.findAll());
         return "meals/createMeal";
     }

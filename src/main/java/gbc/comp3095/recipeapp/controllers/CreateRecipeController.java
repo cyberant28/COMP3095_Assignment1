@@ -41,10 +41,7 @@ public class CreateRecipeController {
         model.addAttribute("recipe", recipe);
         User user = userService.findById(1L).get();
         userService.createRecipe(user, recipe);
-
         return "redirect:/recipes";
     }
-
-
 
 }
