@@ -2,12 +2,64 @@
 
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
+<head>
+    <script src="../static/navbar.js"></script>
+</head>
+
 <body>
 
-<h2 th:text="#{welcome}">Welcome</h2>
-<div class="row">
-    <div class="col-md-12">
-        <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+
+<!-- Small Tab Navbar -->
+<div class="navbar col-centered" style="margin-top: 250px;">
+    <nav class="navbar" style="text-align: center; margin: 0">
+        <ul class="nav nav-tabs" style="display: inline-table">
+            <li class="active" style="display: inline"><a data-toggle="tab" class="tabFont stroke tfontColor" href="#home">Profile</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu1">Favorites</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu2">Planned Meals</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu3">My Recipes</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+<!-- End of Small Tab Navbar -->
+
+<!-- Start of Main Menu - PROFILE -->
+<div class="tab-content mT50">
+    <div id="home" class="tab-pane fade in active">
+        <!-- Profile Details -->
+        <!--            <img src="images/pizza.jpeg" class="img-responsive col-centered img-circle profileImg" alt="Responsive image">-->
+        <div class="transbox col-centered" style="width: 50%; margin-top: 35px;">
+            <div class="transbox2 text-center col-centered" style="width: 95%">
+                <span>Chef</span><p>Gordon Ramsay</p>
+                <span>Creating culinary delights since:</span><p>1990</p> <!-- It would be good if we could change this message at random -->
+                <span>Nicknamed:</span><p>Chef Michelin</p>
+                <div class="dummyBox">
+                    <div class="profileText"><span>3</span> Total Created Recipes</div>
+                    <div class="profileText"><span>5</span> Meals planned</div>
+                    <div class="profileText"><span>9</span> Recipes in your favorites list</div>
+                </div>
+                <!-- Trigger/Open The Edit Profile Modal -->
+                <div class="col-centered" style="width: 30%;">
+                    <button type="button" class="btn btn-primary profileText" data-target="#modal" data-toggle="modal">
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Main Menu - PROFILE -->
+
+    <div id="menu2" class="tab-pane fade in active">
+        <h3>Tab 2</h3>
+        <p>Content for tab 2.</p>
+    </div>
+
+    <div id="menu3" class="tab-pane fade in active">
+        <h3>Tab 3</h3>
+        <p>Content for tab 3.</p>
     </div>
 </div>
 
