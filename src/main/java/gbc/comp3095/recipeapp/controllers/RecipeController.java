@@ -16,10 +16,17 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+//    @RequestMapping("/recipes")
+//    public String getRecipes(Model model){
+//        model.addAttribute("recipes", recipeService.findAll());
+//        return "recipes/list";
+//    }
+
     @RequestMapping("/recipes")
     public String getRecipes(Model model){
         model.addAttribute("recipes", recipeService.findAll());
-        return "recipes/list";
+        return "/welcome";
     }
+
 
 }
