@@ -4,8 +4,9 @@ import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
 import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends CrudService<User, Long> {
+public interface UserService extends CrudService<User, Long>, UserDetailsService {
 
     void createMeal(User user, PlannedMeal meal);
 

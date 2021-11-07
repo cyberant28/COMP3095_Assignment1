@@ -1,12 +1,16 @@
 package gbc.comp3095.recipeapp.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity implements UserDetails {
 
 
     @Column(name = "user_name")
@@ -53,7 +57,9 @@ public class User extends BaseEntity{
     public String getUserName() {
         return userName;
     }
-    public String getPassword() { return password; }
+
+
+
 
     public void setPassword(String password) { this.password = password; }
 
@@ -103,6 +109,44 @@ public class User extends BaseEntity{
     }
 
 
+
+    /**
+     * UserDetail methods
+     * @return
+     */
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+    }
+
+    public String getPassword() { return password; }
+
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 
 }

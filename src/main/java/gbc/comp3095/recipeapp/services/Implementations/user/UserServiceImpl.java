@@ -8,23 +8,36 @@ import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.repositories.UserRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
     private final PlannedMealRepository mealRepository;
 
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final static String USER_NOT_FOUND_MSG =
+            "user with username %s not found";
+
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository mealRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository mealRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
         this.mealRepository = mealRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -106,4 +119,54 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         recipeRepository.save(recipe);
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            return userRepository.findUserByUserName(username)
+                    .orElseThrow(() ->
+                            new UsernameNotFoundException(
+                                    String.format(USER_NOT_FOUND_MSG, username)));
+
+    }
+
+    public String signUpUser(User user) {
+        boolean userExists = userRepository
+                .findUserByUserName(user.getUsername())
+                .isPresent();
+
+        if (userExists) {
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
+
+            throw new IllegalStateException("email already taken");
+        }
+
+        String encodedPassword = bCryptPasswordEncoder
+                .encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+
+        userRepository.save(user);
+
+        String token = UUID.randomUUID().toString();
+    /**
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                user
+        );
+
+        confirmationTokenService.saveConfirmationToken(
+                confirmationToken);
+
+     */
+
+//        TODO: SEND EMAIL
+
+        return token;
+    }
+
+
+
 }
