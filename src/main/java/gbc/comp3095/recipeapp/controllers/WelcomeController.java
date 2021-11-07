@@ -1,4 +1,4 @@
-package gbc.comp3095.recipeapp.system;
+package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.Recipe;
 import org.springframework.stereotype.Controller;

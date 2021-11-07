@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <head>
     <title>Login | Recipe Book</title>
     <meta charset="utf-8">
@@ -27,10 +27,10 @@
                     <div class="img d-flex align-items-center justify-content-center" style="background-image: url(https://gist.githubusercontent.com/cyberant28/c1372e491e9e06db5c85a91977b142af/raw/6a05f1b63d492c83a54d80f78796103b99e1bf2a/userOnPc.svg);"></div>
                     <h3 class="text-center mb-0">Welcome</h3>
                     <p class="text-center">Sign in by entering the information below</p>
-                    <form action="#" class="login-form">
+                    <form action="" th:action="@{/login}"  method="post">
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            <input type="text" class="form-control" placeholder="Username"  th:field="*{username}"required>
                         </div>
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
