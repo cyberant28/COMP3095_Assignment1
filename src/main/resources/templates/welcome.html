@@ -385,6 +385,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <div th:if="${recipe.checkIfFavouritedBy(1)}" th:text="Favourited"></div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>

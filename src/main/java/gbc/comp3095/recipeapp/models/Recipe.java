@@ -1,6 +1,7 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -55,6 +56,25 @@ public class Recipe extends BaseEntity{
     public void setDirections(String directions) { this.directions = directions; }
 
     public Set<User> getFavouritedBy() { return favouritedBy; }
+    public Boolean checkIfFavouritedBy(String userIdString) {
+        try {
+            Long userId = Long.valueOf(userIdString);
+
+            for(User user : favouritedBy){
+                if(user.getId() ==  userId){
+                    return true;
+                }
+            }
+        }
+        catch (RuntimeException exception){
+            throw new RuntimeException("Invalid User Id");
+        }
+
+
+       return false;
+
+
+    }
 
     public void setFavouritedBy(Set<User> users) { this.favouritedBy = users; }
 
