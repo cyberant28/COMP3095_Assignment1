@@ -60,13 +60,7 @@ public class CreateRecipeController {
             throw new RuntimeException("Invalid id in path");
         }
 
-
-
-
-
-       // userService.createRecipe(user, recipe);
-
-        return "redirect:/recipes";
+     return "redirect:/home";
     }
 
 
