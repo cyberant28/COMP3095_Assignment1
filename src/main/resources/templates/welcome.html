@@ -17,6 +17,8 @@
 </div>
 <!-- End of Small Tab Navbar -->
 
+
+
 <!-- Start of Main Menu - PROFILE -->
 <div class="tab-content mT50">
     <div id="home" class="tab-pane fade in active">
@@ -86,79 +88,51 @@
         <!-- End of Edit Recipe Modal -->
 
 
-        <!-- MAIN CONTENT -->
+        <!-- CONTENT -->
         <div class="row text-center" style="width: 75%; margin: 25px auto">
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Ratatouille</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Fetuccini Alfredo</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Lobster Ravioli</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">McDo Style Hamburgers</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Sushi</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#viewRecipe"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Chicken Cacciatore</div>
-                <!-- Button trigger Create Recipe Modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
-                    Edit
-                </button>
-            </div>
-        </div>
-        <!-- End of MAIN CONTENT -->
 
-        <!-- View Recipe Modal -->
-        <div class="modal fade" id="viewRecipe" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle">"[Name of the selected recipe]"</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container" style="height: 500px!important;">Contents here</div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="col-xs-2" th:each="favorite : ${favoriteRecipes}">
+                <a class="cursor" data-toggle="modal" th:attr="data-target='#favoriteRecipe'+${favorite.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
+                <div class="tfontColor recipeFont stroke" th:text="${favorite.title}"></div>
+                <!-- Button trigger Create Recipe Modal -->
+                <!--                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">-->
+                <!--                    Edit-->
+                <!--                </button>-->
+            </div>
+
+        </div>
+        <!-- END of CONTENT -->
+
+
+
+        <!-- View FAVORITE Modal -->
+        <div th:each="favorite :${favoriteRecipes}">
+            <div class="modal fade" th:attr="id='favoriteRecipe'+${favorite.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${favorite.title}">"[Name of the selected recipe]"</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container" style="height: 500px!important;">
+                                <h1 th:value="${favorite.getDirections()}"></h1>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End of View Recipe Modal -->
+
+
+
+
     </div>
 
 
