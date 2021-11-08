@@ -1,8 +1,8 @@
 /*********************************************************************************
  * Project: < COMP3095_Assignment1 >
  * Assignment: < assignment 1 >
- * Author(s): < Fred Pedersen >
- * Student Number: < 101378456 >
+ * Author(s): < Fred Pedersen , Saad Khan >
+ * Student Number: < 101378456 , 101157307 >
  * Date: 07-11-2021
  * Description: The CreateRecipeController make sure that the right data from the model layer is being parsed to the right html page
  *********************************************************************************/
@@ -34,11 +34,7 @@ public class CreateRecipeController {
         return "recipes/createRecipe";
     }
 
-//    @RequestMapping("/addrecipe")
-//    public String getRecipes(Model model){
-//        model.addAttribute("recipe", new Recipe());
-//        return "recipes/list";
-//    }
+
 
 
 

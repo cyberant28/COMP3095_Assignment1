@@ -1,3 +1,12 @@
+
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Saad Khan >
+ * Student Number: < 101157307 >
+ * Date: 07-11-2021
+ * Description: Entity for managing the recipes and their relations
+ *********************************************************************************/
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
@@ -10,7 +19,6 @@ import java.util.Set;
 @Entity
 public class Recipe extends BaseEntity{
 
-    //Data members:
 
 
     @Column(name = "title")

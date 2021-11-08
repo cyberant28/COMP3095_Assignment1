@@ -4,41 +4,39 @@
  * Author(s): < Saad Khan >
  * Student Number: < 101157307 >
  * Date: 07-11-2021
- * Description: Provides all the recipes created by the current user. Currently defaulted to user with id 1
+ * Description: Provides all the recipes stored in the system to the explore recipe page
  *********************************************************************************/
-
 
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.models.User;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class RecipeController {
+public class ExploreRecipesController {
 
+
+    private final RecipeServiceImpl recipeService;
     private final UserServiceImpl userService;
 
     @Autowired
-    public RecipeController(RecipeServiceImpl recipeService, UserServiceImpl userService) {
-
+    public ExploreRecipesController(RecipeServiceImpl recipeService, UserServiceImpl userService, UserServiceImpl userService1) {
+        this.recipeService = recipeService;
         this.userService = userService;
     }
 
-    @RequestMapping("/recipes")
-    public String getRecipes(Model model){
-        User user = userService.findById(1L).get();
-        model.addAttribute("recipes", user.getRecipes());
+    @RequestMapping("/explore")
+    public String exploreRecipes(Model model){
+
+        model.addAttribute("recipes", recipeService.findAll());
         model.addAttribute("recipe", new Recipe());
-        return "recipes/list";
+        return "recipes/explore";
     }
-
-
 
 
 

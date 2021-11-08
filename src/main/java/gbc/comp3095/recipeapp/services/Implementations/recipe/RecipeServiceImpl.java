@@ -1,3 +1,11 @@
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Saad Khan >
+ * Student Number: < 101157307 >
+ * Date: 07-11-2021
+ * Description: Service implentation for receipe allows for deleting by ID, updating, finding, and a lot more
+ *********************************************************************************/
 package gbc.comp3095.recipeapp.services.Implementations.recipe;
 
 import gbc.comp3095.recipeapp.models.Recipe;

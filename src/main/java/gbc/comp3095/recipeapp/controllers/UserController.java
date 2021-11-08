@@ -1,3 +1,12 @@
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Saad Khan >
+ * Student Number: < 101157307 >
+ * Date: 07-11-2021
+ * Description: handles user login, adding to fav, and gives users for the user list page
+ *********************************************************************************/
+
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.Recipe;

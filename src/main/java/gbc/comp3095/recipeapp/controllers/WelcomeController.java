@@ -1,11 +1,13 @@
 /*********************************************************************************
  * Project: < COMP3095_Assignment1 >
  * Assignment: < assignment 1 >
- * Author(s): < Fred Pedersen >
- * Student Number: < 101378456 >
+ * Author(s): < Fred Pedersen, Saad Khan , Gustavo Beltran>
+ * Student Number: < 101378456 , 101157307, 101225087 >
  * Date: 07-11-2021
- * Description: The WelcomeController make sure that the right data from the model layer is being parsed to the right html page
+ * Description: Serves the home page with data and serves register and login pages
  *********************************************************************************/
+
+
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.User;
@@ -32,7 +34,7 @@ class WelcomeController {
     public String welcome(Model model) {
         User user = userService.findById(1L).get();
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
-        model.addAttribute("recipes", recipeService.findAll());
+        model.addAttribute("recipes", user.getRecipes());
 
         return "welcome";
     }

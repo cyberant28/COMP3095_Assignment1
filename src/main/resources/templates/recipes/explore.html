@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+
+
+<head>
+    <link rel="stylesheet" type= "text/css" href="/style.css">
+    <!--    <script src="/scripts.js"></script>-->
+    <script src="/datepicker.js"></script>
+    <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <title>Main Page</title>
+</head>
+
+
+
+<body>
+
+
+
+<div class="container">
+
+    <h1 class="mT50 tfontColor titleFont stroke text-center">Recipe List</h1>
+
+    <!--<table>-->
+    <!--    <tr>-->
+    <!--        <th>ID</th>-->
+    <!--        <th>Title</th>-->
+    <!--        <th>Author</th>-->
+    <!--        <th>Favourited By:</th>-->
+    <!--    </tr>-->
+
+    <!--    <tr th:each="recipe :${recipes}">-->
+    <!--        <td th:text="${recipe.id}"></td>-->
+    <!--        <td th:text="${recipe.title}"></td>-->
+    <!--        <td th:text="${recipe.recipeAuthor}"></td>-->
+    <!--        <td th:text="${recipe.getFavouritedBy()}"></td>-->
+    <!--    </tr>-->
+
+    <!--</table>-->
+
+    <!-- MAIN CONTENT -->
+    <div class="row text-center" style="width: 75%; margin: 25px auto">
+
+        <div class="col-xs-2" th:each="recipe :${recipes}">
+            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
+            <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
+            <div class="tfontColor recipeFont stroke" th:text="'authored by:' + ${recipe.recipeAuthor.userName}"></div>
+
+
+        </div>
+
+    </div>
+    <!-- End of MAIN CONTENT -->
+
+
+
+
+
+
+    <!-- View Recipe Modal -->
+    <div th:each="recipe :${recipes}">
+        <div class="modal fade" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="height: 500px!important;">
+                            <h5>Instructions</h5>
+                            <div th:text="${recipe.getDirections()}"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of View Recipe Modal -->
+
+
+
+
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/datepicker.js"></script>
+<script>
+    $(function() {
+        $('[data-toggle="datepicker"]').datepicker({
+            autoHide: true,
+            zIndex: 2048,
+        });
+    });
+</script>
+
+
+<!-- To be able to use certain Icons -->
+<script src="https://kit.fontawesome.com/2184cbeaba.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+</body>
+</html>

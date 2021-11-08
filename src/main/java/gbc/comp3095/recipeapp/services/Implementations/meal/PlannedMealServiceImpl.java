@@ -1,3 +1,12 @@
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Saad Khan >
+ * Student Number: < 101157307 >
+ * Date: 07-11-2021
+ * Description: Implementation for the meal service allows adding, retrieving recipes etc.
+ *********************************************************************************/
+
 package gbc.comp3095.recipeapp.services.Implementations.meal;
 
 import gbc.comp3095.recipeapp.models.PlannedMeal;
