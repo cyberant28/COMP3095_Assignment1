@@ -13,6 +13,10 @@ public class User extends BaseEntity{
     private String userName;
     @Column(name = "password")
     private String password;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "dateOfBirth")
+    private String dateOfBirth;
 
 
     @ManyToMany(mappedBy = "favouritedBy")
@@ -29,14 +33,18 @@ public class User extends BaseEntity{
     public User() {
     }
 
-    public User(String userName, String password) {
+    public User(String userName, String password, String name, String dateOfBirth) {
         this.userName = userName;
         this.password = password;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public User(String userName, String password, Set<Recipe> recipes, Set<PlannedMeal> plannedMeals) {
+    public User(String userName, String password, String name, String dateOfBirth, Set<Recipe> recipes, Set<PlannedMeal> plannedMeals) {
 
         this.userName = userName;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.createdRecipes = recipes;
         this.plannedMeals = plannedMeals;
     }
@@ -54,6 +62,22 @@ public class User extends BaseEntity{
         return userName;
     }
     public String getPassword() { return password; }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public void setPassword(String password) { this.password = password; }
 
@@ -99,6 +123,8 @@ public class User extends BaseEntity{
                 "id=" + getId() +
                 ", userName='" + userName +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 '}';
     }
 

@@ -10,6 +10,8 @@
 <table>
     <tr>
         <th>ID</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
         <th>User Name</th>
         <th>Favourite Recipes</th>
         <th>Recipies</th>
@@ -17,6 +19,8 @@
 
     <tr th:each="user :${users}">
         <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.dateOfBirth}"></td>
         <td th:text="${user.userName}"></td>
         <td th:text="${user.getFavouriteRecipes()}"></td>
         <td th:text="${user.getCreatedRecipes()}"></td>

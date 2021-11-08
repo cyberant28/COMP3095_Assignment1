@@ -38,7 +38,7 @@ public class StartUp implements CommandLineRunner {
          */
 
 
-        User user1 = new User("Ryan Murphy", "12345");
+        User user1 = new User("Chef-Ryan88", "12345", "Ryan Murphy","1988");
 
         Recipe recipe1 = new Recipe("Jam pudding");
         recipe1.setDirections("make me a jam pudding please");
