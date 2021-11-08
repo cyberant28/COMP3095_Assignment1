@@ -8,10 +8,10 @@
 <div class="navbar col-centered" style="margin-top: 250px;">
     <nav class="navbar" style="text-align: center; margin: 0">
         <ul class="nav nav-tabs" style="display: inline-table">
-            <li class="active" style="display: inline"><a data-toggle="tab" class="tabFont stroke tfontColor" href="#home">Profile</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu1">Favorites</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu2">Planned Meals</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke tfontColor" href="#menu3">My Recipes</a></li>
+            <li class="active" style="display: inline"><a data-toggle="tab" class="tabFont stroke" href="#home">Profile</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke" href="#menu1">Favorites</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke" href="#menu2">Planned Meals</a></li>
+            <li><a data-toggle="tab" class="tabFont stroke" href="#menu3">My Recipes</a></li>
         </ul>
     </nav>
 </div>
@@ -35,11 +35,11 @@
                     <div class="profileText"><span>9</span> Recipes in your favorites list</div>
                 </div>
                 <!-- Trigger/Open The Edit Profile Modal -->
-                <div class="col-centered" style="width: 30%;">
-                    <button type="button" class="btn btn-primary profileText" data-target="#modal" data-toggle="modal">
-                        Edit Profile
-                    </button>
-                </div>
+<!--                <div class="col-centered" style="width: 30%;">-->
+<!--                    <button type="button" class="btn btn-primary profileText" data-target="#modal" data-toggle="modal">-->
+<!--                        Edit Profile-->
+<!--                    </button>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -140,12 +140,12 @@
     <!-- Start of Small Tab Menu PLANNED MEALS -->
     <div id="menu2" class="tab-pane fade">
         <!-- Div for Create Recipe Modal Button -->
-        <div class="col-centered text-center">
-            <!-- Button trigger Create Recipe Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planMeal">
-                Plan Meals
-            </button>
-        </div>
+<!--        <div class="col-centered text-center">-->
+<!--            &lt;!&ndash; Button trigger Create Recipe Modal &ndash;&gt;-->
+<!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planMeal">-->
+<!--                Plan Meals-->
+<!--            </button>-->
+<!--        </div>-->
 
         <!-- Plan Meal Modal -->
         <div class="modal fade" id="planMeal" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
@@ -184,36 +184,36 @@
         </div>
         <!-- End of Plan Meal Modal -->
 
-        <div class="row text-center" style="width: 75%; margin: 25px auto">
+        <div class="row text-center recipeFont tfontColor" style="width: 75%; margin: 25px auto">
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/fluency/96/000000/bake.png"/></a>
+                <div>Tiramisu Cake</div>
+                <div>December 10, 2021</div>
             </div>
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/fluency/96/000000/bagel.png"/></a>
+                <div>Cream Cheese Special Bagel</div>
+<!--                <div class="titleStyle">[DATE]</div>-->
             </div>
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/fluency/96/000000/rolled-oats.png"/></a>
+                <div>Rolled Oats</div>
+<!--                <div>[DATE]</div>-->
             </div>
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/emoji/96/000000/shrimp.png"/></a>
+                <div>Sea Food Delights</div>
+                <div>November 23, 2021</div>
             </div>
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/color/96/000000/thanksgiving.png"/></a>
+                <div>Thanksgiving Turkey</div>
+<!--                <div>[DATE]</div>-->
             </div>
             <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
-                <div class="titleStyle">Title of Meal</div>
-                <div class="titleStyle">[DATE]</div>
+                <a class="cursor" data-toggle="modal" data-target="#plannedMeal"><img src="https://img.icons8.com/fluency/96/000000/paella.png"/></a>
+                <div>Paella</div>
+                <div>December 21, 2021</div>
             </div>
         </div>
 

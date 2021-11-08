@@ -1,3 +1,9 @@
+/*
+Authored by Gus Beltran - 101225087
+
+*/
+
+
 $('.input-group.date').datepicker({format: "dd.mm.yyyy"});
 
 (function($) {
