@@ -1,3 +1,11 @@
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Fred Pedersen >
+ * Student Number: < 101378456 >
+ * Date: 07-11-2021
+ * Description: The WelcomeController make sure that the right data from the model layer is being parsed to the right html page
+ *********************************************************************************/
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.User;
