@@ -73,27 +73,40 @@
 
     <!-- View Recipe Modal -->
     <div th:each="recipe :${recipes}">
-                <div class="modal fade" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+        <div class="modal fade" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="height: 500px!important;">
+                            <div th:if="${recipe.checkIfFavouritedBy(1)}">
+                                <!-- TODO why doesnt glyphicon work? -->
+                                <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                    <button class="btn btn-success" type="submit"> Remove from Favourites</button>
+                                </form>
                             </div>
-                            <div class="modal-body">
-                                <div class="container" style="height: 500px!important;">
-                                    <h5>Instructions</h5>
-                                    <div th:text="${recipe.getDirections()}"></div>
-                                </div>
+                            <div th:unless="${recipe.checkIfFavouritedBy(1)}">
+                                <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                    <button class="btn btn-primary" type="submit"> Save to Favourites</button>
+                                </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+
+                            <h5>Instructions</h5>
+                            <div th:text="${recipe.getDirections()}"></div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
+            </div>
+        </div>
     </div>
     <!-- End of View Recipe Modal -->
 

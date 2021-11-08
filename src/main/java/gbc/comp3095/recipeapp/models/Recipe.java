@@ -88,6 +88,8 @@ public class Recipe extends BaseEntity{
 
     public void addFavouritedBy(User user) { this.favouritedBy.add(user); }
 
+    public void removeFavouritedBy(User user) { this.favouritedBy.remove(user); }
+
 
     @Override
     public boolean equals(Object o) {

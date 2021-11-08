@@ -113,6 +113,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void removeFavouriteRecipe(User user, Recipe recipe) {
+
+        Recipe foundRecipe = findRecipe(recipe);
+
+        user.getFavouriteRecipes().remove(foundRecipe);
+
+        foundRecipe.removeFavouritedBy(user);
+        userRepository.save(user);
+        recipeRepository.save(foundRecipe);
+    }
+
+
+    @Override
     public void createUser(User user) {
         userRepository.save(user);
     }

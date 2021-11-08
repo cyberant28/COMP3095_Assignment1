@@ -78,11 +78,24 @@
                     </div>
                     <div class="modal-body">
                         <div class="container" style="height: 500px!important;">
+                            <div th:if="${recipe.checkIfFavouritedBy(1)}">
+                                <!-- TODO why doesnt glyphicon work? -->
+                                <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                    <button class="btn btn-success" type="submit"> Remove from Favourites</button>
+                                </form>
+                            </div>
+                            <div th:unless="${recipe.checkIfFavouritedBy(1)}">
+                                <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                    <button class="btn btn-primary" type="submit"> Save to Favourites</button>
+                                </form>
+                            </div>
+
                             <h5>Instructions</h5>
                             <div th:text="${recipe.getDirections()}"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
+
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

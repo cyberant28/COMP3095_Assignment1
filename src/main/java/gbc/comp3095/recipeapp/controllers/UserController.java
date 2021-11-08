@@ -66,6 +66,24 @@ public class UserController {
         return "redirect:/home";
     }
 
+    @PostMapping("/removefav/{id}")
+    public String removeFavourite(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
+
+
+
+        User user = userService.findById(1L).get();
+        try{
+            Long recipeId = Long.valueOf(pathId);
+            recipe.setId(recipeId);
+            userService.removeFavouriteRecipe(user, recipe);
+        }
+        catch (Exception exception){
+            throw new RuntimeException("Invalid recipe id in path");
+        }
+
+        return "redirect:/home";
+    }
+
 
 
 }
