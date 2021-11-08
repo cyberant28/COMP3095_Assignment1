@@ -106,4 +106,9 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         recipeRepository.save(recipe);
     }
+
+    @Override
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
 }
