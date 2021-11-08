@@ -98,13 +98,10 @@ public class UserServiceImpl implements UserService {
         Recipe foundRecipe = findRecipe(recipe);
 
         user.getFavouriteRecipes().add(foundRecipe);
-        recipe.getFavouritedBy().add(user);
 
-        recipe.setFavouritedBy(
-                recipe.getFavouritedBy()
-        );
+        foundRecipe.addFavouritedBy(user);
         userRepository.save(user);
-        recipeRepository.save(recipe);
+        recipeRepository.save(foundRecipe);
     }
 
     @Override

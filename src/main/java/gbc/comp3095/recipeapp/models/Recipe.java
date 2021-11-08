@@ -21,7 +21,7 @@ public class Recipe extends BaseEntity{
     private Date dateCreated;  //TODO: store date created when user creates recipe
 
     //TODO: why dont these relations work?
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_favourited_by", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private Set<User> favouritedBy = new HashSet<>();
 

@@ -6,10 +6,7 @@ import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
 import java.util.Optional;
@@ -38,14 +35,19 @@ public class UserController {
         return "fragments/login";
     }
 
-    @PostMapping("/addfav/{recipe_id}\"")
-    public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("recipe_id") String pathId, Model model) {
+
+
+
+
+    @PostMapping("/addfav/{id}")
+    public String addFavourite(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
 
 
 
         User user = userService.findById(1L).get();
         try{
             Long recipeId = Long.valueOf(pathId);
+            recipe.setId(recipeId);
             userService.addFavouriteRecipe(user, recipe);
         }
         catch (Exception exception){
@@ -54,6 +56,7 @@ public class UserController {
 
         return "redirect:/home";
     }
+
 
 
 }
