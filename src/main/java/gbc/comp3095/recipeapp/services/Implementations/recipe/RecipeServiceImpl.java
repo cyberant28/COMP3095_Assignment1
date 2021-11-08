@@ -45,6 +45,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDirections) {
+        Recipe recipeNew = recipeRepository.findById(id).get();
+        recipeNew.setTitle(newTitle);
+        recipeNew.setDirections(newDirections);
+        recipeRepository.save(recipeNew);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
         recipeRepository.deleteById(id);
