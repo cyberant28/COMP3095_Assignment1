@@ -17,6 +17,8 @@ public class PlannedMealController {
     @RequestMapping("/meals")
     public String getUsers(Model model){
         model.addAttribute("meals", mealService.findAll());
+
+
         return "meals/list";
     }
 

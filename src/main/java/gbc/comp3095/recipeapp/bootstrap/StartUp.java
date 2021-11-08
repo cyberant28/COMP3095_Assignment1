@@ -41,8 +41,10 @@ public class StartUp implements CommandLineRunner {
         User user1 = new User("Ryan Murphy", "12345");
 
         Recipe recipe1 = new Recipe("Jam pudding");
+        recipe1.setDirections("make me a jam pudding please");
 
         Recipe recipe2 = new Recipe("Toast Sandwich");
+        recipe2.setDirections("Make me a Toast pease");
 
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);

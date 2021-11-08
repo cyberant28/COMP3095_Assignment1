@@ -54,7 +54,7 @@
                             <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="/images/pizza.jpeg" height="100%" width="100%"></a>
                             <div class="titleStyle" th:text="${recipe.title}"></div>
                             <!-- Button trigger Create Recipe Modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
                                 Edit
                             </button>
         </div>
@@ -98,45 +98,58 @@
     </div>
     <!-- End of View Recipe Modal -->
 
+    <!-- Edit Recipe Modal -->
+    <div th:each="recipe :${recipes}">
+            <div class="modal fade" th:attr="id='editRecipe'+${recipe.getId()}" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Recipe</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{|/editrecipe/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                            <div class="form-group">
+                                    <label th:attr="for= ${recipe.getTitle()}" >Title</label>
+                                    <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
+
+                            </div>
+                                <div class="form-group">
+                                    <label for="FormControlSelect1">Category</label>
+                                    <select class="form-control" id="FormControlSelect1">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label th:attr="for= ${recipe.getDirections()}">Directions</label>
+                       
+                                    <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
 
 
-    <div class="modal fade" id="editRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Recipe</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="editRecipeTitle">Title</label>
-                            <input type="text" class="form-control" id="editRecipeTitle" placeholder="<Pre-populated>">
+
+                                     </textarea>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+
+
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="FormControlSelect1">Level of Difficulty</label>
-                            <select class="form-control" id="FormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="FormControlTextarea1">Instructions</label>
-                            <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
     <!-- End of Edit Recipe Modal -->
 

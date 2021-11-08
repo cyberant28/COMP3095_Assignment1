@@ -60,6 +60,9 @@
     <div id="menu3" class="tab-pane fade in active">
         <h3>Tab 3</h3>
         <p>Content for tab 3.</p>
+        <div th:each="recipe :${favouriteRecipes}">
+            <div th:text="${recipe.title}"></div>
+        </div>
     </div>
 </div>
 
