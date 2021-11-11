@@ -19,8 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Array;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.Random;
 
 @Component
 public class StartUp implements CommandLineRunner {
@@ -38,6 +40,26 @@ public class StartUp implements CommandLineRunner {
     }
 
 
+    public void generateRecipes(User user, int numRecipes){
+
+        //TODO: add more adjectives, items, garnishes
+        String [] adjectives = {"Orange" , "Pink" , "Seared" , "Toasted" , "Sauted", "Peeled", "Boiled"};
+        String [] items = {"Chicken", "Tea" , "Salmon", "Beef", "Ceviche", "Mink"};
+        String [] garnishes = {"BBQ Sauce", "Icing Sugar" , "Chives", "Oregano", "Pink Salk"};
+
+        for(int i=0; i<numRecipes; i++){
+            String recipeName = "";
+            recipeName += adjectives[(int) Math.floor(Math.random()* adjectives.length)] +" ";
+            recipeName += items[(int) Math.floor(Math.random()* items.length)] +" with ";
+            recipeName += garnishes[(int) Math.floor(Math.random()* garnishes.length)];
+            Recipe recipe = new Recipe(recipeName);
+            recipe.setDirections("Make me a " + recipeName +" please");
+            userService.createRecipe(user, recipe);
+        }
+
+
+    }
+
     @Override
     public void run(String... args) throws Exception {
         /**
@@ -50,6 +72,9 @@ public class StartUp implements CommandLineRunner {
         User user1 = new User("Ryan Murphy", "12345");
         User userJ = new User("James Bond", "5432");
         User userM = new User("Marlon Brando", "password");
+        User userN = new User("Nasrit Khan", "password");
+        User userO = new User("Ophelia Diaz", "password");
+        User userP = new User("Petro Peu", "password");
 
         Recipe recipe1 = new Recipe("Jam pudding");
         recipe1.setDirections("make me a jam pudding please");
@@ -66,6 +91,11 @@ public class StartUp implements CommandLineRunner {
         Recipe recipeN = new Recipe("Orange Lemonade");
         recipeJ.setDirections("make me a Orange Lemonade please");
 
+
+
+
+
+
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         PlannedMeal meal1 = new PlannedMeal("My first meal", today);
@@ -74,10 +104,21 @@ public class StartUp implements CommandLineRunner {
         userService.save(user1);
         userService.save(userJ);
         userService.save(userM);
+        userService.save(userN);
+        userService.save(userO);
+
+
         userService.createRecipe(user1, recipe1);
         userService.createRecipe(user1, recipe2);
         userService.createRecipe(userJ, recipeJ);
         userService.createRecipe(userM, recipeM);
+
+
+        generateRecipes(user1, 6);
+        generateRecipes(userJ, 4);
+        generateRecipes(userM, 10);
+        generateRecipes(userN, 12);
+        generateRecipes(userO, 2);
 
         userService.createRecipe(userM, recipeN);
         userService.createMeal(user1, meal1);
