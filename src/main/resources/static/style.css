@@ -6,6 +6,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
+/*
+Authored by Gus Beltran - 101225087
+
+*/
+
 .nav {
     padding-left: 0;
     margin-bottom: 0;
@@ -23,7 +28,7 @@
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #ffa860;
+    background-color: #bcffff;
 }
 .nav > li.disabled > a {
     color: #777777;
@@ -58,7 +63,7 @@
     margin-bottom: -1px;
 }
 .nav-tabs > li > a {
-    background-color: #2f0000;
+    background-color: #0b0c33;
     margin-right: 2px;
     line-height: 1.42857143;
     border: 1px solid transparent;
@@ -775,7 +780,7 @@ a {
 }
 
 .stroke {
-    -webkit-text-stroke: 0.01vw rgba(255, 255, 255, 0.9);
+    /*-webkit-text-stroke: 0.01vw rgba(255, 255, 255, 0.9);*/
 }
 
 .bgBody {
