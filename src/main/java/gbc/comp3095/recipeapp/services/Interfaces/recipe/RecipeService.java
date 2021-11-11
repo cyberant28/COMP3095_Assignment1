@@ -11,6 +11,10 @@ package gbc.comp3095.recipeapp.services.Interfaces.recipe;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 
+import java.util.Optional;
+
 public interface RecipeService extends CrudService<Recipe, Long> {
+    Optional<Recipe> findByTitle(String searchQuery);
+
     void updateRecipeTitleDirections(Long id, String newTitle, String newDirections);
 }

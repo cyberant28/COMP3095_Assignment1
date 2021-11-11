@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:fragment="layout (template, menu)">
+<html th:fragment="layout (template, menu)" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -77,12 +77,14 @@
 
 
         <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left" action="/favorites">
+            <!-- search form -->
+            <form class="navbar-form navbar-left" action="/search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Submit</button>
             </form>
+            <!-- search form ends -->
             <li><a class="txt-navbar mainMenuFont" href="/login"><i class="fas fa-keyboard"></i> Logout</a></li>
         </ul>
     </div>

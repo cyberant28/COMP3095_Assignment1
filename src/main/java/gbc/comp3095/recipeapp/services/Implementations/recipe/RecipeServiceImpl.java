@@ -32,6 +32,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public Optional<Recipe> findByTitle(String searchQuery) {
+        return recipeRepository.findByTitle(searchQuery);
+    }
+
+    @Override
     public Optional<Recipe> find(Recipe recipe) {
         return recipeRepository.findById(recipe.getId());
     }
