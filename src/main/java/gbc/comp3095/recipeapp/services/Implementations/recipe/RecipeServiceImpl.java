@@ -14,6 +14,8 @@ import gbc.comp3095.recipeapp.services.Interfaces.recipe.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Iterable<Recipe> findByTitle(String searchQuery) {
-        return recipeRepository.findByTitle(searchQuery);
+        return recipeRepository.findByTitleContainingIgnoreCase(searchQuery);
     }
 
     @Override

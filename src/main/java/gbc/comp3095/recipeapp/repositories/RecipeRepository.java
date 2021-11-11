@@ -12,8 +12,9 @@ import gbc.comp3095.recipeapp.models.PlannedMeal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
-    Iterable<Recipe> findByTitle(String searchQuery);
+    Iterable<Recipe> findByTitleContainingIgnoreCase(String searchQuery);
 }
