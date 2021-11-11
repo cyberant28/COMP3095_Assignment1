@@ -32,7 +32,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Optional<Recipe> findByTitle(String searchQuery) {
+    public Iterable<Recipe> findByTitle(String searchQuery) {
         return recipeRepository.findByTitle(searchQuery);
     }
 

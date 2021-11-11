@@ -49,7 +49,7 @@
     <!-- MAIN CONTENT -->
     <div class="row text-center" style="width: 75%; margin: 25px auto">
 
-        <div class="col-xs-2" th:each="recipe :${recipes}">
+        <div class="col-xs-2" th:if="${foundRecipesBool}" th:each="recipe :${recipes}">
             <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
             <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
             <div class="tfontColor recipeFont stroke" th:text="'authored by:' + ${recipe.recipeAuthor.userName}"></div>
@@ -66,7 +66,7 @@
 
 
     <!-- View Recipe Modal -->
-    <div th:each="recipe :${recipes}">
+    <div th:if="${foundRecipesBool}" th:each="recipe :${recipes}">
         <div class="modal fade" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

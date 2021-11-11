@@ -78,12 +78,14 @@
 
         <ul class="nav navbar-nav navbar-right">
             <!-- search form -->
-            <form class="navbar-form navbar-left" action="/search">
+            <form class="navbar-form navbar-left" action="/search" method="GET">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" name="searchQuery">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Submit</button>
             </form>
+
+
             <!-- search form ends -->
             <li><a class="txt-navbar mainMenuFont" href="/login"><i class="fas fa-keyboard"></i> Logout</a></li>
         </ul>
