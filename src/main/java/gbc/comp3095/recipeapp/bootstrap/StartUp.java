@@ -43,9 +43,9 @@ public class StartUp implements CommandLineRunner {
     public void generateRecipes(User user, int numRecipes){
 
         //TODO: add more adjectives, items, garnishes
-        String [] adjectives = {"Orange" , "Pink" , "Seared" , "Toasted" , "Sauted", "Peeled", "Boiled"};
-        String [] items = {"Chicken", "Tea" , "Salmon", "Beef", "Ceviche", "Mink"};
-        String [] garnishes = {"BBQ Sauce", "Icing Sugar" , "Chives", "Oregano", "Pink Salk"};
+        String [] adjectives = {"Orange" , "Pink" , "Seared" , "Toasted" , "Sauted", "Peeled", "Boiled", "Aged"};
+        String [] items = {"Chicken", "Tea", "Cake", "Salmon", "Beef", "Ceviche", "Mink", "Curry" , "Quesadilla"};
+        String [] garnishes = {"BBQ Sauce", "Icing Sugar" , "Chives", "Oregano", "Pink Salk" , "Nutritional Yeast" , "Maple Syrup" , "Gravy"};
 
         for(int i=0; i<numRecipes; i++){
             String recipeName = "";
