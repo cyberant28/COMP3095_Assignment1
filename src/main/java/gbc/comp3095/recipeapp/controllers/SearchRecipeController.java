@@ -20,22 +20,17 @@ public class SearchRecipeController {
         this.recipeService = recipeService;
         this.userService = userService;
     }
-    //TODO: clean the query
-    public String cleanSearchQuery(String query){
-        return query;
-    }
+
 
 
     @GetMapping("/search")
     public String searchRecipes(Model model, @RequestParam String searchQuery){
-        searchQuery = cleanSearchQuery(searchQuery);
         Iterable<Recipe> recipesFound  = recipeService.findByTitle(searchQuery);
 
         boolean foundRecipes = false;
 
         if(!recipesFound.iterator().hasNext()){
             model.addAttribute("foundRecipesBool",false);
-
         }
         else{
             model.addAttribute("foundRecipesBool",true);
