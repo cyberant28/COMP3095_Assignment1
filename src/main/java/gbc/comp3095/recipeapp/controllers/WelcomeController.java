@@ -39,8 +39,6 @@ class WelcomeController {
         return "welcome";
     }
 
-
-
     @GetMapping({"/login"})
     public String login() {
         return "fragments/login";
@@ -50,6 +48,4 @@ class WelcomeController {
     public String register() {
         return "fragments/register";
     }
-
-
 }

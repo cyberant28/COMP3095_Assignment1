@@ -31,14 +31,12 @@ public class StartUp implements CommandLineRunner {
     private RecipeServiceImpl recipeService;
     private PlannedMealServiceImpl mealService;
 
-
     @Autowired
     public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, PlannedMealServiceImpl mealService) {
         this.userService = userService;
         this.recipeService = recipeService;
         this.mealService = mealService;
     }
-
 
     public void generateRecipes(User user, int numRecipes){
 
@@ -56,8 +54,6 @@ public class StartUp implements CommandLineRunner {
             recipe.setDirections("Make me a " + recipeName +" please");
             userService.createRecipe(user, recipe);
         }
-
-
     }
 
     @Override
@@ -67,7 +63,6 @@ public class StartUp implements CommandLineRunner {
          * search all recipe in system by created date
          * get all meals for user within certain date range
          */
-
 
         User user1 = new User("Ryan Murphy", "12345");
         User userJ = new User("James Bond", "5432");
@@ -91,15 +86,9 @@ public class StartUp implements CommandLineRunner {
         Recipe recipeN = new Recipe("Orange Lemonade");
         recipeJ.setDirections("make me a Orange Lemonade please");
 
-
-
-
-
-
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         PlannedMeal meal1 = new PlannedMeal("My first meal", today);
-
 
         userService.save(user1);
         userService.save(userJ);
@@ -107,12 +96,10 @@ public class StartUp implements CommandLineRunner {
         userService.save(userN);
         userService.save(userO);
 
-
         userService.createRecipe(user1, recipe1);
         userService.createRecipe(user1, recipe2);
         userService.createRecipe(userJ, recipeJ);
         userService.createRecipe(userM, recipeM);
-
 
         generateRecipes(user1, 6);
         generateRecipes(userJ, 4);

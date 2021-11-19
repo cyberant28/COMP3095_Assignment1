@@ -26,7 +26,6 @@ public class RecipeController {
 
     @Autowired
     public RecipeController(RecipeServiceImpl recipeService, UserServiceImpl userService) {
-
         this.userService = userService;
     }
 

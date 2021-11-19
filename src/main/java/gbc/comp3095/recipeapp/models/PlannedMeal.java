@@ -15,15 +15,12 @@ import java.util.*;
 public class PlannedMeal extends BaseEntity{
 
     //Data members:
-
-
     @Column(name = "title")
     private String title;
     @Column(name = "description")
     private String description;
     @Column(name = "mealDate")
     private Calendar mealDate;
-
 
     //TODO: why dont these relations work?
     @ManyToMany()
@@ -34,17 +31,14 @@ public class PlannedMeal extends BaseEntity{
     @JoinTable(name = "user_meals", joinColumns = @JoinColumn( name = "meal_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private User mealAuthor;
 
+    public PlannedMeal(){
 
-
-public PlannedMeal(){
-
-}
+    }
 
     public PlannedMeal(String title, Calendar mealDate) {
         this.title = title;
         this.mealDate = mealDate;
     }
-
 
     public PlannedMeal(String title, User mealAuthor, Calendar mealDate, String description) {
         this.title = title;
@@ -52,11 +46,6 @@ public PlannedMeal(){
         this.mealDate = mealDate;
         this.mealAuthor = mealAuthor;
     }
-
-
-
-
-
 
     public String getTitle() { return title; }
 
@@ -87,8 +76,6 @@ public PlannedMeal(){
         PlannedMeal plannedMeal = (PlannedMeal) o;
         return Objects.equals(getId(), plannedMeal.getId());
     }
-
-
 
     @Override
     public String toString() {

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ExploreRecipesController {
 
-
     private final RecipeServiceImpl recipeService;
     private final UserServiceImpl userService;
 
@@ -37,8 +36,4 @@ public class ExploreRecipesController {
         model.addAttribute("recipe", new Recipe());
         return "recipes/explore";
     }
-
-
-
-
 }

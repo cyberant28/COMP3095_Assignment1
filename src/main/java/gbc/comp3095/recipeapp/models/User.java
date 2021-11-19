@@ -16,12 +16,10 @@ import java.util.Set;
 @Entity
 public class User extends BaseEntity{
 
-
     @Column(name = "user_name")
     private String userName;
     @Column(name = "password")
     private String password;
-
 
     @ManyToMany(mappedBy = "favouritedBy")
     private Set<Recipe> favouriteRecipes = new HashSet<>();
@@ -31,8 +29,6 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "mealAuthor")
     private Set<PlannedMeal> plannedMeals = new HashSet<>();
-
-
 
     public User() {
     }
@@ -49,18 +45,16 @@ public class User extends BaseEntity{
         this.plannedMeals = plannedMeals;
     }
 
-
     public Long getId() { return super.getId(); }
-
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-
     public String getUserName() {
         return userName;
     }
+
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
@@ -81,8 +75,6 @@ public class User extends BaseEntity{
         this.favouriteRecipes = favouriteRecipes;
     }
 
-
-
     public Set<Recipe> getCreatedRecipes() {
         return createdRecipes;
     }
@@ -99,8 +91,6 @@ public class User extends BaseEntity{
         return Objects.equals(getId(), getId());
     }
 
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -109,8 +99,4 @@ public class User extends BaseEntity{
                 ", password='" + password + '\'' +
                 '}';
     }
-
-
-
-
 }

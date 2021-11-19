@@ -76,14 +76,12 @@ public class UserServiceImpl implements UserService {
         return foundRecipe;
     }
 
-
     @Override
     public void createMeal(User user, PlannedMeal meal) {
         meal.setMealAuthor(user);
         user.getPlannedMeals().add(meal);
         mealRepository.save(meal);
         userRepository.save(user);
-
     }
 
     @Override

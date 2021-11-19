@@ -17,9 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
-import java.util.Optional;
-
 @Controller
 public class UserController {
 
@@ -44,15 +41,8 @@ public class UserController {
         return "fragments/login";
     }
 
-
-
-
-
     @PostMapping("/addfav/{id}")
     public String addFavourite(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
-
-
-
         User user = userService.findById(1L).get();
         try{
             Long recipeId = Long.valueOf(pathId);
@@ -62,15 +52,11 @@ public class UserController {
         catch (Exception exception){
             throw new RuntimeException("Invalid recipe id in path");
         }
-
         return "redirect:/home";
     }
 
     @PostMapping("/removefav/{id}")
     public String removeFavourite(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
-
-
-
         User user = userService.findById(1L).get();
         try{
             Long recipeId = Long.valueOf(pathId);
@@ -83,7 +69,4 @@ public class UserController {
 
         return "redirect:/home";
     }
-
-
-
 }

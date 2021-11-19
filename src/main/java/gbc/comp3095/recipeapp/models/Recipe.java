@@ -19,8 +19,6 @@ import java.util.Set;
 @Entity
 public class Recipe extends BaseEntity{
 
-
-
     @Column(name = "title")
     private String title;
     @Column(name = "direction")
@@ -37,7 +35,6 @@ public class Recipe extends BaseEntity{
     @JoinTable(name = "recipe_author", joinColumns = @JoinColumn( name = "recipe_id"))
     private User recipeAuthor;
 
-
     public Recipe() {
     }
 
@@ -53,7 +50,6 @@ public class Recipe extends BaseEntity{
     }
 
     public Long getId() { return super.getId(); }
-
 
     public String getTitle() { return title; }
 
@@ -77,11 +73,7 @@ public class Recipe extends BaseEntity{
         catch (RuntimeException exception){
             throw new RuntimeException("Invalid User Id");
         }
-
-
        return false;
-
-
     }
 
     public void setFavouritedBy(Set<User> users) { this.favouritedBy = users; }
@@ -90,7 +82,6 @@ public class Recipe extends BaseEntity{
 
     public void removeFavouritedBy(User user) { this.favouritedBy.remove(user); }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,8 +89,6 @@ public class Recipe extends BaseEntity{
         Recipe recipe = (Recipe) o;
         return Objects.equals(getId(), recipe.getId());
     }
-
-
 
     @Override
     public String toString() {
