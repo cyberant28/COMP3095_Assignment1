@@ -8,7 +8,7 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.controllers;
 
-import gbc.comp3095.recipeapp.services.Implementations.meal.PlannedMealServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.meal.MealServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PlannedMealController {
 
-    private final PlannedMealServiceImpl mealService;
-    public PlannedMealController(PlannedMealServiceImpl mealService) {
+    private final MealServiceImpl mealService;
+    public PlannedMealController(MealServiceImpl mealService) {
         this.mealService = mealService;
     }
 

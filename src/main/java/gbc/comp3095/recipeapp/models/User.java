@@ -28,7 +28,7 @@ public class User extends BaseEntity{
     private Set<Recipe> createdRecipes = new HashSet<>();
 
     @OneToMany(mappedBy = "mealAuthor")
-    private Set<PlannedMeal> plannedMeals = new HashSet<>();
+    private Set<Meal> meals = new HashSet<>();
 
     public User() {
     }
@@ -38,11 +38,11 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public User(String userName, String password, Set<Recipe> recipes, Set<PlannedMeal> plannedMeals) {
+    public User(String userName, String password, Set<Recipe> recipes, Set<Meal> meals) {
 
         this.userName = userName;
         this.createdRecipes = recipes;
-        this.plannedMeals = plannedMeals;
+        this.meals = meals;
     }
 
     public Long getId() { return super.getId(); }
@@ -63,9 +63,9 @@ public class User extends BaseEntity{
 
     public void setRecipes(Set<Recipe> recipes) { this.createdRecipes = recipes; }
 
-    public Set<PlannedMeal> getPlannedMeals() { return plannedMeals; }
+    public Set<Meal> getPlannedMeals() { return meals; }
 
-    public void setPlannedMeals(Set<PlannedMeal> plannedMeals) { this.plannedMeals = plannedMeals; }
+    public void setPlannedMeals(Set<Meal> meals) { this.meals = meals; }
 
     public Set<Recipe> getFavouriteRecipes() {
         return this.favouriteRecipes;

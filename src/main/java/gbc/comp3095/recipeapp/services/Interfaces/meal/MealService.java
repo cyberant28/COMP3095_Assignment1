@@ -8,11 +8,13 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.services.Interfaces.meal;
 
-import gbc.comp3095.recipeapp.models.PlannedMeal;
+import gbc.comp3095.recipeapp.models.Meal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 
-public interface MealService extends CrudService<PlannedMeal, Long> {
+public interface MealService extends CrudService<Meal, Long> {
 
-    Recipe addRecipe(PlannedMeal meal, Recipe recipe);
+    Recipe addRecipe(Meal meal, Recipe recipe);
+
+    void updateMealTitle(Long id, String newTitle);
 }

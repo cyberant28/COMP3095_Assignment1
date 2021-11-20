@@ -9,9 +9,9 @@
 
 package gbc.comp3095.recipeapp.services.Implementations.meal;
 
-import gbc.comp3095.recipeapp.models.PlannedMeal;
+import gbc.comp3095.recipeapp.models.Meal;
 import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.repositories.PlannedMealRepository;
+import gbc.comp3095.recipeapp.repositories.MealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.meal.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,39 +20,39 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PlannedMealServiceImpl implements MealService {
+public class MealServiceImpl implements MealService {
 
-    private final PlannedMealRepository mealRepository;
+    private final MealRepository mealRepository;
     private final RecipeRepository recipeRepository;
 
     @Autowired
-    public PlannedMealServiceImpl(PlannedMealRepository mealRepository, RecipeRepository recipeRepository) {
+    public MealServiceImpl(MealRepository mealRepository, RecipeRepository recipeRepository) {
         this.mealRepository = mealRepository;
         this.recipeRepository = recipeRepository;
     }
 
     @Override
-    public Optional<PlannedMeal> findById(Long id) {
+    public Optional<Meal> findById(Long id) {
         return mealRepository.findById(id);
     }
 
     @Override
-    public Optional<PlannedMeal> find(PlannedMeal meal) {
+    public Optional<Meal> find(Meal meal) {
         return mealRepository.findById(meal.getId());
     }
 
     @Override
-    public PlannedMeal save(PlannedMeal meal) {
+    public Meal save(Meal meal) {
         return mealRepository.save(meal);
     }
 
     @Override
-    public Iterable<PlannedMeal> findAll() {
+    public Iterable<Meal> findAll() {
         return mealRepository.findAll();
     }
 
     @Override
-    public void delete(PlannedMeal meal) {
+    public void delete(Meal meal) {
         mealRepository.delete(meal);
     }
 
@@ -62,7 +62,7 @@ public class PlannedMealServiceImpl implements MealService {
     }
 
     @Override
-    public Recipe addRecipe(PlannedMeal meal, Recipe recipe){
+    public Recipe addRecipe(Meal meal, Recipe recipe){
         Optional<Recipe> searchRecipe = recipeRepository.findById(recipe.getId());
         Recipe foundRecipe = searchRecipe.get();
 
@@ -75,5 +75,11 @@ public class PlannedMealServiceImpl implements MealService {
         return foundRecipe;
 
 
+    }
+
+    public void updateMealTitle(Long id, String newTitle) {
+        Meal mealNew = mealRepository.findById(id).get();
+        mealNew.setTitle(newTitle);
+        mealRepository.save(mealNew);
     }
 }

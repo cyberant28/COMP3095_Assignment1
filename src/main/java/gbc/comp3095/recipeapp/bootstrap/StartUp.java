@@ -9,30 +9,27 @@
 
 package gbc.comp3095.recipeapp.bootstrap;
 
-import gbc.comp3095.recipeapp.models.PlannedMeal;
+import gbc.comp3095.recipeapp.models.Meal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
-import gbc.comp3095.recipeapp.services.Implementations.meal.PlannedMealServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.meal.MealServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Array;
-import java.sql.Date;
 import java.util.Calendar;
-import java.util.Random;
 
 @Component
 public class StartUp implements CommandLineRunner {
 
     private UserServiceImpl userService;
     private RecipeServiceImpl recipeService;
-    private PlannedMealServiceImpl mealService;
+    private MealServiceImpl mealService;
 
     @Autowired
-    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, PlannedMealServiceImpl mealService) {
+    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, MealServiceImpl mealService) {
         this.userService = userService;
         this.recipeService = recipeService;
         this.mealService = mealService;
@@ -88,7 +85,11 @@ public class StartUp implements CommandLineRunner {
 
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
-        PlannedMeal meal1 = new PlannedMeal("My first meal", today);
+        Meal meal1 = new Meal("My first meal", today);
+        Meal meal2 = new Meal("My second meal", today);
+        Meal meal3 = new Meal("My third meal", today);
+
+
 
         userService.save(user1);
         userService.save(userJ);
@@ -109,8 +110,13 @@ public class StartUp implements CommandLineRunner {
 
         userService.createRecipe(userM, recipeN);
         userService.createMeal(user1, meal1);
+        userService.createMeal(user1, meal2);
+        userService.createMeal(user1, meal3);
+
         mealService.addRecipe(meal1, recipe1);
         userService.addFavouriteRecipe(user1, recipe2);
+
+
 
 
 

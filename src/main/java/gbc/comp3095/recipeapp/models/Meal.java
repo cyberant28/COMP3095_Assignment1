@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class PlannedMeal extends BaseEntity{
+public class Meal extends BaseEntity{
 
     //Data members:
     @Column(name = "title")
@@ -31,16 +31,16 @@ public class PlannedMeal extends BaseEntity{
     @JoinTable(name = "user_meals", joinColumns = @JoinColumn( name = "meal_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private User mealAuthor;
 
-    public PlannedMeal(){
+    public Meal(){
 
     }
 
-    public PlannedMeal(String title, Calendar mealDate) {
+    public Meal(String title, Calendar mealDate) {
         this.title = title;
         this.mealDate = mealDate;
     }
 
-    public PlannedMeal(String title, User mealAuthor, Calendar mealDate, String description) {
+    public Meal(String title, User mealAuthor, Calendar mealDate, String description) {
         this.title = title;
         this.description = description;
         this.mealDate = mealDate;
@@ -73,13 +73,13 @@ public class PlannedMeal extends BaseEntity{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlannedMeal plannedMeal = (PlannedMeal) o;
-        return Objects.equals(getId(), plannedMeal.getId());
+        Meal meal = (Meal) o;
+        return Objects.equals(getId(), meal.getId());
     }
 
     @Override
     public String toString() {
-        return "PlannedMeal{" +
+        return "Meal{" +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", datecreated=" + mealDate +

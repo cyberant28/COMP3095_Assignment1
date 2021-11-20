@@ -8,10 +8,10 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.services.Implementations.user;
 
-import gbc.comp3095.recipeapp.models.PlannedMeal;
+import gbc.comp3095.recipeapp.models.Meal;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
-import gbc.comp3095.recipeapp.repositories.PlannedMealRepository;
+import gbc.comp3095.recipeapp.repositories.MealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.repositories.UserRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
-    private final PlannedMealRepository mealRepository;
+    private final MealRepository mealRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, PlannedMealRepository mealRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createMeal(User user, PlannedMeal meal) {
+    public void createMeal(User user, Meal meal) {
         meal.setMealAuthor(user);
         user.getPlannedMeals().add(meal);
         mealRepository.save(meal);
