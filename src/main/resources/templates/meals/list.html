@@ -98,7 +98,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{|/editrecipe/${meal.getId()}|}" th:object="${meal}" method="post">
+                    <form th:action="@{|/editmeal/${meal.getId()}|}" th:object="${meal}" method="post">
                         <div class="form-group">
                             <label th:attr="for= ${meal.getTitle()}" >Title</label>
                             <input type="text" class="form-control" th:attr="id= ${meal.getTitle()}" name="title" th:value="*{title}" required="required">

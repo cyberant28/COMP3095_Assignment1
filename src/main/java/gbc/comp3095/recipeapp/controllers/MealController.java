@@ -1,0 +1,61 @@
+/*********************************************************************************
+ * Project: < COMP3095_Assignment1 >
+ * Assignment: < assignment 1 >
+ * Author(s): < Fred Pedersen >
+ * Student Number: < 101378456 >
+ * Date: 07-11-2021
+ * Description: The PlannedMealController make sure that the right data from the model layer is being parsed to the right html page
+ *********************************************************************************/
+package gbc.comp3095.recipeapp.controllers;
+
+import gbc.comp3095.recipeapp.models.Meal;
+import gbc.comp3095.recipeapp.models.Recipe;
+import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.services.Implementations.meal.MealServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MealController {
+
+    private final MealServiceImpl mealService;
+    private final UserServiceImpl userService;
+
+
+    public MealController(MealServiceImpl mealService, UserServiceImpl userService) {
+        this.mealService = mealService;
+        this.userService = userService;
+    }
+
+    @RequestMapping("/meals")
+    public String getUsers(Model model){
+        model.addAttribute("meals", mealService.findAll());
+        return "meals/list";
+    }
+
+    @RequestMapping("/createmeal")
+    public String getMeals(Model model){
+        model.addAttribute("meals", mealService.findAll());
+        return "meals/createMeal";
+    }
+
+    @PostMapping("/editmeal/{id}")
+    public String editMeal(@ModelAttribute Meal meal, @PathVariable("id") String pathId, Model model) {
+        model.addAttribute("meal", meal);
+        User user = userService.findById(1L).get();
+        try{
+            Long mealId = Long.valueOf(pathId);
+            mealService.updateMealTitle(mealId, meal.getTitle());
+        }
+        catch (Exception exception){
+            throw new RuntimeException("Invalid id in path");
+        }
+        return "redirect:/meals";
+    }
+}
