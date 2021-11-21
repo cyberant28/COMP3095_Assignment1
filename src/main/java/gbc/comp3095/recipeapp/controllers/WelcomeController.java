@@ -49,6 +49,7 @@ class WelcomeController {
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
         model.addAttribute("recipes", user.getRecipes());
         model.addAttribute("search" , new String());
+        model.addAttribute("tabName", "profile");
         return "welcome";
     }
 

@@ -15,16 +15,16 @@
         <ul class="nav nav-tabs" style="display: inline-table">
 
             <li th:attr="class=${tabName == 'profile' ? 'active' : 'not-active' }" style="display: inline">
-                <a data-toggle="tab" class="tabFont stroke" href="#home">Profile</a>
+                <a class="tabFont stroke" href="/home/profile">Profile</a>
             </li>
             <li th:attr="class=${tabName == 'favourites' ? 'active' : 'not-active' }">
-                <a data-toggle="tab" class="tabFont stroke" href="#favourites">Favorites</a>
+                <a class="tabFont stroke" href="/home/favourites">Favorites</a>
             </li>
             <li th:attr="class=${tabName == 'meals' ? 'active' : 'not-active' }">
-                <a data-toggle="tab" class="tabFont stroke" href="#meals">Planned Meals</a>
+                <a class="tabFont stroke" href="/home/meals">Planned Meals</a>
             </li>
             <li th:attr="class=${tabName == 'recipes' ? 'active' : 'not-active' }">
-                <a data-toggle="tab" class="tabFont stroke" th:href="@{#recipes}">My Recipes</a>
+                <a class="tabFont stroke" href="/home/recipes">My Recipes</a>
             </li>
 
         </ul>
