@@ -10,6 +10,7 @@
 
 package gbc.comp3095.recipeapp.controllers;
 
+import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.models.User;
 
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
@@ -18,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 class WelcomeController {
@@ -30,7 +33,17 @@ class WelcomeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping({"","/","/home"})
+    @GetMapping({"/home/{tab}"})
+    public String welcomeTab(Model model, @PathVariable("tab") String tabName) {
+        User user = userService.findById(1L).get();
+        model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
+        model.addAttribute("recipes", user.getRecipes());
+        model.addAttribute("search" , new String());
+        model.addAttribute("tabName", tabName);
+        return "welcome";
+    }
+
+    @GetMapping({"","/", "/home"})
     public String welcome(Model model) {
         User user = userService.findById(1L).get();
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());

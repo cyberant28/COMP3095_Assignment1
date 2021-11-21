@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
 
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
+
+   </head>
 <body>
 
 <!-- Small Tab Navbar -->
 <div class="navbar col-centered" style="margin-top: 250px;">
-    <nav class="navbar" style="text-align: center; margin: 0">
+    <nav id="navbar" class="navbar" style="text-align: center; margin: 0">
+
         <ul class="nav nav-tabs" style="display: inline-table">
-            <li class="active" style="display: inline"><a data-toggle="tab" class="tabFont stroke" href="#home">Profile</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke" href="#menu1">Favorites</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke" href="#menu2">Planned Meals</a></li>
-            <li><a data-toggle="tab" class="tabFont stroke" href="#menu3">My Recipes</a></li>
+
+            <li th:attr="class=${tabName == 'profile' ? 'active' : 'not-active' }" style="display: inline">
+                <a data-toggle="tab" class="tabFont stroke" href="#home">Profile</a>
+            </li>
+            <li th:attr="class=${tabName == 'favourites' ? 'active' : 'not-active' }">
+                <a data-toggle="tab" class="tabFont stroke" href="#favourites">Favorites</a>
+            </li>
+            <li th:attr="class=${tabName == 'meals' ? 'active' : 'not-active' }">
+                <a data-toggle="tab" class="tabFont stroke" href="#meals">Planned Meals</a>
+            </li>
+            <li th:attr="class=${tabName == 'recipes' ? 'active' : 'not-active' }">
+                <a data-toggle="tab" class="tabFont stroke" th:href="@{#recipes}">My Recipes</a>
+            </li>
+
         </ul>
     </nav>
+
 </div>
 <!-- End of Small Tab Navbar -->
 
@@ -21,7 +37,7 @@
 
 <!-- Start of Main Menu - PROFILE -->
 <div class="tab-content mT50">
-    <div id="home" class="tab-pane fade in active">
+    <div id="home" th:attr="class='tab-pane fade ' + ${tabName == 'profile' ? 'in active' : 'not-active' }">
         <!-- Profile Details -->
         <!--            <img src="images/pizza.jpeg" class="img-responsive col-centered img-circle profileImg" alt="Responsive image">-->
         <div class="transbox col-centered" style="width: 50%; margin-top: 35px;">
@@ -45,7 +61,7 @@
     </div>
 
 
-    <div id="menu1" class="tab-pane fade">
+    <div id="favourites" th:attr="class='tab-pane fade ' + ${tabName == 'favourites' ? 'in active' : 'not-active' }">
         <!-- Edit Recipe Modal -->
         <div class="modal fade" id="editRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -152,7 +168,7 @@
 
 
     <!-- Start of Small Tab Menu PLANNED MEALS -->
-    <div id="menu2" class="tab-pane fade">
+    <div id="meals" th:attr="class='tab-pane fade ' + ${tabName == 'meals' ? 'in active' : 'not-active' }">
         <!-- Div for Create Recipe Modal Button -->
 <!--        <div class="col-centered text-center">-->
 <!--            &lt;!&ndash; Button trigger Create Recipe Modal &ndash;&gt;-->
@@ -259,7 +275,7 @@
 
 
     <!-- Start of Small Tab Menu MY RECIPES -->
-    <div id="menu3" class="tab-pane fade">
+    <div id="recipes" th:attr="class='tab-pane fade ' + ${tabName == 'recipes' ? 'in active' : 'not-active' }">
         <!-- Div for Create Recipe Modal Button -->
         <div class="col-centered text-center">
             <!-- Button trigger Create Recipe Modal -->
