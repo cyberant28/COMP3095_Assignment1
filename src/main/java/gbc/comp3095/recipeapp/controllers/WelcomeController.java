@@ -32,6 +32,16 @@ class WelcomeController {
         this.userService = userService;
         this.recipeService = recipeService;
     }
+    @GetMapping({"/home/{tab}/{id}"})
+    public String welcomeTabWithId(Model model, @PathVariable("tab") String tabName, @PathVariable("id") Long pageLoadRecipeId) {
+        User user = userService.findById(1L).get();
+        model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
+        model.addAttribute("recipes", user.getRecipes());
+        model.addAttribute("search" , new String());
+        model.addAttribute("tabName", tabName);
+        model.addAttribute("pageLoadRecipeId", pageLoadRecipeId);
+        return "welcome";
+    }
 
     @GetMapping({"/home/{tab}"})
     public String welcomeTab(Model model, @PathVariable("tab") String tabName) {
