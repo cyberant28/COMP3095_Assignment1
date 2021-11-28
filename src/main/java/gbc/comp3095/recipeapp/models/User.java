@@ -30,6 +30,9 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "mealAuthor")
     private Set<Meal> meals = new HashSet<>();
 
+    @OneToOne(mappedBy = "shoppingListAuthor")
+    private ShoppingList shoppingList;
+
     public User() {
     }
 
@@ -81,6 +84,14 @@ public class User extends BaseEntity{
 
     public void setCreatedRecipes(Set<Recipe> createdRecipes) {
         this.createdRecipes = createdRecipes;
+    }
+
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
     }
 
     @Override

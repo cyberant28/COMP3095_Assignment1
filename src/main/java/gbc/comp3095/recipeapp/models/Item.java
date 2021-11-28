@@ -1,8 +1,6 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Item extends BaseEntity{
@@ -10,9 +8,17 @@ public class Item extends BaseEntity{
     @Column(name = "name")
     private String itemName;
 
-    @Column(name = "prize")
-    private int itemPrize;
+    @Column(name = "price")
+    private double itemPrice;
 
+    public Item(String itemName, double itemPrice) {
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+    }
+
+    public Item() {
+
+    }
 
     public String getItemName() {
         return itemName;
@@ -22,11 +28,11 @@ public class Item extends BaseEntity{
         this.itemName = itemName;
     }
 
-    public int getItemPrize() {
-        return itemPrize;
+    public double getItemPrice() {
+        return itemPrice;
     }
 
-    public void setItemPrize(int itemPrize) {
-        this.itemPrize = itemPrize;
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }

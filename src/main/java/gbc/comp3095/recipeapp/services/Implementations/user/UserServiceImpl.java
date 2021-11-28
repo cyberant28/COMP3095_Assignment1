@@ -8,12 +8,8 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.services.Implementations.user;
 
-import gbc.comp3095.recipeapp.models.Meal;
-import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.models.User;
-import gbc.comp3095.recipeapp.repositories.MealRepository;
-import gbc.comp3095.recipeapp.repositories.RecipeRepository;
-import gbc.comp3095.recipeapp.repositories.UserRepository;
+import gbc.comp3095.recipeapp.models.*;
+import gbc.comp3095.recipeapp.repositories.*;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,13 +22,17 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
     private final MealRepository mealRepository;
+    private final ItemRepository itemRepository;
+    private final ShoppingListRepository shoppingListRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, ItemRepository itemRepository, ShoppingListRepository shoppingListRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
         this.mealRepository = mealRepository;
+        this.itemRepository = itemRepository;
+        this.shoppingListRepository = shoppingListRepository;
     }
 
     @Override
@@ -122,7 +122,27 @@ public class UserServiceImpl implements UserService {
         recipeRepository.save(foundRecipe);
     }
 
+    @Override
+    public void addShoppingListItem(User user, Item item){
+        itemRepository.save(item);
+        ShoppingList shoppingList;
+        if(user.getShoppingList() != null) {
+            shoppingList = user.getShoppingList();
+        }
+        else {
+            shoppingList = new ShoppingList(user.getUserName() + "'s shopping list");
+            shoppingList.setShoppingListAuthor(user);
+            shoppingList = shoppingListRepository.save(shoppingList);
+        }
 
+        shoppingList.addItem(item);
+        user.setShoppingList(shoppingList);
+        userRepository.save(user);
+        shoppingListRepository.save(shoppingList);
+
+
+
+    }
     @Override
     public void createUser(User user) {
         userRepository.save(user);

@@ -9,11 +9,10 @@
 
 package gbc.comp3095.recipeapp.bootstrap;
 
-import gbc.comp3095.recipeapp.models.Meal;
-import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.models.*;
 import gbc.comp3095.recipeapp.services.Implementations.meal.MealServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.shoppingList.ShoppingListServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,12 +26,14 @@ public class StartUp implements CommandLineRunner {
     private UserServiceImpl userService;
     private RecipeServiceImpl recipeService;
     private MealServiceImpl mealService;
+    private ShoppingListServiceImpl shoppingListService;
 
     @Autowired
-    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, MealServiceImpl mealService) {
+    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, MealServiceImpl mealService, ShoppingListServiceImpl shoppingListService) {
         this.userService = userService;
         this.recipeService = recipeService;
         this.mealService = mealService;
+        this.shoppingListService = shoppingListService;
     }
 
     public void generateRecipes(User user, int numRecipes){
@@ -115,6 +116,15 @@ public class StartUp implements CommandLineRunner {
 
         mealService.addRecipe(meal1, recipe1);
         userService.addFavouriteRecipe(user1, recipe2);
+
+        shoppingListService.createShoppingList( new ShoppingList("my shopping list"));
+        Item item = new Item("Sugar", 23.4);
+        Item item2 = new Item("Coffee", 4334.4);
+        userService.addShoppingListItem(user1, item);
+        userService.addShoppingListItem(user1, item2);
+
+
+
 
 
 

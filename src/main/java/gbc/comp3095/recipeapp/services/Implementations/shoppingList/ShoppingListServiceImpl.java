@@ -13,6 +13,10 @@ public class ShoppingListServiceImpl implements ShoppingListService {
 
     ShoppingListRepository shoppingListRepository;
 
+    public ShoppingListServiceImpl(ShoppingListRepository shoppingListRepository) {
+        this.shoppingListRepository = shoppingListRepository;
+    }
+
     @Override
     public Optional<Recipe> findById(Long aLong) {
         return Optional.empty();
@@ -45,6 +49,8 @@ public class ShoppingListServiceImpl implements ShoppingListService {
 
     @Override
     public ShoppingList createShoppingList(ShoppingList shoppingList) {
+
+        shoppingListRepository.save(shoppingList);
         return shoppingList;
     }
 }
