@@ -14,5 +14,5 @@ import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 public interface RecipeService extends CrudService<Recipe, Long> {
     Iterable<Recipe> findByTitle(String searchQuery);
 
-    void updateRecipeTitleDirections(Long id, String newTitle, String newDirections);
+    void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, String ingredient);
 }

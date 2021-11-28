@@ -25,14 +25,41 @@
         </div>
         <div class="row justify-content-center text-center">
             <form action="" th:action="@{/addrecipe}" th:object="${recipe}" method="post">
-                <h2 class="regTitle tfontColor">Add Recipe</h2>
+
+
+                    <h2 class="regTitle tfontColor">Add Recipe</h2>
+
+                    <div class="form-group col-centered">
+                        <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    </div>
+                <h4 class="regTitle tfontColor">Add Ingredient (max 10)</h4>
 
                 <div class="form-group col-centered">
-                    <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
-                </div>
-                <div class="form-group col-centered">
-                    <textarea type="text" class="form-control" name="directions" placeholder="Instructions"  th:field="*{directions}" required="required" style="width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
-                </div>
+                        <input type="text" class="form-control"  name="recipeIngredient"  placeholder="1" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                        <br>
+                        <input type="text" class="form-control"   name="recipeIngredient" placeholder="2" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                        <br>
+                        <input type="text" class="form-control"   name="recipeIngredient" placeholder="3" th:field="*{ingredient}" style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                        <br>
+                        <input type="text" class="form-control"   name="recipeIngredient" placeholder="4" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient"  placeholder="5" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient"  placeholder="6" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient"  placeholder="7" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient"  placeholder="8" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient" placeholder="9" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    <br>
+                    <input type="text" class="form-control"   name="recipeIngredient" placeholder="10" th:field="*{ingredient}"  style="width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                    </div>
+                    <div class="form-group col-centered">
+                        <textarea type="text" class="form-control" name="directions" placeholder="Instructions"  th:field="*{directions}" required="required" style="width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
+                    </div>
+
+
                 <div style="margin: 15px;">
                 <select id="category" name="category">
                     <option value="test1">Lunch</option>
@@ -43,6 +70,9 @@
                     <a href="/recipes" class="btn btn-danger" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Cancel</a>
                     <button type="submit" class="btn btn-success" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Save Recipe</button>
                 </div>
+
+
+
             </form>
         </div>
     </div>

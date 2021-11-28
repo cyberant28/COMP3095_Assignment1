@@ -69,6 +69,10 @@ public class Meal extends BaseEntity{
 
     public Long getId() { return super.getId(); }
 
+    public void addRecipe(Recipe recipe){
+        this.recipes.add(recipe);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

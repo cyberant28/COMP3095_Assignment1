@@ -63,9 +63,9 @@ public class User extends BaseEntity{
 
     public void setRecipes(Set<Recipe> recipes) { this.createdRecipes = recipes; }
 
-    public Set<Meal> getPlannedMeals() { return meals; }
+    public Set<Meal> getMeals() { return meals; }
 
-    public void setPlannedMeals(Set<Meal> meals) { this.meals = meals; }
+    public void setMeals(Set<Meal> meals) { this.meals = meals; }
 
     public Set<Recipe> getFavouriteRecipes() {
         return this.favouriteRecipes;

@@ -7,7 +7,7 @@ import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 
 public interface UserService extends CrudService<User, Long> {
 
-    void createMeal(User user, Meal meal);
+    public Meal createMeal(User user, Meal meal);
 
     public Recipe createRecipe(User user, Recipe recipe);
 

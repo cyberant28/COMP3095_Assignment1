@@ -77,20 +77,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createMeal(User user, Meal meal) {
+    public Meal createMeal(User user, Meal meal) {
         meal.setMealAuthor(user);
-        user.getPlannedMeals().add(meal);
+        user.getMeals().add(meal);
         mealRepository.save(meal);
         userRepository.save(user);
+
+        return meal;
     }
 
     @Override
     public Recipe createRecipe(User user, Recipe recipe) {
         recipe.setRecipeAuthor(user);
-
         user.getCreatedRecipes().add(recipe);
         recipe.setRecipeAuthor(user);
-
         recipeRepository.save(recipe);
         userRepository.save(user);
 

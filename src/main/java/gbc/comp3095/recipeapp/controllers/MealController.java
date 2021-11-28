@@ -34,21 +34,21 @@ public class MealController {
     }
 
     @RequestMapping("/meals")
-    public String getUsers(Model model){
+    public String getMeals(Model model){
         model.addAttribute("meals", mealService.findAll());
+        model.addAttribute("meal", new Meal());
+        User user = userService.findById(1L).get();
+        model.addAttribute("recipes", user.getRecipes());
         return "meals/list";
     }
 
-    @RequestMapping("/createmeal")
-    public String getMeals(Model model){
-        model.addAttribute("meals", mealService.findAll());
-        return "meals/createMeal";
-    }
+
 
     @PostMapping("/editmeal/{id}")
     public String editMeal(@ModelAttribute Meal meal, @PathVariable("id") String pathId, Model model) {
         model.addAttribute("meal", meal);
         User user = userService.findById(1L).get();
+        model.addAttribute("recipes", user.getRecipes());
         try{
             Long mealId = Long.valueOf(pathId);
             mealService.updateMealTitle(mealId, meal.getTitle());
@@ -56,6 +56,14 @@ public class MealController {
         catch (Exception exception){
             throw new RuntimeException("Invalid id in path");
         }
+        return "redirect:/meals";
+    }
+
+    @PostMapping(value = "/addmeal", params = {"title", ""})
+    public String addMeal(@ModelAttribute Meal meal, Model model) {
+        model.addAttribute("meal", meal);
+        User user = userService.findById(1L).get();
+        userService.createMeal(user, meal);
         return "redirect:/meals";
     }
 }

@@ -11,10 +11,7 @@ package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
 import java.lang.reflect.Array;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Recipe extends BaseEntity{
@@ -25,8 +22,12 @@ public class Recipe extends BaseEntity{
     private String directions; //TODO: should be an array of strings
     @Column(name = "date_created")
     private Date dateCreated;  //TODO: store date created when user creates recipe
+    @Column(name = "ingredient")
+    private String ingredient;
 
-    //TODO: why dont these relations work?
+
+    private boolean isAdded;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_favourited_by", joinColumns = @JoinColumn( name = "recipe_id"),  inverseJoinColumns = @JoinColumn( name = "user_id"))
     private Set<User> favouritedBy = new HashSet<>();
@@ -42,11 +43,28 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users) {
+    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, String ingredient) {
         this.title = title;
         this.directions = directions;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
+        this.ingredient = ingredient;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public boolean isAdded() {
+        return isAdded;
+    }
+
+    public void setAdded(boolean added) {
+        isAdded = added;
     }
 
     public Long getId() { return super.getId(); }
@@ -106,4 +124,7 @@ public class Recipe extends BaseEntity{
     public void setRecipeAuthor(User recipeAuthor) {
         this.recipeAuthor = recipeAuthor;
     }
+
+
+
 }

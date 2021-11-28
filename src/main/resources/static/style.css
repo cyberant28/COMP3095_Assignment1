@@ -1030,4 +1030,10 @@ p-5 {
 
 }
 
+.selectRecipes{
+    overflow: scroll;
+    height: 200px;
+
+}
+
 .datepicker{ z-index:5000 !important; }
