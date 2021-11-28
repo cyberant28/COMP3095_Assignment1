@@ -12,7 +12,7 @@ public class ShoppingList extends BaseEntity {
 
 
     @OneToMany()
-    @JoinTable(name = "shopping_list", joinColumns = @JoinColumn( name = "shopping_list_id"),  inverseJoinColumns = @JoinColumn( name = "item_id"))
+    @JoinTable(name = "list_of_shopping_items", joinColumns = @JoinColumn( name = "shopping_list_id"),  inverseJoinColumns = @JoinColumn( name = "item_id"))
     private Set<Item> items = new HashSet<>();;
 
     public ShoppingList(String title) {
