@@ -48,4 +48,9 @@ class WelcomeController {
     public String register() {
         return "fragments/register";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "fragments/test";
+    }
 }

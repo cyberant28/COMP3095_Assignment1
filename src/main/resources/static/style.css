@@ -14,7 +14,7 @@ Authored by Gus Beltran - 101225087
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #bcffff!important;
+    background-color: #a4a4a4 !important;
 }
 .nav > li.disabled > a {
     color: #777777;
@@ -70,7 +70,7 @@ Authored by Gus Beltran - 101225087
 
 .bgImg {
     background-image: url("/images/food-bg.jpg")!important;
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
 }
 

@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type= "text/css" href="/style.css">
@@ -18,12 +19,12 @@
 </head>
 
 <body class="bgImg">
-<nav class="bg-navbar navbar-fixed-top col-centered" style="width: 75%; margin: 0 auto;">
-    <div class="" style="padding-left: 0;">
+<nav class="bg-navbar navbar-fixed-top col-centered" style="width: 60%; margin: 0 auto;">
+    <div class="" style="padding-left: 20px;">
         <div class="navbar-header">
             <a class="navbar-brand logoTitle" href="/">Recipe Book</a>
         </div>
-        <ul class="nav navbar-nav navbar-right" th:remove="all">
+        <ul class="" th:remove="all">
             <li th:fragment="menuItem (link,active,title,glyph,text)" class="active"
                 th:class="${active==menu ? 'active' : ''}">
                 <a th:href="@{__${link}__}" th:title="${title}">
@@ -44,15 +45,15 @@
             </li>
             <li th:replace="::menuItem ('/addrecipe','recipes','find recipes','','Create Recipe')">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                <span>Recipe Book</span>
+                <span>Create Recipe</span>
             </li>
             <li th:replace="::menuItem ('/explore','meals','find meals','','Explore Recipes')">
                 <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
-                <span>Recipe Book</span>
+                <span>Explore Recipes</span>
             </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 0;">
             <!-- search form -->
             <form class="navbar-form navbar-left" action="/search" method="GET">
                 <div class="form-group">
@@ -72,6 +73,10 @@
         <th:block th:include="${template}" />
     </div>
 </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
