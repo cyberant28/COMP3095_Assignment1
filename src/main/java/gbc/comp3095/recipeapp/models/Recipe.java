@@ -22,8 +22,10 @@ public class Recipe extends BaseEntity{
     private String directions; //TODO: should be an array of strings
     @Column(name = "date_created")
     private Date dateCreated;  //TODO: store date created when user creates recipe
-    @Column(name = "ingredient")
-    private String ingredient;
+
+
+    @OneToMany( mappedBy = "recipe")
+    private Set<Ingredient> ingredients = new HashSet<>();
 
 
     private boolean isAdded;
@@ -43,20 +45,20 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, String ingredient) {
+    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients) {
         this.title = title;
         this.directions = directions;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
-        this.ingredient = ingredient;
+        this.ingredients = ingredients;
     }
 
-    public String getIngredient() {
-        return ingredient;
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public boolean isAdded() {
