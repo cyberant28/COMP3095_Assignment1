@@ -13,6 +13,7 @@ import gbc.comp3095.recipeapp.repositories.*;
 import gbc.comp3095.recipeapp.services.Interfaces.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -124,27 +125,40 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addShoppingListItem(User user, Item item){
+        ShoppingList shoppingList = user.getShoppingList();
+        item.setShoppingList(shoppingList);
         itemRepository.save(item);
-        ShoppingList shoppingList;
-        if(user.getShoppingList() != null) {
-            shoppingList = user.getShoppingList();
-        }
-        else {
-            shoppingList = new ShoppingList(user.getUserName() + "'s shopping list");
-            shoppingList.setShoppingListAuthor(user);
-            shoppingList = shoppingListRepository.save(shoppingList);
-        }
+
+
 
         shoppingList.addItem(item);
         user.setShoppingList(shoppingList);
-        userRepository.save(user);
         shoppingListRepository.save(shoppingList);
+        userRepository.save(user);
+
 
 
 
     }
+
     @Override
+    @Transactional
     public void createUser(User user) {
+
+        // initialize user with an empty shopping list
+        ShoppingList shoppingList = new ShoppingList(user.getUserName() + "'s shopping list");
+        shoppingList.setShoppingListAuthor(user);
+
+
+        //save user
         userRepository.save(user);
+
+        //save the shopping list
+        shoppingList = shoppingListRepository.save(shoppingList);
+        user.setShoppingList(shoppingList);
+
+        userRepository.save(user);
+
+
     }
 }

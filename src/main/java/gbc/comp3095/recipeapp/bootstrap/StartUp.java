@@ -92,11 +92,13 @@ public class StartUp implements CommandLineRunner {
 
 
 
-        userService.save(user1);
-        userService.save(userJ);
-        userService.save(userM);
-        userService.save(userN);
-        userService.save(userO);
+
+
+        userService.createUser(user1);
+        userService.createUser(userJ);
+        userService.createUser(userM);
+        userService.createUser(userN);
+        userService.createUser(userO);
 
         userService.createRecipe(user1, recipe1);
         userService.createRecipe(user1, recipe2);

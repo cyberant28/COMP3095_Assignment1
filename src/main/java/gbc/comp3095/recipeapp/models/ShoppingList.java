@@ -11,12 +11,11 @@ public class ShoppingList extends BaseEntity {
     private String title;
 
 
-    @OneToMany()
-    @JoinTable(name = "list_of_shopping_items", joinColumns = @JoinColumn( name = "shopping_list_id"),  inverseJoinColumns = @JoinColumn( name = "item_id"))
+    @OneToMany( mappedBy = "shoppingList")
     private Set<Item> items = new HashSet<>();;
 
-    @OneToOne()
-    @JoinTable(name = "user_shopping_list", joinColumns = @JoinColumn(name = "shopping_list_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "shoppingListAuthor")
     private User shoppingListAuthor;
 
     public ShoppingList(String title) {

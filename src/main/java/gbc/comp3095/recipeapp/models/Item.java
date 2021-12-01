@@ -5,7 +5,12 @@ import javax.persistence.*;
 @Entity
 public class Item extends BaseEntity{
 
-    @Column(name = "name")
+    @ManyToOne
+    @JoinColumn(name="shipping_list_id", nullable=false)
+    private ShoppingList shoppingList;
+
+
+    @Column(name = "itemName")
     private String itemName;
 
     @Column(name = "price")
@@ -34,5 +39,13 @@ public class Item extends BaseEntity{
 
     public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
     }
 }
