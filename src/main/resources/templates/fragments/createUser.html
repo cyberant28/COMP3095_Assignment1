@@ -26,15 +26,12 @@
             <form action="" th:action="@{/adduser}" th:object="${user}" method="post">
                 <h2 class="regTitle">Register your account</h2>
                 <p class="hint-text">It's free and only takes a minute.</p>
-
-
                 <div class="form-group">
                     <input type="text" class="form-control" id="useName"  name="useName" placeholder="Username"  th:field="*{userName}" required="required">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password"   th:field="*{password}" required="required">
                 </div>
-
                 <div class="form-group col-centered">
                     <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
                 </div>

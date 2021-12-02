@@ -19,27 +19,25 @@
 
 
 
+
+
+
+
 <!-- Start of Main Menu - PROFILE -->
 <div class="tab-content mT50">
     <div id="home" class="tab-pane fade in active">
-        <!-- Profile Details -->
-        <!--            <img src="images/pizza.jpeg" class="img-responsive col-centered img-circle profileImg" alt="Responsive image">-->
+
         <div class="transbox col-centered" style="width: 50%; margin-top: 35px;">
             <div class="transbox2 text-center col-centered" style="width: 95%">
                 <span>Chef</span><p>Gordon Ramsay</p>
-                <span>Creating culinary delights since:</span><p>1990</p> <!-- It would be good if we could change this message at random -->
+                <span>Creating culinary delights since:</span><p>1990</p>
                 <span>Nicknamed:</span><p>Chef Michelin</p>
                 <div class="dummyBox">
                     <div class="profileText"><span>3</span> Total Created Recipes</div>
                     <div class="profileText"><span>5</span> Meals planned</div>
                     <div class="profileText"><span>9</span> Recipes in your favorites list</div>
                 </div>
-                <!-- Trigger/Open The Edit Profile Modal -->
-<!--                <div class="col-centered" style="width: 30%;">-->
-<!--                    <button type="button" class="btn btn-primary profileText" data-target="#modal" data-toggle="modal">-->
-<!--                        Edit Profile-->
-<!--                    </button>-->
-<!--                </div>-->
+
             </div>
         </div>
     </div>
@@ -94,10 +92,7 @@
             <div class="col-xs-2" th:each="favorite : ${favoriteRecipes}">
                 <a class="cursor" data-toggle="modal" th:attr="data-target='#viewFavoriteRecipe'+${favorite.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
                 <div class="tfontColor recipeFont stroke" th:text="${favorite.title}"></div>
-                <!-- Button trigger Create Recipe Modal -->
-                <!--                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">-->
-                <!--                    Edit-->
-                <!--                </button>-->
+
             </div>
 
         </div>
@@ -144,23 +139,12 @@
         </div>
         <!-- End of View Recipe Modal -->
 
-
-
-
     </div>
 
 
 
     <!-- Start of Small Tab Menu PLANNED MEALS -->
     <div id="menu2" class="tab-pane fade">
-        <!-- Div for Create Recipe Modal Button -->
-<!--        <div class="col-centered text-center">-->
-<!--            &lt;!&ndash; Button trigger Create Recipe Modal &ndash;&gt;-->
-<!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planMeal">-->
-<!--                Plan Meals-->
-<!--            </button>-->
-<!--        </div>-->
-
         <!-- Plan Meal Modal -->
         <div class="modal fade" id="planMeal" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -207,12 +191,10 @@
             <div class="col-xs-2">
                 <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/bagel.png"/></a>
                 <div>Cream Cheese Special Bagel</div>
-<!--                <div class="titleStyle">[DATE]</div>-->
             </div>
             <div class="col-xs-2">
                 <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/rolled-oats.png"/></a>
                 <div>Rolled Oats</div>
-<!--                <div>[DATE]</div>-->
             </div>
             <div class="col-xs-2">
                 <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/emoji/96/000000/shrimp.png"/></a>
@@ -222,7 +204,6 @@
             <div class="col-xs-2">
                 <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/color/96/000000/thanksgiving.png"/></a>
                 <div>Thanksgiving Turkey</div>
-<!--                <div>[DATE]</div>-->
             </div>
             <div class="col-xs-2">
                 <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/paella.png"/></a>
@@ -260,13 +241,7 @@
 
     <!-- Start of Small Tab Menu MY RECIPES -->
     <div id="menu3" class="tab-pane fade">
-        <!-- Div for Create Recipe Modal Button -->
-        <div class="col-centered text-center">
-            <!-- Button trigger Create Recipe Modal -->
-            <!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRecipe">-->
-            <!--                Create Recipe-->
-            <!--            </button>-->
-        </div>
+
 
         <!-- Create Recipe Modal -->
         <div class="modal fade" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
@@ -312,21 +287,15 @@
 
         <!-- CONTENT -->
         <div class="row text-center" style="width: 75%; margin: 25px auto">
-
             <!-- Shows existing recipes -->
             <div class="col-xs-2" th:each="recipe :${recipes}">
                 <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }">
                     <img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/>
                 </a>
                 <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
-
                 <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
                     Edit
                 </button>
-                <!-- Button trigger Create Recipe Modal -->
-                <!--                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRecipe">-->
-                <!--                    Edit-->
-                <!--                </button>-->
             </div>
             <!-- existing recipes ends -->
 
@@ -346,40 +315,25 @@
                                     <div class="form-group">
                                         <label th:attr="for= ${recipe.getTitle()}" >Title</label>
                                         <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
-
                                     </div>
-
                                     <div class="form-group">
                                         <label th:attr="for= ${recipe.getDirections()}">Directions</label>
-
                                         <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
-
-
-
                                      </textarea>
-
-
                                     </div>
-
                                     <div class="modal-footer">
                                         <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
-
-
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End of Edit Recipe Modal -->
-
         </div>
         <!-- END of CONTENT -->
-
-
 
         <!-- View Recipe Modal -->
         <div th:each="recipe :${recipes}">
@@ -405,13 +359,11 @@
                                         <button class="btn btn-primary" type="submit"> Save to Favourites</button>
                                     </form>
                                 </div>
-
                                 <h5>Instructions</h5>
                                 <div th:text="${recipe.getDirections()}"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -419,27 +371,9 @@
             </div>
         </div>
         <!-- End of View Recipe Modal -->
-
-
     </div>
     <!-- End of Small Tab Menu MY RECIPES -->
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>

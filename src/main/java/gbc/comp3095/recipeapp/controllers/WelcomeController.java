@@ -48,4 +48,5 @@ class WelcomeController {
     public String register() {
         return "fragments/register";
     }
+
 }
