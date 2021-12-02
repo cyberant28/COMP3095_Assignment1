@@ -19,13 +19,14 @@ public class Recipe extends BaseEntity{
     @Column(name = "title")
     private String title;
     @Column(name = "direction")
-    private String directions; //TODO: should be an array of strings
+    private String directions;
     @Column(name = "date_created")
-    private Date dateCreated;  //TODO: store date created when user creates recipe
+    private Date dateCreated;
 
 
     @OneToMany( mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
+
 
 
     private boolean isAdded;

@@ -19,4 +19,5 @@ public interface RecipeService extends CrudService<Recipe, Long> {
 
 
     void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients);
+
 }
