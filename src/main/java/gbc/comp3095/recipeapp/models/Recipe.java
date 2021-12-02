@@ -18,7 +18,7 @@ public class Recipe extends BaseEntity{
 
     @Column(name = "title")
     private String title;
-    @Column(name = "direction")
+    @Column(name = "direction")//TODO:Convert to description
     private String directions;
     @Column(name = "date_created")
     private Date dateCreated;
@@ -27,7 +27,8 @@ public class Recipe extends BaseEntity{
     @OneToMany( mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 
-
+    @OneToMany( mappedBy = "recipe")
+    private Set<Step> steps = new HashSet<>();
 
     private boolean isAdded;
 
@@ -46,12 +47,13 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients) {
+    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients,Set<Step> steps) {
         this.title = title;
         this.directions = directions;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
         this.ingredients = ingredients;
+        this.steps = steps;
     }
 
     public Set<Ingredient> getIngredients() {
@@ -60,6 +62,14 @@ public class Recipe extends BaseEntity{
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(Set<Step> steps) {
+        this.steps = steps;
     }
 
     public boolean isAdded() {

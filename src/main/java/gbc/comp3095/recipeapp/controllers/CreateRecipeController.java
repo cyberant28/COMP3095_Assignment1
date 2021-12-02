@@ -41,14 +41,14 @@ public class CreateRecipeController {
         userService.createRecipe(user, recipe);
         return "redirect:/recipes";
     }
-
+    //TODO:Convert to directions to description
     @PostMapping("/editrecipe/{id}")
     public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
         model.addAttribute("recipe", recipe);
         User user = userService.findById(1L).get();
         try{
             Long recipeId = Long.valueOf(pathId);
-            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDirections(), recipe.getIngredients());
+            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDirections(), recipe.getIngredients(), recipe.getSteps());
         }
         catch (Exception exception){
             throw new RuntimeException("Invalid id in path");

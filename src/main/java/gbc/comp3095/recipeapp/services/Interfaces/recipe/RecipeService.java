@@ -9,6 +9,7 @@
 package gbc.comp3095.recipeapp.services.Interfaces.recipe;
 
 import gbc.comp3095.recipeapp.models.Ingredient;
+import gbc.comp3095.recipeapp.models.Step;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 
@@ -17,7 +18,7 @@ import java.util.Set;
 public interface RecipeService extends CrudService<Recipe, Long> {
     Iterable<Recipe> findByTitle(String searchQuery);
 
-
-    void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients);
+    //TODO:Convert to directions to description
+    void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients, Set<Step> newSteps);
 
 }
