@@ -3,83 +3,24 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
-
-
-<head>
-<!--    <link rel="stylesheet" type= "text/css" href="/style.css">-->
-<!--        <script src="/scripts.js"></script>-->
-<!--    <script src="/datepicker.js"></script>-->
-    <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
-<!--    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />-->
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css">
-    <!--Font Awesome (added because you use icons in your prepend/append)-->
-<!--    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />-->
-
-    <meta charset="UTF-8">
-<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>-->
-
-<!--    <title>Recipe List</title>-->
-</head>
-
-
-
 <body>
-
-
-
-
 
 <div class="container mT50" style="margin-top: 120px">
 
-
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <h1 class="mT50 tfontColor titleFont stroke text-center">Recipe List</h1>
-
-
 
     <!-- MAIN CONTENT -->
     <div class="row text-center" style="width: 75%; margin: 25px auto">
-
         <div class="col-xs-2" th:each="recipe :${recipes}">
-                            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
-                            <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
-                            <!-- Button trigger Create Recipe Modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
-                                Edit
-                            </button>
+            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
+            <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
+            <!-- Button trigger Create Recipe Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
+                Edit
+            </button>
         </div>
-
     </div>
     <!-- End of MAIN CONTENT -->
-
-
-<!--    <div class="col-centered text-center">-->
-<!--        &lt;!&ndash; Button trigger Create Recipe Modal &ndash;&gt;-->
-<!--        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRecipe">-->
-<!--            Create Recipe-->
-<!--        </button>-->
-<!--    </div>-->
-
-
 
     <!-- View Recipe Modal -->
     <div th:each="recipe :${recipes}">
@@ -105,13 +46,11 @@
                                     <button class="btn btn-primary" type="submit"> Save to Favourites</button>
                                 </form>
                             </div>
-
                             <h5>Instructions</h5>
                             <div th:text="${recipe.getDirections()}"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -136,7 +75,6 @@
                             <div class="form-group">
                                     <label th:attr="for= ${recipe.getTitle()}" >Title</label>
                                     <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
-
                             </div>
                                 <div class="form-group">
                                     <label for="FormControlSelect1">Category</label>
@@ -150,25 +88,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label th:attr="for= ${recipe.getDirections()}">Directions</label>
-
                                     <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
-
-
-
                                      </textarea>
-
-
                                 </div>
-
                                 <div class="modal-footer">
                                     <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
-
-
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -215,35 +143,10 @@
         </div>
     </div>
     <!-- End of Create Recipe Modal -->
-
-
 </div>
-
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>-->
-<!--<script src="/datepicker.js"></script>-->
-<!--<script>-->
-<!--    $(function() {-->
-<!--        $('[data-toggle="datepicker"]').datepicker({-->
-<!--            autoHide: true,-->
-<!--            zIndex: 2048,-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-
-
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
-
-<!-- To be able to use certain Icons -->
-<!--<script src="https://kit.fontawesome.com/2184cbeaba.js" crossorigin="anonymous"></script>-->
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>-->
-<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
-<!--<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>-->
 
 </body>
 </html>
