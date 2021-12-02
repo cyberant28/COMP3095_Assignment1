@@ -8,16 +8,14 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.services.Implementations.recipe;
 
+import gbc.comp3095.recipeapp.models.Ingredient;
 import gbc.comp3095.recipeapp.models.Recipe;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.recipe.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -63,11 +61,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, String newIngedient) {
+    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients) {
         Recipe recipeNew = recipeRepository.findById(id).get();
         recipeNew.setTitle(newTitle);
         recipeNew.setDirections(newDirections);
-        recipeNew.setIngredient(newIngedient);
+        recipeNew.setIngredients(newIngedients);
         recipeRepository.save(recipeNew);
     }
 
