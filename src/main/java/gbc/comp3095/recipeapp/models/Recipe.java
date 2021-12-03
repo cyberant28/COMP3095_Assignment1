@@ -22,7 +22,6 @@ public class Recipe extends BaseEntity{
     @Column(name = "date_created")
     private Date dateCreated;
 
-
     @OneToMany( mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 
