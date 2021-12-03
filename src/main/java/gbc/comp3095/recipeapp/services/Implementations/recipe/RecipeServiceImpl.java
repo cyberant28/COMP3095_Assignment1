@@ -62,10 +62,10 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients, Set<Step> newSteps) {
+    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDescription, Set<Ingredient> newIngedients, Set<Step> newSteps) {
         Recipe recipeNew = recipeRepository.findById(id).get();
         recipeNew.setTitle(newTitle);
-        recipeNew.setDirections(newDirections);//TODO:Convert to description
+        recipeNew.setDescriptions(newDescription);//TODO:Convert to description
         recipeNew.setIngredients(newIngedients);
         recipeNew.setSteps(newSteps);
         recipeRepository.save(recipeNew);

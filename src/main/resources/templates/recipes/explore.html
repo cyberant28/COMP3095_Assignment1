@@ -47,8 +47,13 @@
                                     <button class="btn btn-primary" type="submit"> Save to Favourites</button>
                                 </form>
                             </div>
-                            <h5>Instructions</h5>
-                            <div th:text="${recipe.getDirections()}"></div>
+                            <h4>Description</h4>
+                            <div th:text="${recipe.getDescriptions()}"></div>
+                            <h4>Ingredients</h4>
+                            <div th:text="${recipe.getIngredients()}"></div>
+                            <h4>Instructions</h4>
+                            <div th:text="${recipe.getSteps()}"></div>
+                            <!--TODO: Configure how Instructions and Ingredients are displayed -->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -88,8 +93,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label th:attr="for= ${recipe.getDirections()}">Directions</label>
-                                <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
+                                <label th:attr="for= ${recipe.getDescriptions()}">Directions</label>
+                                <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDescriptions()}" name="description" th:value="*{descriptions}"  required="required">
                                      </textarea>
                             </div>
                             <div class="modal-footer">

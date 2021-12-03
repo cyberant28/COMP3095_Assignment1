@@ -18,8 +18,8 @@ public class Recipe extends BaseEntity{
 
     @Column(name = "title")
     private String title;
-    @Column(name = "direction")//TODO:Convert to description
-    private String directions;
+    @Column(name = "description")//TODO:Convert to description
+    private String descriptions;
     @Column(name = "date_created")
     private Date dateCreated;
 
@@ -47,9 +47,9 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients,Set<Step> steps) {
+    public Recipe(String title, String descriptions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients,Set<Step> steps) {
         this.title = title;
-        this.directions = directions;
+        this.descriptions = descriptions;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
         this.ingredients = ingredients;
@@ -86,9 +86,9 @@ public class Recipe extends BaseEntity{
 
     public void setTitle(String title) { this.title = title; }
 
-    public String getDirections() { return directions; }
+    public String getDescriptions() { return descriptions; }
 
-    public void setDirections(String directions) { this.directions = directions; }
+    public void setDescriptions(String descriptions) { this.descriptions = descriptions; }
 
     public Set<User> getFavouritedBy() { return favouritedBy; }
     public Boolean checkIfFavouritedBy(String userIdString) {
@@ -126,7 +126,7 @@ public class Recipe extends BaseEntity{
         return "Recipe{" +
                 "id=" + getId() +
                 ", title='" + title + '\'' +
-                ", directions='" + directions + '\'' +
+                ", descriptions='" + descriptions + '\'' +
                 '}';
     }
 
