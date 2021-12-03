@@ -18,11 +18,11 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
 </head>
 
-<body class="bgImg">
-<nav class="bg-navbar navbar-fixed-top col-centered" style="width: 60%; margin: 0 auto;">
+<body>
+<nav class="bg-navbar navbar nav-pills navbar-fixed-top" style="width: 60%; margin: 0 auto;">
     <div class="" style="padding-left: 20px;">
         <div class="navbar-header">
-            <a class="navbar-brand logoTitle" href="/">Recipe Book</a>
+            <a class="navbar-brand logoTitle">Recipe Book</a>
         </div>
         <ul class="" th:remove="all">
             <li th:fragment="menuItem (link,active,title,glyph,text)" class="active"
@@ -61,21 +61,8 @@
                 <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
                 <span>Recipe Book</span>
             </li>
-
-
-
         </ul>
-
         <ul class="nav navbar-nav navbar-right" style="margin-right: 0;">
-            <!-- search form -->
-            <form class="navbar-form navbar-left" action="/search" method="GET">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="searchQuery">
-                </div>
-                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-            </form>
-
-            <!-- search form ends -->
             <li><a class="txt-navbar mainMenuFont" href="/login"> Logout</a></li>
         </ul>
     </div>
@@ -87,10 +74,7 @@
     </div>
 </div>
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

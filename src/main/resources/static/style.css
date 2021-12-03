@@ -11,6 +11,10 @@ Authored by Gus Beltran - 101225087
 
 */
 
+body {
+    background-image: url("/images/food-bg.jpg")!important;
+}
+
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
@@ -78,6 +82,8 @@ a {
     color: white!important;
 }
 
+
+
 .hint-text {
     color: white;
 }
@@ -116,7 +122,7 @@ a {
 }
 
 .recipeFont {
-    font-family: 'Irish Grover', cursive;
+    font-family: 'Varela', sans-serif;
     font-size: 24px!important;
     font-weight: bolder;
 }
@@ -228,156 +234,3 @@ a {
 .bg-navbar {
     background: goldenrod;
 }
-<<<<<<< HEAD
-
-.bg-smallBar {
-    background: #249b71;
-}
-
-.txt-navbar {
-    color: white;
-}
-
-.txt-black {
-    color: black;
-}
-
-.txt-tabs {
-    color: #adeeff;
-}
-
-.btn-edit {
-    background: #f88a45;
-}
-
-.p-0 {
-    padding: 0;
-}
-
-p-5 {
-    padding-top: 5%;
-}
-
-/*.modal {*/
-/*    display: none; !* Hidden by default *!*/
-/*    position: fixed; !* Stay in place *!*/
-/*    z-index: 0; !* Sit on top *!*/
-/*    padding-top: 100px; !* Location of the box *!*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    width: 100%; !* Full width *!*/
-/*    height: 100%; !* Full height *!*/
-/*    overflow: auto; !* Enable scroll if needed *!*/
-/*    background-color: rgb(0,0,0); !* Fallback color *!*/
-/*    background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
-/*}*/
-
-/*!* Modal Content *!*/
-/*.modal-content {*/
-/*    background-color: #fde590;*/
-/*    margin: 0 auto;*/
-/*    padding: 20px;*/
-/*    border: 1px solid #888;*/
-/*    width: 80%;*/
-/*}*/
-
-/*!* The Close Button *!*/
-/*.close {*/
-/*    color: #aaaaaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
-/*.close1 {*/
-/*    color: #aaaaaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.close2 {*/
-/*    color: #aaaaaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.close:hover,*/
-/*.close:focus {*/
-/*    color: #000;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-/*.close1:hover,*/
-/*.close1:focus {*/
-/*    color: #000;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.close2:hover,*/
-/*.close2:focus {*/
-/*    color: #000;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-
-.loginContainer{
-    width: 200px;
-    height: 350px;
-    background-color: lightgray;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 200px;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto 75%;
-    grid-gap: 10px;
-    padding: 10px;
-}
-
-.grid-container > div {
-    border: 1px solid black;
-    text-align: center;
-    font-size: 30px;
-}
-.grid-container1 {
-    display: grid;
-    grid-template-columns: 25% 25%  25%  25% ;
-    height: 600px;
-    padding: 10px;
-}
-
-.grid-container1 > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid black;
-    text-align: center;
-    font-size: 30px;
-}
-
-.grid-container2 {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    height: 200px;
-
-
-
-}
-
-.grid-container2 > div {
-    background-color: lightgray;
-    border: 1px solid black;
-    text-align: center;
-
-}
-
-.selectRecipes{
-    overflow: scroll;
-    height: 200px;
-
-}
-
-.datepicker{ z-index:5000 !important; }
-
