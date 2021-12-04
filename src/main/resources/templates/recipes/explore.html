@@ -12,7 +12,7 @@
         <tr>
             <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Community Recipes</th>
             <th style="font-weight: bolder; font-size: 1.8rem;">Description</th>
-            <th></th>
+<!--            <th></th>-->
         </tr>
         </thead>
         <tbody>
@@ -21,12 +21,12 @@
                 <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
             </td>
             <td style="padding-top: 15px" th:text="${recipe.getDirections()}"></td>
-            <td style="padding-right: 35px">
-                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
-                        style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
-                    Edit
-                </button>
-            </td>
+<!--            <td style="padding-right: 35px">-->
+<!--                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"-->
+<!--                        style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">-->
+<!--                    Edit-->
+<!--                </button>-->
+<!--            </td>-->
         </tr>
         </tbody>
     </table>
