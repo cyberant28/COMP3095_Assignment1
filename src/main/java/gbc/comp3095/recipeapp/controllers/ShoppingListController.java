@@ -37,6 +37,7 @@ public class ShoppingListController {
         model.addAttribute("items", user.getShoppingList().getItems());
 
 
+
         return "shoppingList/list";
     }
 
