@@ -62,6 +62,8 @@ public class Recipe extends BaseEntity{
         this.ingredients = ingredients;
     }
 
+    //Steps
+
     public Set<Step> getSteps() {
         return steps;
     }
@@ -69,6 +71,10 @@ public class Recipe extends BaseEntity{
     public void setSteps(Set<Step> steps) {
         this.steps = steps;
     }
+
+    public void addStep(Step step) {this.steps.add(step);}
+
+    public void removeStep(Step step) {this.steps.remove(step);}
 
     public boolean isAdded() {
         return isAdded;

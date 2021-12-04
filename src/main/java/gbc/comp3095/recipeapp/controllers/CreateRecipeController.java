@@ -9,7 +9,9 @@
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.Recipe;
+import gbc.comp3095.recipeapp.models.Step;
 import gbc.comp3095.recipeapp.models.User;
+import org.springframework.validation.BindingResult;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +35,26 @@ public class CreateRecipeController {
         model.addAttribute("recipe", new Recipe());
         return "recipes/createRecipe";
     }
+    @RequestMapping(value = "add")
+    public String add(Recipe recipe) {
+        return "recipes/createRecipe";
+    }
+
+    @RequestMapping(value = "addStep", params = {"addStep"})
+    public String addStep(final Recipe recipe, final BindingResult result) {
+        recipe.getSteps().add(new Step());
+        return "recipes/createRecipe";
+    }
 
     @PostMapping("/addrecipe")
     public String addRecipe(@ModelAttribute Recipe recipe, Model model) {
         model.addAttribute("recipe", recipe);
         User user = userService.findById(1L).get();
         userService.createRecipe(user, recipe);
+
         return "redirect:/recipes";
     }
-    //TODO:Convert to directions to description
+
     @PostMapping("/editrecipe/{id}")
     public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
         model.addAttribute("recipe", recipe);

@@ -5,6 +5,11 @@
 <head>
     <title>Create Recipe</title>
     <meta charset="utf-8">
+    <!--<script src="stepListManager.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <!--For material icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <section class="ftco-section" style="margin-top: 120px">
@@ -13,26 +18,35 @@
                     <h2 class="tfontColor titleFont text-center">Recipe App</h2>
             </div>
             <div class="row justify-content-center text-center">
-                <form action="" th:action="@{/addrecipe}" th:object="${recipe}" method="post" class="color: white;">
+                <form action="" th:action="@{/add}" th:object="${recipe}" method="POST" class="color: white;">
                     <h2 class="regTitle tfontColor">Add Recipe</h2>
                     <div class="form-group col-centered">
-                        <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="color: white; width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
+                        <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" style="color: white; width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
                     </div>
                     <!--TODO: Create a script to allow for the addition of ingredients. -->
-                    <div>
-
-                    </div>
-
-                    <!--TODO: Convert to Description. -->
                     <div class="form-group col-centered">
-                        <textarea type="text" class="form-control" name="description" placeholder="Description" th:field="*{description}" required="required" style="color: white; width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
+
                     </div>
 
-                    <!--TODO: Create a script to allow for the creation of multiple steps. -->
-                    <div></div>
+                    <div class="form-group col-centered">
+                        <textarea type="text" class="form-control" name="description" placeholder="Description" th:field="*{description}"  style="color: white; width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
+                    </div>
+
+                    <div class="form-group col-centered">
+
+                        <table>
+                            <thead>
+                                <th><button type="submit" name="addStep" >Add Step</button></th>
+                            </thead>
+                            <tr th:each="step, rowStat : *{steps}">
+                                <td th:text="${rowStat.count}" placeholder="1"></td>
+                                <td><input class="form-control" name="addStep" type="text" th:field="*{steps[__${rowStat.index}__].step}" placeholder="What do you do..."/></td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="form-group">
                         <a href="/recipes" class="btn btn-danger" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Cancel</a>
-                        <button type="submit" class="btn btn-success" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Save Recipe</button>
+                        <button type="submit" name="addRecipe" class="btn btn-success" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Save Recipe</button>
                     </div>
                 </form>
             </div>
