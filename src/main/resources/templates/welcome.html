@@ -317,8 +317,12 @@
                                         <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label th:attr="for= ${recipe.getDescription()}">Directions</label>
+                                        <label th:attr="for= ${recipe.getDescription()}">Description</label>
+
                                         <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDescription()}" name="description" th:value="*{description}"  required="required">
+
+
+
                                      </textarea>
                                     </div>
                                     <div class="modal-footer">

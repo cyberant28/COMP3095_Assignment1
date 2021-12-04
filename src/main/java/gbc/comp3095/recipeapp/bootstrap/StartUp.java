@@ -70,6 +70,11 @@ public class StartUp implements CommandLineRunner {
         User userP = new User("Petro Peu", "password");
 
         Recipe recipe1 = new Recipe("Jam pudding");
+
+
+        recipe1.getIngredients().add(new Ingredient("Jam", recipe1));
+        recipe1.getIngredients().add(new Ingredient("Pudding", recipe1));
+
         recipe1.setDescription("make me a jam pudding please");
 
         Recipe recipe2 = new Recipe("Toast Sandwich");
@@ -79,6 +84,9 @@ public class StartUp implements CommandLineRunner {
         recipeJ.setDescription("make me a Slime Stew please");
 
         Recipe recipeM = new Recipe("Kashmiri Chai");
+
+        recipeM.getIngredients().add(new Ingredient("milk", recipeM));
+
         recipeJ.setDescription("make me a Kashmiri Chai please");
 
         Recipe recipeN = new Recipe("Orange Lemonade");
@@ -128,6 +136,7 @@ public class StartUp implements CommandLineRunner {
         userService.addShoppingListItem(user1, item2);
 
         userService.addShoppingListItem(user1, item3);
+
 
 
 

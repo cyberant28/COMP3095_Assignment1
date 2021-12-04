@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 @Service
@@ -26,14 +27,23 @@ public class UserServiceImpl implements UserService {
     private final ItemRepository itemRepository;
     private final ShoppingListRepository shoppingListRepository;
 
+    private final IngredientRepository ingredientRepository;
+
+
+
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, ItemRepository itemRepository, ShoppingListRepository shoppingListRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository,
+                           MealRepository mealRepository, ItemRepository itemRepository,
+                           ShoppingListRepository shoppingListRepository,
+                           IngredientRepository ingredientRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
         this.mealRepository = mealRepository;
         this.itemRepository = itemRepository;
         this.shoppingListRepository = shoppingListRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     @Override
@@ -92,6 +102,15 @@ public class UserServiceImpl implements UserService {
         recipe.setRecipeAuthor(user);
         user.getCreatedRecipes().add(recipe);
         recipe.setRecipeAuthor(user);
+        Iterator<Ingredient> ingredientIterator = recipe.getIngredients().iterator();
+        recipeRepository.save(recipe);
+       while(ingredientIterator.hasNext()){
+            Ingredient ingredient = ingredientIterator.next();
+            ingredient.setRecipe(recipe);
+           // recipe.getIngredients().add(ingredient);
+            ingredientRepository.save(ingredient);
+        }
+
         recipeRepository.save(recipe);
         userRepository.save(user);
 
