@@ -18,8 +18,9 @@ public class Ingredient extends BaseEntity{
 
 
 
-        public Ingredient(String ingredientName) {
+        public Ingredient(String ingredientName, Recipe recipe) {
             this.ingredientName = ingredientName;
+            this.recipe = recipe;
         }
 
         public Ingredient() {

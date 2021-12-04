@@ -48,7 +48,7 @@
                                 </form>
                             </div>
                             <h4>Description</h4>
-                            <div th:text="${recipe.getDescriptions()}"></div>
+                            <div th:text="${recipe.getDescription()}"></div>
                             <h4>Ingredients</h4>
                             <div th:text="${recipe.getIngredients()}"></div>
                             <h4>Instructions</h4>
@@ -93,8 +93,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label th:attr="for= ${recipe.getDescriptions()}">Directions</label>
-                                <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDescriptions()}" name="description" th:value="*{descriptions}"  required="required">
+                                <label th:attr="for= ${recipe.getDescription()}">Directions</label>
+                                <textarea class="form-control" rows="3" th:attr="id= ${recipe.getDescription()}" name="description" th:value="*{description}" required="required">
                                      </textarea>
                             </div>
                             <div class="modal-footer">

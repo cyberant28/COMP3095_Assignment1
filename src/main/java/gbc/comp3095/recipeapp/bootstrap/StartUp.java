@@ -49,7 +49,7 @@ public class StartUp implements CommandLineRunner {
             recipeName += items[(int) Math.floor(Math.random()* items.length)] +" with ";
             recipeName += garnishes[(int) Math.floor(Math.random()* garnishes.length)];
             Recipe recipe = new Recipe(recipeName);
-            recipe.setDescriptions("Make me a " + recipeName +" please");
+            recipe.setDescription("Make me a " + recipeName +" please");
             userService.createRecipe(user, recipe);
         }
     }
@@ -70,19 +70,23 @@ public class StartUp implements CommandLineRunner {
         User userP = new User("Petro Peu", "password");
 
         Recipe recipe1 = new Recipe("Jam pudding");
-        recipe1.setDescriptions("make me a jam pudding please");
+
+        recipe1.getIngredients().add(new Ingredient("Jam", recipe1));
+        recipe1.getIngredients().add(new Ingredient("Pudding", recipe1));
+        recipe1.setDescription("make me a jam pudding please");
 
         Recipe recipe2 = new Recipe("Toast Sandwich");
-        recipe2.setDescriptions("Make me a Toast pease");
+        recipe2.setDescription("Make me a Toast pease");
 
         Recipe recipeJ = new Recipe("Slime Stew");
-        recipeJ.setDescriptions("make me a Slime Stew please");
+        recipeJ.setDescription("make me a Slime Stew please");
 
         Recipe recipeM = new Recipe("Kashmiri Chai");
-        recipeJ.setDescriptions("make me a Kashmiri Chai please");
+        recipeM.getIngredients().add(new Ingredient("milk", recipeM));
+        recipeJ.setDescription("make me a Kashmiri Chai please");
 
         Recipe recipeN = new Recipe("Orange Lemonade");
-        recipeJ.setDescriptions("make me a Orange Lemonade please");
+        recipeJ.setDescription("make me a Orange Lemonade please");
 
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);

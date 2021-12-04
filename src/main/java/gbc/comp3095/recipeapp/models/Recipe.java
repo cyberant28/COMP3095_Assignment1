@@ -10,7 +10,6 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Entity
@@ -19,7 +18,7 @@ public class Recipe extends BaseEntity{
     @Column(name = "title")
     private String title;
     @Column(name = "description")//TODO:Convert to description
-    private String descriptions;
+    private String description;
     @Column(name = "date_created")
     private Date dateCreated;
 
@@ -47,9 +46,9 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String descriptions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients,Set<Step> steps) {
+    public Recipe(String title, String description, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients, Set<Step> steps) {
         this.title = title;
-        this.descriptions = descriptions;
+        this.description = description;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
         this.ingredients = ingredients;
@@ -86,9 +85,9 @@ public class Recipe extends BaseEntity{
 
     public void setTitle(String title) { this.title = title; }
 
-    public String getDescriptions() { return descriptions; }
+    public String getDescription() { return description; }
 
-    public void setDescriptions(String descriptions) { this.descriptions = descriptions; }
+    public void setDescription(String descriptions) { this.description = descriptions; }
 
     public Set<User> getFavouritedBy() { return favouritedBy; }
     public Boolean checkIfFavouritedBy(String userIdString) {
@@ -126,7 +125,7 @@ public class Recipe extends BaseEntity{
         return "Recipe{" +
                 "id=" + getId() +
                 ", title='" + title + '\'' +
-                ", descriptions='" + descriptions + '\'' +
+                ", descriptions='" + description + '\'' +
                 '}';
     }
 

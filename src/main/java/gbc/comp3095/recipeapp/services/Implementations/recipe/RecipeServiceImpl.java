@@ -65,7 +65,7 @@ public class RecipeServiceImpl implements RecipeService {
     public  void updateRecipeTitleDirections(Long id, String newTitle, String newDescription, Set<Ingredient> newIngedients, Set<Step> newSteps) {
         Recipe recipeNew = recipeRepository.findById(id).get();
         recipeNew.setTitle(newTitle);
-        recipeNew.setDescriptions(newDescription);//TODO:Convert to description
+        recipeNew.setDescription(newDescription);//TODO:Convert to description
         recipeNew.setIngredients(newIngedients);
         recipeNew.setSteps(newSteps);
         recipeRepository.save(recipeNew);
