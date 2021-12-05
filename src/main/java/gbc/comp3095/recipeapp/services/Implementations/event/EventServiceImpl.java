@@ -68,7 +68,10 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    public void updateMealTitle(Long id, String newTitle) {
+
+
+    @Override
+    public void updateEventTitle(Long id, String newTitle) {
         Event eventNew = eventRepository.findById(id).get();
         eventNew.setTitle(newTitle);
         eventRepository.save(eventNew);
