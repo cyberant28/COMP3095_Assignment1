@@ -1,0 +1,26 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+<body>
+
+<div th:each="meal :${meals}">
+    <div class="" style="margin-top: 100px;" th:attr="id='viewRecipe'+${meal.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${meal.title}">"[Name of the selected recipe]"</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="height: 250px!important;">
+                        <h5>Author</h5>
+                        <div th:text="${meal.getMealAuthor().userName}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

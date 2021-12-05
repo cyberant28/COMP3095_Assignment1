@@ -20,7 +20,7 @@
 
 <body>
 
-<nav class="bg-navbar navbar nav-pills navbar-fixed-top" style="width: 60%; margin: 0 auto;">
+<nav class="bg-navbar navbar nav-pills navbar-fixed-top" style="width: 80%; margin: 0 auto;">
     <div class="" style="padding-left: 20px;">
         <div class="navbar-header">
             <a class="navbar-brand logoTitle">Recipe Book</a>
@@ -48,19 +48,41 @@
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 <span>Create Recipe</span>
             </li>
+            <li th:replace="::menuItem ('/editrecipe','editrecipe','find edit recipe','','Edit Recipe')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>Edit Recipe</span>
+            </li>
             <li th:replace="::menuItem ('/explore','meals','find meals','','Explore Recipes')">
                 <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
                 <span>Explore Recipes</span>
             </li>
-
-            <li th:replace="::menuItem ('/meals','meals','find meals','','Meals')">
+            <li th:replace="::menuItem ('/viewdetails','details','find details','','Recipe Details')">
                 <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
-                <span>Recipe Book</span>
+                <span>Recipe Details</span>
             </li>
-
             <li th:replace="::menuItem ('/shoppingList','meals','find meals','','Shopping List')">
                 <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
                 <span>Recipe Book</span>
+            </li>
+            <li th:replace="::menuItem ('/viewfavorites','favorites','find favorites','','Favorites')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>Favorites</span>
+            </li>
+            <li th:replace="::menuItem ('/meals','meals','find meals','','Meals')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>Meals</span>
+            </li>
+            <li th:replace="::menuItem ('/addmeal','addmeal','find add meal','','Add Meals')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>Add Meals</span>
+            </li>
+            <li th:replace="::menuItem ('/editmeal','editmeal','find edit meal','','Edit Meals')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>Edit Meals</span>
+            </li>
+            <li th:replace="::menuItem ('/mealdetails','mealdetails','find meal details','','View Meals')">
+                <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                <span>View Meals</span>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 0;">
