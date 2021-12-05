@@ -10,6 +10,7 @@
 package gbc.comp3095.recipeapp.bootstrap;
 
 import gbc.comp3095.recipeapp.models.*;
+import gbc.comp3095.recipeapp.services.Implementations.event.EventServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.meal.MealServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.shoppingList.ShoppingListServiceImpl;
@@ -19,6 +20,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
+import java.util.Iterator;
 
 @Component
 public class StartUp implements CommandLineRunner {
@@ -27,13 +29,17 @@ public class StartUp implements CommandLineRunner {
     private RecipeServiceImpl recipeService;
     private MealServiceImpl mealService;
     private ShoppingListServiceImpl shoppingListService;
+    private EventServiceImpl eventService;
 
     @Autowired
-    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, MealServiceImpl mealService, ShoppingListServiceImpl shoppingListService) {
+    public StartUp(UserServiceImpl userService, RecipeServiceImpl recipeService, MealServiceImpl mealService,
+                   ShoppingListServiceImpl shoppingListService,
+                    EventServiceImpl eventService) {
         this.userService = userService;
         this.recipeService = recipeService;
         this.mealService = mealService;
         this.shoppingListService = shoppingListService;
+        this.eventService = eventService;
     }
 
     public void generateRecipes(User user, int numRecipes){
@@ -128,6 +134,19 @@ public class StartUp implements CommandLineRunner {
         userService.addShoppingListItem(user1, item2);
 
         userService.addShoppingListItem(user1, item3);
+
+        Event newEvent = userService.createEvent(user1, new Event("some event"));
+        newEvent.getMeals().add(meal1);
+        newEvent.getMeals().add(meal2);
+        newEvent.getMeals().add(meal3);
+        newEvent.getMeals().remove(meal2);
+        Event finalEvent = eventService.save(newEvent);
+        Iterator<Meal> eventSet = finalEvent.getMeals().iterator();
+        while(eventSet.hasNext()){
+            System.out.println(eventSet.next().getTitle());
+        }
+
+
 
 
 

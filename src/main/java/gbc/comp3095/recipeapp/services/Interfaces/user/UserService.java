@@ -1,14 +1,13 @@
 package gbc.comp3095.recipeapp.services.Interfaces.user;
 
-import gbc.comp3095.recipeapp.models.Item;
-import gbc.comp3095.recipeapp.models.Meal;
-import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.models.*;
 import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 
 public interface UserService extends CrudService<User, Long> {
 
     public Meal createMeal(User user, Meal meal);
+
+    Event createEvent(User user, Event event);
 
     public Recipe createRecipe(User user, Recipe recipe);
 

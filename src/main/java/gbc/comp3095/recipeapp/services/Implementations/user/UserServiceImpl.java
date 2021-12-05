@@ -24,15 +24,17 @@ public class UserServiceImpl implements UserService {
     private final RecipeRepository recipeRepository;
     private final MealRepository mealRepository;
     private final ItemRepository itemRepository;
+    private final EventRepository eventRepository;
     private final ShoppingListRepository shoppingListRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, ItemRepository itemRepository, ShoppingListRepository shoppingListRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, ItemRepository itemRepository, EventRepository eventRepository, ShoppingListRepository shoppingListRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
         this.mealRepository = mealRepository;
         this.itemRepository = itemRepository;
+        this.eventRepository = eventRepository;
         this.shoppingListRepository = shoppingListRepository;
     }
 
@@ -85,6 +87,16 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return meal;
+    }
+
+    @Override
+    public Event createEvent(User user, Event event) {
+        event.setEventAuthor(user);
+        user.getEvents().add(event);
+        eventRepository.save(event);
+        userRepository.save(user);
+
+        return event;
     }
 
     @Override

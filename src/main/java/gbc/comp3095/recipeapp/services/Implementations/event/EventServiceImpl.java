@@ -8,9 +8,11 @@ import gbc.comp3095.recipeapp.repositories.MealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class EventServiceImpl implements EventService {
 
     private final MealRepository mealRepository;
@@ -78,4 +80,4 @@ public class EventServiceImpl implements EventService {
     }
 }
 
-}
+

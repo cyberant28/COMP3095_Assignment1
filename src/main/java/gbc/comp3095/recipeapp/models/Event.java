@@ -58,6 +58,8 @@ public class Event extends BaseEntity{
         return meals;
     }
 
+
+
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
     }
