@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
-
-
 <body>
-<div class="container bg-primary text-center" style="">
-    <h1 class="mT50 tfontColor titleFont stroke ">Shopping List</h1>
-    <input type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shopping List" />
-    <div id="printableArea">
+<div class="mT50 container-fluid text-center" style="">
+    <h1 class="tfontColor titleFont stroke">Shopping List</h1>
+    <input style="margin-top: 35px" type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shopping List" />
+</div>
+    <div class="text-center" id="printableArea" style="margin-top: 35px;">
         <div class="col-xs-2" th:each="item :${items}">
-            <div class="tfontColor recipeFont stroke" th:text="${item.getItemName()}"></div>
+            <div class="tfontColor recipeFont stroke font-weight-bolder" th:text="${item.getItemName()}"></div>
             <div style="font-size: 30px" class="tfontColor font-weight-bolder" th:text="${item.getItemPrice()}"></div>
         </div>
     </div>
-</div>
 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<script src="/datepicker.js"></script>
 <script>
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -31,13 +24,7 @@
 </script>
 
 
-<!-- To be able to use certain Icons -->
-<script src="https://kit.fontawesome.com/2184cbeaba.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
-<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
 
 </body>
 </html>
