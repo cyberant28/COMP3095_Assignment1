@@ -15,9 +15,15 @@ import gbc.comp3095.recipeapp.models.User;
 import gbc.comp3095.recipeapp.services.Implementations.recipe.RecipeServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 class WelcomeController {
@@ -49,4 +55,13 @@ class WelcomeController {
         return "fragments/register";
     }
 
+    @RequestMapping("/**")
+    public String handler(ModelMap model, HttpServletRequest request) {
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        model.addAttribute("uri", request.getRequestURI());
+        model.addAttribute("user", auth.getName());
+        model.addAttribute("roles", auth.getAuthorities());
+        return "app";
+    }
 }
