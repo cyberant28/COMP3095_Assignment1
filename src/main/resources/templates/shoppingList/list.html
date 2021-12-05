@@ -27,16 +27,22 @@
 <div class="container">
 
     <h1 class="mT50 tfontColor titleFont stroke text-center">Shopping List</h1>
+    <input type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shipping List" />
+
+    <div id="printableArea">
 
 
-    <div class="col-xs-2" th:each="item :${items}">
+        <div class="col-xs-2" th:each="item :${items}">
 
-        <div class="tfontColor recipeFont stroke" th:text="${item.getItemName()}"></div>
-        <div class="tfontColor recipeFont stroke" th:text="${item.getItemPrice()}"></div>
-
+            <div class="tfontColor recipeFont stroke" th:text="${item.getItemName()}"></div>
+            <div class="tfontColor recipeFont stroke" th:text="${item.getItemPrice()}"></div>
 
     </div>
+    </div>
+
 </div>
+
+
 
 
 
@@ -50,6 +56,17 @@
             zIndex: 2048,
         });
     });
+
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
 </script>
 
 

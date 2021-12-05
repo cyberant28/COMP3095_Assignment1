@@ -54,7 +54,13 @@
                             <div th:text="${recipe.getDescription()}"></div>
                             <h4>Ingredients</h4>
                             <div th:each="ingredient: ${recipe.getIngredients()}">
-                                <div th:text="${ingredient.getIngredientName()}"></div>
+                                <div style="margin-bottom: 10px">
+                                    <div style="float: left" th:text="${ingredient.getIngredientName()}"> </div>
+                                    <form th:action="@{|/additem/${ingredient.getId()}|}" th:object="${ingredient}" method="post">
+                                    <button type="submit" style="width: 30px; height: 20px; text-align: center; font-size: 10px; margin-left: 5px">Add</button>
+                                    </form>
+                                </div>
+
                             </div>
                             <h4>Instructions</h4>
                             <div th:text="${recipe.getSteps()}"></div>

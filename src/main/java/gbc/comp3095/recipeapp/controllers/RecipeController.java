@@ -37,4 +37,6 @@ public class RecipeController {
         return "recipes/list";
     }
 
+
+
 }
