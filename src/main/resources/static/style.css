@@ -13,6 +13,8 @@ Authored by Gus Beltran - 101225087
 
 body {
     background-image: url("/images/food-bg.jpg")!important;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .nav > li > a:hover,

@@ -5,7 +5,7 @@
 <body>
 
 <!-- Small Tab Navbar -->
-<div class="navbar col-centered" style="margin-top: 250px;">
+<div class="navbar col-centered" style="margin-top: 150px;">
     <nav class="navbar" style="text-align: center; margin: 0">
         <ul class="nav nav-tabs" style="display: inline-table">
             <li class="active" style="display: inline"><a data-toggle="tab" class="tabFont stroke" href="#home">Profile</a></li>
@@ -35,21 +35,14 @@
     </div>
 
     <div id="menu1" class="tab-pane fade">
-
-
-
         <!-- CONTENT -->
         <div class="row text-center" style="width: 75%; margin: 25px auto">
-
             <div class="col-xs-2" th:each="favorite : ${favoriteRecipes}">
                 <a class="cursor" data-toggle="modal" th:attr="data-target='#viewFavoriteRecipe'+${favorite.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
                 <div class="tfontColor recipeFont stroke" th:text="${favorite.title}"></div>
-
             </div>
-
         </div>
         <!-- END of CONTENT -->
-
 
 
         <!-- View FAVORITE Modal -->
