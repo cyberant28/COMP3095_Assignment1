@@ -318,7 +318,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label th:attr="for= ${recipe.getDescription()}">Directions</label>
-                                        <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
+
                                      </textarea>
                                     </div>
                                     <div class="modal-footer">
@@ -360,7 +360,7 @@
                                     </form>
                                 </div>
                                 <h5>Instructions</h5>
-                                <div th:text="${recipe.getDirections()}"></div>
+
                             </div>
                         </div>
                         <div class="modal-footer">

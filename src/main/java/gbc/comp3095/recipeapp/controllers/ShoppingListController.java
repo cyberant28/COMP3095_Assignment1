@@ -46,7 +46,10 @@ public class ShoppingListController {
 
 
 
-    @RequestMapping("/shoppingList")
+
+
+
+        @RequestMapping("/shoppingList")
     public String getShoppingList(Model model){
         model.addAttribute("shoppinglist", new ShoppingList());
         User user = userService.findById(1L).get();
