@@ -1,55 +1,69 @@
 <!-- Authored and Cleaned by Gustavo Beltran -->
-
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
-
 <body>
-
-<div class="container mT50" style="margin-top: 120px">
-
-    <h1 class="mT50 tfontColor titleFont stroke text-center">Recipe List</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#createRecipe'">
-        Create
-    </button>
-
-    <!-- MAIN CONTENT -->
-    <div class="row text-center" style="width: 75%; margin: 25px auto">
-        <div class="col-xs-2" th:each="recipe :${recipes}">
-            <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
-            <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
-            <!-- Button trigger Create Recipe Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
-                Edit
+    <div class="d-flex" style="margin-top: 75px; background-color: rgba( 0,0,0,0.8); border-radius: 45px;">
+        <h1 class="titleFont stroke text-center" style="color: white; border: solid 3px black; background-color: black; padding: 5px;">Recipe List</h1>
+        <div class="text-center" style="margin-top: 50px;">
+            <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#createRecipe'"
+                    style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px greenyellow; font-weight: bolder; color: greenyellow;">
+                Create
             </button>
         </div>
-
+        <table class="table text-warning" style="color: white; margin-top: 50px">
+            <thead>
+            <tr>
+                <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name of Recipe</th>
+                <th style="font-weight: bolder; font-size: 1.8rem;">Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipe :${recipes}" style="">
+                    <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
+                        <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
+                    </td>
+                <td style="padding-top: 15px" th:text="${recipe.getSteps()}"></td>
+                <td style="padding-right: 35px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
+                            style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <!-- End of MAIN CONTENT -->
+        <!-- View Recipe Modal -->
+        <div th:each="recipe :${recipes}">
+            <div class="modal fade" style="margin-top: 185px" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container" style="height: 300px!important;">
+                                <div th:if="${recipe.checkIfFavouritedBy(1)}">
+                                    <!-- TODO why doesnt glyphicon work? -->
+                                    <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                        <button class="btn btn-success" type="submit"> Remove from Favourites</button>
+                                    </form>
+                                </div>
+                                <div th:unless="${recipe.checkIfFavouritedBy(1)}">
+                                    <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                        <button class="btn btn-primary" type="submit"> Save to Favourites</button>
+                                    </form>
+                                </div>
+                                <h5>Instructions</h5>
+                                <div th:text="${recipe.getSteps()}"></div>
+                                <h5>Ingredients</h5>
+                                <div th:text="${recipe.getIngredients()}"></div>
+                            </div>
 
-    <!-- View Recipe Modal -->
-    <div th:each="recipe :${recipes}">
-        <div class="modal fade" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container" style="height: 500px!important;">
-                            <div th:if="${recipe.checkIfFavouritedBy(1)}">
-                                <!-- TODO why doesnt glyphicon work? -->
-                                <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
-                                    <button class="btn btn-success" type="submit"> Remove from Favourites</button>
-                                </form>
-                            </div>
-                            <div th:unless="${recipe.checkIfFavouritedBy(1)}">
-                                <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
-                                    <button class="btn btn-primary" type="submit"> Save to Favourites</button>
-                                </form>
-                            </div>
                             <h4>Description</h4>
                             <div th:text="${recipe.getDescription()}"></div>
                             <h4>Ingredients</h4>
@@ -64,20 +78,19 @@
                             </div>
                             <h4>Instructions</h4>
                             <div th:text="${recipe.getSteps()}"></div>
+
+
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <!-- Edit Recipe Modal -->
-    <div th:each="recipe :${recipes}">
-            <div class="modal fade" th:attr="id='editRecipe'+${recipe.getId()}" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+        <!-- Edit Recipe Modal -->
+        <div th:each="recipe :${recipes}">
+            <div class="modal fade mT50" style="margin-top: 200px" th:attr="id='editRecipe'+${recipe.getId()}" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -89,22 +102,17 @@
                         <div class="modal-body">
                             <form th:action="@{|/editrecipe/${recipe.getId()}|}" th:object="${recipe}" method="post">
                             <div class="form-group">
-                                    <label th:attr="for= ${recipe.getTitle()}" >Title</label>
-                                    <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
+                                <label th:attr="for= ${recipe.getTitle()}" >Title</label>
+                                <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
                             </div>
                                 <div class="form-group">
-                                    <label for="FormControlSelect1">Category</label>
-                                    <select class="form-control" id="FormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
+
+
                                 <div class="form-group">
                                     <label th:attr="for= ${recipe.getDescription()}">Directions</label>
                                     <textarea class="form-control" rows="3" th:attr="id= ${recipe.getDescription()}" name="directions" th:value="*{description}" required="required">
+
+
                                      </textarea>
                                 </div>
                                 <div class="modal-footer">
@@ -116,6 +124,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
     <!-- End of Edit Recipe Modal -->
 
@@ -135,10 +144,14 @@
                         <form action="" th:action="@{/addrecipe}" th:object="${recipe}" method="post">
                             <!-- TODO:Remove Duplicate ids, add ingredients adder and Step adder, also maybe add the meal type-->
                             <div class="form-group col-centered">
-                                <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
+                                <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle"
+                                       placeholder="Recipe Title" th:field="*{title}" required="required"
+                                       style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
                             </div>
                             <div class="form-group col-centered">
+
                                 <textarea type="text" class="form-control" name="description" placeholder="Description" th:field="*{description}" required="required" style="width: 350px; height: 200px; display: inline!important; border: none;"></textarea>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -146,13 +159,41 @@
                             </div>
                         </form>
 
+        </div>
+        <!-- End of Edit Recipe Modal -->
+
+
+        <!-- Create Recipe Modal -->
+        <div class="modal fade" style="margin-top: 200px" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="recipeTitle">Create Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center text-center">
+                            <form action="" th:action="@{/addrecipe}" th:object="${recipe}" method="post">
+                                <div class="form-group col-centered">
+                                    <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
+                                </div>
+                                <div class="form-group col-centered">
+                                    <textarea type="text" class="form-control" name="directions" placeholder="Instructions"  th:field="*{steps}" required="required" style="width: 350px; height: 200px; display: inline!important; border: none;"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-secondary">Save Recipe</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End of Create Recipe Modal -->
-</div>
+        <!-- End of Create Recipe Modal -->
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
