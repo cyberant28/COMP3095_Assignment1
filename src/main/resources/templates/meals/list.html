@@ -1,7 +1,8 @@
 <!-- Authored by Gus Beltran 101225087 -->
 
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
 
@@ -55,6 +56,9 @@
                     <div class="container" style="height: 300px!important;">
                         <h5>Author</h5>
                         <div th:text="${meal.getMealAuthor().userName}"></div>
+
+                        <h5>Recipes</h5>
+                        <div th:each="recipe : ${meal.getRecipes()}" th:text="${recipe.getTitle()}"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -111,12 +115,20 @@
 
                         <div class="form-group col-centered">
                             <input type="text" class="form-control" id="mealTitle"  name="mealTitle" placeholder="Meal Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
-                            <br>
-                            <div class="selectRecipes">
-                                <div th:each="recipe :${recipes}">
-                                    <input type="checkbox" th:name="${recipe.getId()}" th:value="${recipe.getId()}" th:text="${' ' + recipe.getTitle()}">
-                                </div>
 
+                        <!--
+                            <select id="recipes" th:field="*{recipes}" size="10" multiple="multiple">
+                                <option th:each="recipe : ${userRecipes}"
+                                        th:value="${{recipe}}"
+                                        th:text="${' ' + recipe.getTitle()}">
+
+                                </option>
+                            </select>
+                            -->
+
+                            <div th:each="recipe : ${userRecipes}">
+                                <input type="checkbox" th:id="${{recipe.getId()}}" th:value="${{recipe.getId()}}" th:field="*{recipes}" />
+                                <label th:for="${{recipe}}" th:text="${recipe.title}">Title</label>
                             </div>
 
 

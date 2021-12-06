@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 public class MealController {
 
@@ -38,7 +41,9 @@ public class MealController {
         model.addAttribute("meals", mealService.findAll());
         model.addAttribute("meal", new Meal());
         User user = userService.findById(1L).get();
-        model.addAttribute("recipes", user.getRecipes());
+        model.addAttribute("userRecipes", user.getRecipes());
+        Set<Recipe> selectedRecipes = new HashSet<Recipe>();
+        model.addAttribute("selectedRecipes", selectedRecipes);
         return "meals/list";
     }
 
@@ -59,7 +64,7 @@ public class MealController {
         return "redirect:/meals";
     }
 
-    @PostMapping(value = "/addmeal", params = {"title", ""})
+    @PostMapping(value = "/addmeal")
     public String addMeal(@ModelAttribute Meal meal, Model model) {
         model.addAttribute("meal", meal);
         User user = userService.findById(1L).get();
