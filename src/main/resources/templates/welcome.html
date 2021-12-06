@@ -1,3 +1,5 @@
+<!-- Authored by Gus Beltran 101225087 for Assignment 1 and 2 -->
+
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
@@ -44,7 +46,6 @@
         </div>
         <!-- END of CONTENT -->
 
-
         <!-- View FAVORITE Modal -->
         <div th:each="recipe :${favoriteRecipes}">
             <div class="modal fade" style="margin-top: 200px" th:attr="id='viewFavoriteRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
@@ -69,13 +70,11 @@
                                         <button class="btn btn-primary" type="submit"> Save to Favourites</button>
                                     </form>
                                 </div>
-
                                 <h5>Instructions</h5>
                                 <div th:text="${recipe.getDirections()}"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -83,14 +82,10 @@
             </div>
         </div>
         <!-- End of View Recipe Modal -->
-
     </div>
-
-
 
     <!-- Start of Small Tab Menu PLANNED MEALS -->
     <div id="menu2" class="tab-pane fade">
-
 
         <div class="row text-center recipeFont tfontColor" style="width: 75%; margin: 25px auto">
             <div class="col-xs-2">
@@ -121,17 +116,13 @@
                 <div>December 21, 2021</div>
             </div>
         </div>
-
     </div>
     <!-- End of Small Tab Menu PLANNED MEALS -->
 
-
     <!-- Start of Small Tab Menu MY RECIPES -->
     <div id="menu3" class="tab-pane fade">
-
         <!-- CONTENT -->
         <div class="row text-center" style="width: 75%; margin: 25px auto">
-
             <!-- Shows existing recipes -->
             <div class="col-xs-2" th:each="recipe :${recipes}">
                 <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }">
