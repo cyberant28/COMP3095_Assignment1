@@ -86,6 +86,12 @@
                         <div class="form-group">
                             <label th:attr="for= ${meal.getTitle()}" >Title</label>
                             <input type="text" class="form-control" th:attr="id= ${meal.getTitle()}" name="title" th:value="*{title}" required="required">
+
+                            <div th:each="recipe : ${userRecipes}">
+                                <input type="checkbox" th:id="${{recipe.getId()}}" th:value="${{recipe.getId()}}" th:field="*{recipes}" />
+                                <label th:for="${{recipe}}" th:text="${recipe.title}">Title</label>
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>

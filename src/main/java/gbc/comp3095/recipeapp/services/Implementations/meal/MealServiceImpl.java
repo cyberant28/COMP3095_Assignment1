@@ -11,6 +11,7 @@ package gbc.comp3095.recipeapp.services.Implementations.meal;
 
 import gbc.comp3095.recipeapp.models.Meal;
 import gbc.comp3095.recipeapp.models.Recipe;
+import gbc.comp3095.recipeapp.models.User;
 import gbc.comp3095.recipeapp.repositories.MealRepository;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.meal.MealService;
@@ -81,5 +82,11 @@ public class MealServiceImpl implements MealService {
         Meal mealNew = mealRepository.findById(id).get();
         mealNew.setTitle(newTitle);
         mealRepository.save(mealNew);
+    }
+
+    @Override
+    public void updateMeal(Meal meal, User user){
+        meal.setMealAuthor(user);
+        mealRepository.save(meal);
     }
 }

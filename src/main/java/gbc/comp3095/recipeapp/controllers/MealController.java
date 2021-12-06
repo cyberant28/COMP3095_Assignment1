@@ -55,11 +55,10 @@ public class MealController {
         User user = userService.findById(1L).get();
         model.addAttribute("recipes", user.getRecipes());
         try{
-            Long mealId = Long.valueOf(pathId);
-            mealService.updateMealTitle(mealId, meal.getTitle());
+            mealService.updateMeal(meal, user);
         }
         catch (Exception exception){
-            throw new RuntimeException("Invalid id in path");
+            throw new RuntimeException("failed to save meal");
         }
         return "redirect:/meals";
     }
