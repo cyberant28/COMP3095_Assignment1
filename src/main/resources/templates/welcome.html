@@ -134,7 +134,10 @@
                 </button>
             </div>
             <!-- existing recipes ends -->
-
+        </div>
+    </div>
+    <!-- End of Small Tab Menu MY RECIPES -->
+    <!-- END of CONTENT -->
 
             <!-- Edit Recipe Modal -->
             <div th:each="recipe :${recipes}">
@@ -170,7 +173,7 @@
             </div>
             <!-- End of Edit Recipe Modal -->
         </div>
-        <!-- END of CONTENT -->
+
 
         <!-- View Recipe Modal -->
         <div th:each="recipe :${recipes}">
@@ -184,7 +187,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="container" style="height: 500px!important;">
+                            <div class="container  text-center" style="height: 400px!important; width: 100%">
                                 <div th:if="${recipe.checkIfFavouritedBy(1)}">
                                     <!-- TODO why doesnt glyphicon work? -->
                                     <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
@@ -208,8 +211,8 @@
             </div>
         </div>
         <!-- End of View Recipe Modal -->
-    </div>
-    <!-- End of Small Tab Menu MY RECIPES -->
+
+
 </div>
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
