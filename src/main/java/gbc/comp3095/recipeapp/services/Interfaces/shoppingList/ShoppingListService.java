@@ -8,4 +8,5 @@ import gbc.comp3095.recipeapp.services.Interfaces.CrudService;
 public interface ShoppingListService extends CrudService<Recipe, Long> {
 
     public ShoppingList createShoppingList(ShoppingList shoppingList);
+
 }

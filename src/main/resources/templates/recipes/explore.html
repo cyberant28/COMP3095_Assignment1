@@ -17,7 +17,14 @@
             <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
                 <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
             </td>
-            <td style="padding-top: 15px" th:text="${recipe.getDirections()}"></td>
+
+            <td style="padding-top: 15px" th:text="${recipe.getSteps()}"></td>
+            <td style="padding-right: 35px">
+                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
+                        style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
+                    Edit
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -47,10 +54,20 @@
                                     <button class="btn btn-primary" type="submit"> Save to Favourites</button>
                                 </form>
                             </div>
+
+                            <h4>Description</h4>
+                            <div th:text="${recipe.getDescription()}"></div>
+                            <h4>Ingredients</h4>
+                            <div th:text="${recipe.getIngredients()}"></div>
+                            <h4>Instructions</h4>
+                            <div th:text="${recipe.getSteps()}"></div>
+                            <!--TODO: Configure how Instructions and Ingredients are displayed -->
+
                             <h5>Instructions</h5>
-                            <div th:text="${recipe.getDirections()}"></div>
+                            <div th:text="${recipe.getSteps()}"></div>
                             <h5>Ingredients</h5>
                             <div th:text="${recipe.getIngredients()}"></div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -77,9 +94,11 @@
                                 <label th:attr="for= ${recipe.getTitle()}" >Title</label>
                                 <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
                             </div>
+
                             <div class="form-group">
-                                <label th:attr="for= ${recipe.getDirections()}">Directions</label>
-                                <textarea class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
+                                <label th:attr="for= ${recipe.getDescription()}">Directions</label>
+                                <textarea class="form-control" rows="3" th:attr="id= ${recipe.getDescription()}" name="description" th:value="*{description}" required="required">
+
                                      </textarea>
                             </div>
                             <div class="modal-footer">
@@ -111,7 +130,7 @@
                                 <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
                             </div>
                             <div class="form-group col-centered">
-                                <textarea type="text" class="form-control" name="directions" placeholder="Instructions"  th:field="*{directions}" required="required" style="width: 350px; height: 200px; display: inline!important; border: none;"></textarea>
+                                <textarea type="text" class="form-control" name="directions" placeholder="Instructions"  th:field="*{steps}" required="required" style="width: 350px; height: 200px; display: inline!important; border: none;"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>

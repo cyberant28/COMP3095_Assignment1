@@ -35,7 +35,7 @@ public class EditRecipeController {
         User user = userService.findById(1L).get();
         try{
             Long recipeId = Long.valueOf(pathId);
-            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDirections(), recipe.getIngredients());
+            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDescription(), recipe.getIngredients());
         }
         catch (Exception exception){
             throw new RuntimeException("Invalid id in path");

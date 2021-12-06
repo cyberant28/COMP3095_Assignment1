@@ -1,12 +1,12 @@
 package gbc.comp3095.recipeapp.services.Implementations.shoppingList;
 
-import gbc.comp3095.recipeapp.models.Recipe;
-import gbc.comp3095.recipeapp.models.ShoppingList;
+import gbc.comp3095.recipeapp.models.*;
 import gbc.comp3095.recipeapp.repositories.ShoppingListRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.shoppingList.ShoppingListService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ShoppingListServiceImpl implements ShoppingListService {
@@ -53,4 +53,8 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         shoppingListRepository.save(shoppingList);
         return shoppingList;
     }
+
+
+
+
 }

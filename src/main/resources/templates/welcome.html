@@ -59,7 +59,7 @@
                                     </form>
                                 </div>
                                 <h5>Instructions</h5>
-                                <div th:text="${recipe.getDirections()}"></div>
+                                <div th:text="${recipe.getDescription()}"></div>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                     </form>
                                 </div>
                                 <h5>Instructions</h5>
-                                <div th:text="${recipe.getDirections()}"></div>
+                                <div th:text="${recipe.getDescription()}"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -154,7 +154,7 @@
                 <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
                     <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
                 </td>
-                <td style="padding-top: 15px" th:text="${recipe.getDirections()}"></td>
+                <td style="padding-top: 15px" th:text="${recipe.getDescription()}"></td>
                 <td style="padding-right: 35px">
                     <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
                             style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
@@ -188,8 +188,13 @@
                                         <input type="text" class="form-control" th:attr="id= ${recipe.getTitle()}" name="title" th:value="*{title}" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label th:attr="for= ${recipe.getDirections()}">Directions</label>
-                                        <textarea th:text="${recipe.getDirections()}" class="form-control"  rows="3" th:attr="id= ${recipe.getDirections()}" name="directions" th:value="*{directions}"  required="required">
+
+                                        <label th:attr="for= ${recipe.getDescription()}">Directions</label>
+                                        <textarea th:text="${recipe.getDescription()}" class="form-control"  rows="3" th:attr="id= ${recipe.getDescription()}" name="directions" th:value="*{description}"  required="required">
+
+                                        <label th:attr="for= ${recipe.getDescription()}">Description</label>
+
+
                                      </textarea>
                                     </div>
                                     <div class="modal-footer">
@@ -231,7 +236,7 @@
                                     </form>
                                 </div>
                                 <h5>Instructions</h5>
-                                <div th:text="${recipe.getDirections()}"></div>
+
                             </div>
                         </div>
                         <div class="modal-footer">

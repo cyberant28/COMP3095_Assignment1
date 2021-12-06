@@ -42,6 +42,7 @@ public class CreateRecipeController {
         return "redirect:/recipes";
     }
 
+
 //    @PostMapping("/editrecipe/{id}")
 //    public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
 //        model.addAttribute("recipe", recipe);
@@ -55,4 +56,7 @@ public class CreateRecipeController {
 //        }
 //     return "redirect:/home";
 //    }
+
+
+
 }

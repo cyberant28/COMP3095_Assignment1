@@ -40,6 +40,7 @@ public class RecipeController {
         return "recipes/list";
     }
 
+
     @GetMapping({"/viewRecipeDetails/{id}"})
     public String viewRecipeDetails(Model model, @PathVariable("id") String pathId) {
         User user = userService.findById(1L).get();
@@ -55,6 +56,7 @@ public class RecipeController {
 
         return "recipes/viewdetails";
     }
+
 
 
 

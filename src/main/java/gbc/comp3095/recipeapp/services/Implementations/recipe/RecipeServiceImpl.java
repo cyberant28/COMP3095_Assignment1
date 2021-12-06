@@ -10,6 +10,7 @@ package gbc.comp3095.recipeapp.services.Implementations.recipe;
 
 import gbc.comp3095.recipeapp.models.Ingredient;
 import gbc.comp3095.recipeapp.models.Recipe;
+import gbc.comp3095.recipeapp.models.Step;
 import gbc.comp3095.recipeapp.repositories.RecipeRepository;
 import gbc.comp3095.recipeapp.services.Interfaces.recipe.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +62,12 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDirections, Set<Ingredient> newIngedients) {
+    public  void updateRecipeTitleDirections(Long id, String newTitle, String newDescription, Set<Ingredient> newIngedients, Set<Step> newSteps) {
         Recipe recipeNew = recipeRepository.findById(id).get();
         recipeNew.setTitle(newTitle);
-        recipeNew.setDirections(newDirections);
+        recipeNew.setDescription(newDescription);//TODO:Convert to description
         recipeNew.setIngredients(newIngedients);
+        recipeNew.setSteps(newSteps);
         recipeRepository.save(recipeNew);
     }
 
@@ -74,5 +76,8 @@ public class RecipeServiceImpl implements RecipeService {
 
         recipeRepository.deleteById(id);
 
+    }
+
+    public void updateRecipeTitleDirections(Long recipeId, String title, String description, Set<Ingredient> ingredients) {
     }
 }

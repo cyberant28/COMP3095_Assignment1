@@ -1,30 +1,182 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
+
+
+<head>
+    <link rel="stylesheet" type= "text/css" href="/style.css">
+    <!--    <script src="/scripts.js"></script>-->
+    <script src="/datepicker.js"></script>
+    <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <title>Shopping List </title>
+</head>
+
+
+
 <body>
-<div class="mT50 container-fluid text-center" style="">
-    <h1 class="tfontColor titleFont stroke">Shopping List</h1>
-    <input style="margin-top: 35px" type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shopping List" />
+
+
+<div class="container">
+
+    <!-- print method -->
+
+
+
+
 </div>
-    <div class="text-center" id="printableArea" style="margin-top: 35px;">
-        <div class="col-xs-2" th:each="item :${items}">
-            <div class="tfontColor recipeFont stroke font-weight-bolder" th:text="${item.getItemName()}"></div>
-            <div style="font-size: 30px" class="tfontColor font-weight-bolder" th:text="${item.getItemPrice()}"></div>
+<div id="printableArea">
+    <div class="d-flex" style="margin-top: 75px; background-color: rgba( 0,0,0,0.8); border-radius: 45px;">
+        <h1 class="titleFont stroke text-center" style="color: white; border: solid 3px black; background-color: black; padding: 5px;">Shopping List</h1>
+        <div class="text-center" style="margin-top: 50px;">
+            <input type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shipping List" />
+            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#createRecipe'">Add Item</button>
+        </div>
+        <table class="table text-warning" style="color: white; margin-top: 50px">
+            <thead>
+            <tr>
+                <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name</th>
+                <th style="font-weight: bolder; font-size: 1.8rem;">Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item :${items}" style="">
+                <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
+                    <a class="cursor" th:text="${item.getItemName()}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${item.getId() }"></a>
+                </td>
+                <td style="padding-top: 15px" th:text="${item.getItemPrice()}"></td>
+                <td style="padding-right: 35px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${item.getId()}"
+                            style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-xs-2" th:each="item :${items}">
+
+    <div style="visibility: hidden" th:text="${item.getItemName()}"></div>
+    <div  style="visibility: hidden" th:text="${item.getItemPrice()}"></div>
+
+</div>
+
+
+
+<!-- Add Item Modal -->
+<div class="modal fade" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center modalTextColor tabFont">Add Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row justify-content-center text-center">
+                    <form action="" th:action="@{/addI}" th:object="${newItem}" method="post">
+                        <!-- TODO:Remove Duplicate ids, add ingredients adder and Step adder, also maybe add the meal type-->
+                        <div class="form-group col-centered">
+                            <input type="text" class="form-control" id="itemName"  name="itemName" th:field="*{itemName}" placeholder="Item Name"  required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
+                        </div>
+                        <div class="form-group col-centered">
+                            <input type="text" class="form-control" id="itemPrice"  name="itemPrice" th:field="*{itemPrice}" placeholder="Item Price"  required="required" style="width: 350px; display: inline!important; border: none; margin-bottom: 10px;">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-secondary">Save Recipe</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Add Item Modal -->
+<!-- Edit Item Modal -->
+<div th:each="item :${items}">
+    <div class="modal fade mT50" style="margin-top: 200px" th:attr="id='editRecipe'+${item.getId()}" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{|/edititem/${item.getId()}|}" th:object="${item}" method="post">
+                        <div class="form-group">
+                            <label th:attr="for= ${item.getItemName()}" >Name</label>
+                            <input type="text" class="form-control" th:attr="id= ${item.getItemName()}" name="title" th:value="*{itemName}" required="required">
+                        </div>
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label th:attr="for= ${item.getItemPrice()}" >Price</label>
+                                <input type="text" class="form-control" th:attr="id= ${item.getItemPrice()}" name="title" th:value="*{itemPrice}" required="required">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
+</div>
+<!-- End of Edit Item Modal -->
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/datepicker.js"></script>
 <script>
+    $(function() {
+        $('[data-toggle="datepicker"]').datepicker({
+            autoHide: true,
+            zIndex: 2048,
+        });
+    });
+
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
+
         document.body.innerHTML = printContents;
+
         window.print();
+
         document.body.innerHTML = originalContents;
     }
 </script>
 
 
-
+<!-- To be able to use certain Icons -->
+<script src="https://kit.fontawesome.com/2184cbeaba.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
 
 </body>
 </html>

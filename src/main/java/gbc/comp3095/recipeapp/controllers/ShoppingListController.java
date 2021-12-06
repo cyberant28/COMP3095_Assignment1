@@ -1,14 +1,18 @@
 package gbc.comp3095.recipeapp.controllers;
 
-import gbc.comp3095.recipeapp.models.ShoppingList;
-import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.models.*;
+import gbc.comp3095.recipeapp.services.Implementations.ingredient.IngredientServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.item.ItemServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.shoppingList.ShoppingListServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class ShoppingListController {
@@ -16,28 +20,68 @@ public class ShoppingListController {
 
     private final ShoppingListServiceImpl shoppingListService;
     private final UserServiceImpl userService;
+    private final IngredientServiceImpl ingredientService;
+    private final ItemServiceImpl itemService;
 
-    public ShoppingListController(ShoppingListServiceImpl shoppingListService, UserServiceImpl userService) {
+    public ShoppingListController(ShoppingListServiceImpl shoppingListService, UserServiceImpl userService, IngredientServiceImpl ingredientService, ItemServiceImpl itemService) {
         this.shoppingListService = shoppingListService;
         this.userService = userService;
+        this.ingredientService = ingredientService;
+        this.itemService = itemService;
     }
 
 
-    @PostMapping("/additem")
-    public String addItem(@ModelAttribute ShoppingList shoppingList, Model model) {
+    @PostMapping("/additem/{id}")
+    public String addItem(@ModelAttribute ShoppingList shoppingList, Model model, @PathVariable("id") String pathId) {
         model.addAttribute("shoppingList", shoppingList);
+        model.addAttribute("newItem", new Item());
+        User user = userService.findById(1L).get();
         shoppingListService.createShoppingList(shoppingList);
-        return "redirect:/shoppingList";
+        Optional<Ingredient> ingredientOptional = ingredientService.findById(Long.parseLong(pathId));
+        Ingredient ingredient = ingredientOptional.get();
+        assert ingredient != null;
+        userService.addShoppingListItem(user, new Item(ingredient.getIngredientName(), -1));
+
+        model.addAttribute("items", user.getShoppingList().getItems());
+
+        return "shoppingList/list";
+
     }
 
-    @RequestMapping("/shoppingList")
+
+    @PostMapping("/addI")
+    public String addI(@ModelAttribute Item item, Model model) {
+        model.addAttribute("item", item);
+        User user = userService.findById(1L).get();
+        userService.addShoppingListItem(user, item);
+        return "redirect:/recipes";
+    }
+
+
+
+        @RequestMapping("/shoppingList")
     public String getShoppingList(Model model){
         model.addAttribute("shoppinglist", new ShoppingList());
+        model.addAttribute("newItem", new Item());
         User user = userService.findById(1L).get();
         model.addAttribute("items", user.getShoppingList().getItems());
 
 
         return "shoppingList/list";
+    }
+
+    @PostMapping("/edititem/{id}")
+    public String edititem(@ModelAttribute Item item, @PathVariable("id") String pathId, Model model) {
+        model.addAttribute("newItem", item);
+        User user = userService.findById(1L).get();
+        try{
+            Long itemId = Long.valueOf(pathId);
+            itemService.updateItemNamePrice(itemId, item.getItemName(), item.getItemPrice());
+        }
+        catch (Exception exception){
+            throw new RuntimeException("Invalid id in path");
+        }
+        return "redirect:/home";
     }
 
 

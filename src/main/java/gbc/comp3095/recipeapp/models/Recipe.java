@@ -10,7 +10,6 @@
 package gbc.comp3095.recipeapp.models;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Entity
@@ -18,8 +17,8 @@ public class Recipe extends BaseEntity{
 
     @Column(name = "title")
     private String title;
-    @Column(name = "direction")
-    private String directions;
+    @Column(name = "description")//TODO:Convert to description
+    private String description;
     @Column(name = "date_created")
     private Date dateCreated;
 
@@ -27,7 +26,8 @@ public class Recipe extends BaseEntity{
     @OneToMany( mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 
-
+    @OneToMany( mappedBy = "recipe")
+    private Set<Step> steps = new HashSet<>();
 
     private boolean isAdded;
 
@@ -46,12 +46,13 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String directions, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients) {
+    public Recipe(String title, String description, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients, Set<Step> steps) {
         this.title = title;
-        this.directions = directions;
+        this.description = description;
         this.recipeAuthor = recipeAuthor;
         this.favouritedBy = users;
         this.ingredients = ingredients;
+        this.steps = steps;
     }
 
     public Set<Ingredient> getIngredients() {
@@ -60,6 +61,14 @@ public class Recipe extends BaseEntity{
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(Set<Step> steps) {
+        this.steps = steps;
     }
 
     public boolean isAdded() {
@@ -76,9 +85,9 @@ public class Recipe extends BaseEntity{
 
     public void setTitle(String title) { this.title = title; }
 
-    public String getDirections() { return directions; }
+    public String getDescription() { return description; }
 
-    public void setDirections(String directions) { this.directions = directions; }
+    public void setDescription(String descriptions) { this.description = descriptions; }
 
     public Set<User> getFavouritedBy() { return favouritedBy; }
     public Boolean checkIfFavouritedBy(String userIdString) {
@@ -116,7 +125,7 @@ public class Recipe extends BaseEntity{
         return "Recipe{" +
                 "id=" + getId() +
                 ", title='" + title + '\'' +
-                ", directions='" + directions + '\'' +
+                ", descriptions='" + description + '\'' +
                 '}';
     }
 

@@ -90,8 +90,12 @@
                                 </form>
                             </div>
 
-                            <h5>Instructions</h5>
-                            <div th:text="${recipe.getDirections()}"></div>
+                            <h4>Description</h4>
+                            <div th:text="${recipe.getDescription()}"></div>
+                            <h4>Ingredients</h4>
+                            <div th:text="${recipe.getIngredients()}"></div>
+                            <h4>Instructions</h4>
+                            <div th:text="${recipe.getSteps()}"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
