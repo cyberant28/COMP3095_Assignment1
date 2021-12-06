@@ -74,6 +74,7 @@ public class StartUp implements CommandLineRunner {
 
         recipe1.getIngredients().add(new Ingredient("Jam", recipe1));
         recipe1.getIngredients().add(new Ingredient("Pudding", recipe1));
+        recipe1.setSteps("Mix The jam and pudding together, I don't know.");
 
         recipe1.setDescription("make me a jam pudding please");
 

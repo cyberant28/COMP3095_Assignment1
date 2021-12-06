@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class CreateRecipeController {
@@ -40,11 +42,26 @@ public class CreateRecipeController {
         return "recipes/createRecipe";
     }
 
-    @RequestMapping(value = "addStep", params = {"addStep"})
+    /*@RequestMapping(value = "add", params = {"addStep"})
     public String addStep(final Recipe recipe, final BindingResult result) {
         recipe.getSteps().add(new Step());
         return "recipes/createRecipe";
-    }
+    }*/
+
+    /*@RequestMapping("/addRecipe")
+    public ModelAndView registerSteps() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipes/createRecipe");
+
+        Recipe recipe = new Recipe();
+        Step step = new Step();
+        step.setStep("");
+        recipe.getSteps().add(step);
+        mv.addObject("recipe", recipe);
+
+        return mv;
+    }*/
+
 
     @PostMapping("/addrecipe")
     public String addRecipe(@ModelAttribute Recipe recipe, Model model) {

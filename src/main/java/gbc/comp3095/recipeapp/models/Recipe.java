@@ -9,6 +9,8 @@
  *********************************************************************************/
 package gbc.comp3095.recipeapp.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -21,12 +23,14 @@ public class Recipe extends BaseEntity{
     private String description;
     @Column(name = "date_created")
     private Date dateCreated;
+    @Column(name = "steps")
+    private String steps;
 
     @OneToMany( mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 
-    @OneToMany( mappedBy = "recipe")
-    private Set<Step> steps = new HashSet<>();
+
+
 
     private boolean isAdded;
 
@@ -45,7 +49,7 @@ public class Recipe extends BaseEntity{
         this.title = title;
     }
 
-    public Recipe(String title, String description, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients, Set<Step> steps) {
+    public Recipe(String title, String description, User recipeAuthor, Set<User> users, Set<Ingredient> ingredients, String steps) {
         this.title = title;
         this.description = description;
         this.recipeAuthor = recipeAuthor;
@@ -64,17 +68,21 @@ public class Recipe extends BaseEntity{
 
     //Steps
 
-    public Set<Step> getSteps() {
+    public String getSteps() {
         return steps;
     }
 
-    public void setSteps(Set<Step> steps) {
+    public void setSteps(String steps) {
         this.steps = steps;
     }
 
-    public void addStep(Step step) {this.steps.add(step);}
+    /*public List<Step> getStepsAsList(){
+        return new ArrayList<Step>(steps);
+    }*/
 
-    public void removeStep(Step step) {this.steps.remove(step);}
+  /*  public void addStep(Step step) {this.steps.add(step);}
+
+    public void removeStep(Step step) {this.steps.remove(step);}*/
 
     public boolean isAdded() {
         return isAdded;

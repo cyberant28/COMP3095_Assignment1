@@ -5,11 +5,11 @@
 <head>
     <title>Create Recipe</title>
     <meta charset="utf-8">
-    <!--<script src="stepListManager.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <!--For material icon-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
     <section class="ftco-section" style="margin-top: 120px">
@@ -18,7 +18,7 @@
                     <h2 class="tfontColor titleFont text-center">Recipe App</h2>
             </div>
             <div class="row justify-content-center text-center">
-                <form action="" th:action="@{/add}" th:object="${recipe}" method="POST" class="color: white;">
+                <form action="" th:action="@{/addrecipe}" th:object="${recipe}" method="post" class="color: white;">
                     <h2 class="regTitle tfontColor">Add Recipe</h2>
                     <div class="form-group col-centered">
                         <input type="text" class="form-control" id="recipeTitle"  name="recipeTitle" placeholder="Recipe Title" th:field="*{title}" style="color: white; width: 350px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none; margin-bottom: 10px;">
@@ -33,22 +33,60 @@
                         <textarea type="text" class="form-control" name="description" placeholder="Description" th:field="*{description}" required="required" style="color: white; width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
 
                     </div>
-
                     <div class="form-group col-centered">
 
-                        <table>
+                    <textarea type="text" class="form-control" name="Steps" placeholder="Instructions" th:field="*{steps}" required="required" style="color: white; width: 350px; height: 200px; display: inline!important; background: rgba(0, 0, 0, 0.5); border: none;"></textarea>
+
+                    </div>
+
+                   <!--<script type="text/javascript" >
+                        var i = 0;
+                        var toPrint = {};
+
+                        function addStep () {
+                            let i = this.i;
+                            console.log("FUNCTION");
+                            toPrint.i = '<tr id="'+i+';">' +
+                                '<td class="form-control">'+(i+1)+'</td>' +
+                                '<td><input class="form-control" id="step['+i+']" th:value = "add" th:param="addStep" th:name = "addStep" th:field="${recipe.addStep(add)}" type="text"/></td><td></td></tr>';
+                            document.getElementById('stepsTable').innerHTML += (toPrint.i);
+                            this.i++;
+                        }
+                    </script>
+                    <div class="form-group col-centered">
+                        <button type = "button" id="addAction" onclick="addStep(); " class="btn-edit">Add Step</button>
+                        <table class="form-group col-centered">
                             <thead>
-                                <th><button type="submit" name="addStep" >Add Step</button></th>
+                                <tr>
+                                    <th><h4 class="form-control">Step No.</h4></th>
+                                    <th><h4 class="form-control">Step</h4></th>
+                                    <th><h4 class="form-control"></h4></th>
+                                </tr>
+                            </thead>
+                            <tbody  id = "stepsTable" >
+                            <tr th:each="i,iterStat : ${recipe.steps}">
+                                <td th:text="i" class="form-control"></td>
+                                <td>
+                                    <input class="form-control"  th:value = "add" th:param="addStep" th:name="addStep" type="text" th:field="${recipe.steps[__${iterStat.index}__].step}" />
+                                </td>
+                                <td class="form-control"></td>
+                            </tr>
+                            </tbody>
+                      <table>
+                            <thead>
+                                <th><button type="button" name="addStep" >Add Step</button></th>
+                                <th><input class="form-control" type="text" placeholder="What do you do..."/></th>
                             </thead>
                             <tr th:each="step, rowStat : *{steps}">
                                 <td th:text="${rowStat.count}" placeholder="1"></td>
-                                <td><input class="form-control" name="addStep" type="text" th:field="*{steps[__${rowStat.index}__].step}" placeholder="What do you do..."/></td>
+                                <td><input class="form-control" type="text" th:field="*{steps[__${rowStat.index}__].step}" placeholder="What do you do..."/></td> "${recipe.steps[${'+i+'}].step}"
                             </tr>
+
                         </table>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <a href="/recipes" class="btn btn-danger" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Cancel</a>
-                        <button type="submit" name="addRecipe" class="btn btn-success" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Save Recipe</button>
+                        <button type="submit"  class="btn btn-success" style="width: 15%; background: rgba(0, 0, 0, 0.5);">Save Recipe</button>
                     </div>
                 </form>
             </div>

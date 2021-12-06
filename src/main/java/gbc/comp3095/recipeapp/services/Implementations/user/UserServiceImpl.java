@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final MealRepository mealRepository;
     private final ItemRepository itemRepository;
     private final ShoppingListRepository shoppingListRepository;
-
+    private final StepRepository stepRepository;
     private final IngredientRepository ingredientRepository;
 
 
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository,
                            MealRepository mealRepository, ItemRepository itemRepository,
                            ShoppingListRepository shoppingListRepository,
-                           IngredientRepository ingredientRepository) {
+                           IngredientRepository ingredientRepository,
+                           StepRepository stepRepository) {
         this.userRepository = userRepository;
 
         this.recipeRepository = recipeRepository;
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
         this.itemRepository = itemRepository;
         this.shoppingListRepository = shoppingListRepository;
         this.ingredientRepository = ingredientRepository;
+        this.stepRepository = stepRepository;
     }
 
     @Override
@@ -110,7 +112,6 @@ public class UserServiceImpl implements UserService {
            // recipe.getIngredients().add(ingredient);
             ingredientRepository.save(ingredient);
         }
-
         recipeRepository.save(recipe);
         userRepository.save(user);
 

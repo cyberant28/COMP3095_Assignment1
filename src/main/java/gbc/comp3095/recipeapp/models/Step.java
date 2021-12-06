@@ -18,7 +18,8 @@ public class Step extends BaseEntity
 
 
 
-    public Step(String step) {
+    public Step(String step, Recipe recipe) {
+        this.recipe = recipe;
         this.step = step;
     }
 
