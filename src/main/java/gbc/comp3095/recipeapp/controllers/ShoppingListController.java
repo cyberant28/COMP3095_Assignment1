@@ -72,7 +72,7 @@ public class ShoppingListController {
 
     @PostMapping("/edititem/{id}")
     public String edititem(@ModelAttribute Item item, @PathVariable("id") String pathId, Model model) {
-        model.addAttribute("newItem", item);
+        model.addAttribute("item", item);
         User user = userService.findById(1L).get();
         try{
             Long itemId = Long.valueOf(pathId);
@@ -81,8 +81,11 @@ public class ShoppingListController {
         catch (Exception exception){
             throw new RuntimeException("Invalid id in path");
         }
+
         return "redirect:/home";
     }
+
+
 
 
 }

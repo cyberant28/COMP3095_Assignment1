@@ -36,6 +36,7 @@ class WelcomeController {
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
         model.addAttribute("recipes", user.getRecipes());
         model.addAttribute("search" , new String());
+
         return "welcome";
     }
 
