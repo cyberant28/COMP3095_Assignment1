@@ -71,9 +71,9 @@
 
 </div>
 
-<!-- End of Edit Recipe Modal -->
 
-<!-- Create Recipe Modal -->
+
+<!-- Add Item Modal -->
 <div class="modal fade" id="createRecipe" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -105,7 +105,42 @@
         </div>
     </div>
 </div>
-<!-- End of Create Recipe Modal -->
+<!-- End of Add Item Modal -->
+<!-- Edit Item Modal -->
+<div th:each="item :${items}">
+    <div class="modal fade mT50" style="margin-top: 200px" th:attr="id='editRecipe'+${item.getId()}" tabindex="-1" role="dialog" aria-labelledby="createRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{|/edititem/${item.getId()}|}" th:object="${item}" method="post">
+                        <div class="form-group">
+                            <label th:attr="for= ${item.getItemName()}" >Name</label>
+                            <input type="text" class="form-control" th:attr="id= ${item.getItemName()}" name="title" th:value="*{itemName}" required="required">
+                        </div>
+                        <div class="form-group">
+
+                        <div class="form-group">
+                            <label th:attr="for= ${item.getItemPrice()}" >Price</label>
+                            <input type="text" class="form-control" th:attr="id= ${item.getItemPrice()}" name="title" th:value="*{itemPrice}" required="required">
+                        </div>
+                            <div class="modal-footer">
+                                <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- End of Edit Item Modal -->
 
 
 

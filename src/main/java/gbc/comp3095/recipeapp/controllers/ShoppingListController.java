@@ -2,6 +2,7 @@ package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.*;
 import gbc.comp3095.recipeapp.services.Implementations.ingredient.IngredientServiceImpl;
+import gbc.comp3095.recipeapp.services.Implementations.item.ItemServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.shoppingList.ShoppingListServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,13 @@ public class ShoppingListController {
     private final ShoppingListServiceImpl shoppingListService;
     private final UserServiceImpl userService;
     private final IngredientServiceImpl ingredientService;
+    private final ItemServiceImpl itemService;
 
-    public ShoppingListController(ShoppingListServiceImpl shoppingListService, UserServiceImpl userService, IngredientServiceImpl ingredientService) {
+    public ShoppingListController(ShoppingListServiceImpl shoppingListService, UserServiceImpl userService, IngredientServiceImpl ingredientService, ItemServiceImpl itemService) {
         this.shoppingListService = shoppingListService;
         this.userService = userService;
         this.ingredientService = ingredientService;
+        this.itemService = itemService;
     }
 
 
@@ -65,6 +68,20 @@ public class ShoppingListController {
 
 
         return "shoppingList/list";
+    }
+
+    @PostMapping("/edititem/{id}")
+    public String edititem(@ModelAttribute Item item, @PathVariable("id") String pathId, Model model) {
+        model.addAttribute("newItem", item);
+        User user = userService.findById(1L).get();
+        try{
+            Long itemId = Long.valueOf(pathId);
+            itemService.updateItemNamePrice(itemId, item.getItemName(), item.getItemPrice());
+        }
+        catch (Exception exception){
+            throw new RuntimeException("Invalid id in path");
+        }
+        return "redirect:/home";
     }
 
 
