@@ -3,7 +3,7 @@
 
 <body>
 
-<div th:each="recipe :${recipes}">
+<div th:each="recipe :${recipe}">
     <div class="" style="margin-top: 200px" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

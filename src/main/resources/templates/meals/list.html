@@ -18,7 +18,7 @@
         <table class="table text-warning" style="color: white; margin-top: 50px">
             <thead>
                 <tr>
-                    <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name of Recipe</th>
+                    <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name of Meal</th>
                     <th style="font-weight: bolder; font-size: 1.8rem;">Author</th>
                     <th></th>
                 </tr>
@@ -58,7 +58,15 @@
                         <div th:text="${meal.getMealAuthor().userName}"></div>
 
                         <h5>Recipes</h5>
-                        <div th:each="recipe : ${meal.getRecipes()}" th:text="${recipe.getTitle()}"></div>
+                        <div th:each="recipe : ${meal.getRecipes()}" >
+                            <div th:text="${recipe.getTitle()}" th:href="${'http://localhost:8080/viewRecipeDetails/'+recipe.getId()}"></div>
+                            <a th:href="${'http://localhost:8080/viewRecipeDetails/'+recipe.getId()}"
+                              th:text="${recipe.getTitle()}">
+                                link to recipe
+                            </a>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">

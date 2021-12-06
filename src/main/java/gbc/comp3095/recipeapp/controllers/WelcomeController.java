@@ -70,12 +70,7 @@ class WelcomeController {
         return "recipes/viewfavorites";
     }
 
-    @GetMapping({"/viewdetails"})
-    public String viewdetails(Model model) {
-        User user = userService.findById(1L).get();
-        model.addAttribute("recipes", user.getRecipes());
-        return "recipes/viewdetails";
-    }
+
 
     @RequestMapping("/mealdetails")
     public String getMeals(Model model){
