@@ -31,12 +31,16 @@ public class ShoppingListController {
     @PostMapping("/additem/{id}")
     public String addItem(@ModelAttribute ShoppingList shoppingList, Model model, @PathVariable("id") String pathId) {
         model.addAttribute("shoppingList", shoppingList);
+        model.addAttribute("newItem", new Item());
         User user = userService.findById(1L).get();
         shoppingListService.createShoppingList(shoppingList);
         Optional<Ingredient> ingredientOptional = ingredientService.findById(Long.parseLong(pathId));
         Ingredient ingredient = ingredientOptional.get();
         assert ingredient != null;
         userService.addShoppingListItem(user, new Item(ingredient.getIngredientName(), -1));
+
+        model.addAttribute("items", user.getShoppingList().getItems());
+
         return "shoppingList/list";
 
     }
@@ -46,7 +50,7 @@ public class ShoppingListController {
     public String addI(@ModelAttribute Item item, Model model) {
         model.addAttribute("item", item);
         User user = userService.findById(1L).get();
-        userService.addI(user, item);
+        userService.addShoppingListItem(user, item);
         return "redirect:/recipes";
     }
 
@@ -55,6 +59,7 @@ public class ShoppingListController {
         @RequestMapping("/shoppingList")
     public String getShoppingList(Model model){
         model.addAttribute("shoppinglist", new ShoppingList());
+        model.addAttribute("newItem", new Item());
         User user = userService.findById(1L).get();
         model.addAttribute("items", user.getShoppingList().getItems());
 

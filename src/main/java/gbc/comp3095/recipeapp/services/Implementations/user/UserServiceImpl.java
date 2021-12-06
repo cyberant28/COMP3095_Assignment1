@@ -117,18 +117,8 @@ public class UserServiceImpl implements UserService {
         return recipe;
     }
 
-    @Override
-    public Item addI(User user, Item item) {
-
-       item.setItemName();
 
 
-
-        itemRepository.save(item);
-
-
-        return item;
-    }
 
     public ShoppingList createShoppinglist(User user, ShoppingList shoppingList) {
         shoppingList.setShoppingListAuthor(user);
@@ -169,9 +159,6 @@ public class UserServiceImpl implements UserService {
         ShoppingList shoppingList = user.getShoppingList();
         item.setShoppingList(shoppingList);
         itemRepository.save(item);
-
-
-
         shoppingList.addItem(item);
         user.setShoppingList(shoppingList);
         shoppingListRepository.save(shoppingList);

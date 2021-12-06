@@ -12,7 +12,7 @@ public interface UserService extends CrudService<User, Long> {
 
     public Recipe createRecipe(User user, Recipe recipe);
 
-    public Item addI(User user, Item item);
+
 
     void addFavouriteRecipe(User user, Recipe recipe);
 

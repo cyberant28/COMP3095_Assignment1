@@ -125,7 +125,7 @@ public class StartUp implements CommandLineRunner {
         mealService.addRecipe(meal1, recipe1);
         userService.addFavouriteRecipe(user1, recipe2);
 
-        shoppingListService.createShoppingList( new ShoppingList("my shopping list"));
+
         Item item = new Item("Sugar", 23.4);
         Item item2 = new Item("Coffee", 4334.4);
 
