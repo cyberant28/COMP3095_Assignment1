@@ -34,6 +34,8 @@ public class CreateRecipeController {
         return "recipes/createRecipe";
     }
 
+
+
     @PostMapping("/addrecipe")
     public String addRecipe(@ModelAttribute Recipe recipe, Model model) {
         model.addAttribute("recipe", recipe);

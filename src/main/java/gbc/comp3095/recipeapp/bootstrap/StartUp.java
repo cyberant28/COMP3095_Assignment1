@@ -136,6 +136,8 @@ public class StartUp implements CommandLineRunner {
         userService.addShoppingListItem(user1, item3);
 
         Event newEvent = userService.createEvent(user1, new Event("some event"));
+
+
         newEvent.getMeals().add(meal1);
         newEvent.getMeals().add(meal2);
         newEvent.getMeals().add(meal3);
