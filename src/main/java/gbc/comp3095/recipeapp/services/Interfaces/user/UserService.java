@@ -12,6 +12,8 @@ public interface UserService extends CrudService<User, Long> {
 
     public Recipe createRecipe(User user, Recipe recipe);
 
+    public Item addI(User user, Item item);
+
     void addFavouriteRecipe(User user, Recipe recipe);
 
     void removeFavouriteRecipe(User user, Recipe recipe);
@@ -19,4 +21,5 @@ public interface UserService extends CrudService<User, Long> {
     void createUser(User user);
 
     void addShoppingListItem(User user, Item item);
+
 }

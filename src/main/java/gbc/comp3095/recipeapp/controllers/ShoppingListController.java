@@ -1,9 +1,6 @@
 package gbc.comp3095.recipeapp.controllers;
 
-import gbc.comp3095.recipeapp.models.Ingredient;
-import gbc.comp3095.recipeapp.models.Item;
-import gbc.comp3095.recipeapp.models.ShoppingList;
-import gbc.comp3095.recipeapp.models.User;
+import gbc.comp3095.recipeapp.models.*;
 import gbc.comp3095.recipeapp.services.Implementations.ingredient.IngredientServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.shoppingList.ShoppingListServiceImpl;
 import gbc.comp3095.recipeapp.services.Implementations.user.UserServiceImpl;
@@ -45,7 +42,13 @@ public class ShoppingListController {
     }
 
 
-
+    @PostMapping("/addI")
+    public String addI(@ModelAttribute Item item, Model model) {
+        model.addAttribute("item", item);
+        User user = userService.findById(1L).get();
+        userService.addI(user, item);
+        return "redirect:/recipes";
+    }
 
 
 

@@ -117,6 +117,28 @@ public class UserServiceImpl implements UserService {
         return recipe;
     }
 
+    @Override
+    public Item addI(User user, Item item) {
+
+       item.setItemName();
+
+
+
+        itemRepository.save(item);
+
+
+        return item;
+    }
+
+    public ShoppingList createShoppinglist(User user, ShoppingList shoppingList) {
+        shoppingList.setShoppingListAuthor(user);
+        user.setShoppingList(shoppingList);
+        shoppingListRepository.save(shoppingList);
+        userRepository.save(user);
+
+        return shoppingList;
+    }
+
 
     @Override
     public void addFavouriteRecipe(User user, Recipe recipe) {
