@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+<body>
+
+<div th:each="recipe :${recipes}">
+    <div class="" style="margin-top: 200px" th:attr="id='viewRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="height: 300px!important;">
+                        <div th:if="${recipe.checkIfFavouritedBy(1)}">
+                            <!-- TODO why doesnt glyphicon work? -->
+                            <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                <button class="btn btn-success" type="submit"> Remove from Favourites</button>
+                            </form>
+                        </div>
+                        <div th:unless="${recipe.checkIfFavouritedBy(1)}">
+                            <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                <button class="btn btn-primary" type="submit"> Save to Favourites</button>
+                            </form>
+                        </div>
+                        <h5>Instructions</h5>
+                        <div th:text="${recipe.getDirections()}"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

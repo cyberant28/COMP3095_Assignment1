@@ -2,17 +2,29 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
-
-<div class="container">
-    <h1 class="mT50 tfontColor titleFont stroke text-center">Shopping List</h1>
-    <div class="col-xs-2" th:each="item :${items}">
-        <div class="tfontColor recipeFont stroke" th:text="${item.getItemName()}"></div>
-        <div class="tfontColor recipeFont stroke" th:text="${item.getItemPrice()}"></div>
-    </div>
+<div class="mT50 container-fluid text-center" style="">
+    <h1 class="tfontColor titleFont stroke">Shopping List</h1>
+    <input style="margin-top: 35px" type="button" class="btn btn-primary btn"  onclick="printDiv('printableArea')" value="Print Shopping List" />
 </div>
+    <div class="text-center" id="printableArea" style="margin-top: 35px;">
+        <div class="col-xs-2" th:each="item :${items}">
+            <div class="tfontColor recipeFont stroke font-weight-bolder" th:text="${item.getItemName()}"></div>
+            <div style="font-size: 30px" class="tfontColor font-weight-bolder" th:text="${item.getItemPrice()}"></div>
+        </div>
+    </div>
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+
+
 
 </body>
 </html>

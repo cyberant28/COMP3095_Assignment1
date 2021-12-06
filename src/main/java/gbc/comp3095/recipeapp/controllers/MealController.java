@@ -6,6 +6,14 @@
  * Date: 07-11-2021
  * Description: The PlannedMealController make sure that the right data from the model layer is being parsed to the right html page
  *********************************************************************************/
+/*********************************************************************************
+ * Project: < COMP3095_Assignment2 >
+ * Assignment: < assignment 2 >
+ * Author(s): < Gustavo Beltran >
+ * Student Number: < 101225087 >
+ * Date: 12-05-2021
+ * Description: Split the controller into Create Meal and Edit Meal Controllers
+ *********************************************************************************/
 package gbc.comp3095.recipeapp.controllers;
 
 import gbc.comp3095.recipeapp.models.Meal;
@@ -47,8 +55,6 @@ public class MealController {
         return "meals/list";
     }
 
-
-
     @PostMapping("/editmeal/{id}")
     public String editMeal(@ModelAttribute Meal meal, @PathVariable("id") String pathId, Model model) {
         model.addAttribute("meal", meal);
@@ -70,4 +76,5 @@ public class MealController {
         userService.createMeal(user, meal);
         return "redirect:/meals";
     }
+
 }

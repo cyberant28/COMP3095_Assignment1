@@ -3,16 +3,13 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
-
 <div class="d-flex" style="margin-top: 75px; background-color: rgba( 0,0,0,0.8); border-radius: 45px;">
     <h1 class="titleFont stroke text-center" style="color: dodgerblue; border: solid 3px black; background-color: black; padding: 5px;">Explore Recipes</h1>
-
     <table class="table text-warning" style="color: cornflowerblue; margin-top: 50px">
         <thead>
         <tr>
             <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Community Recipes</th>
             <th style="font-weight: bolder; font-size: 1.8rem;">Description</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -21,15 +18,10 @@
                 <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
             </td>
             <td style="padding-top: 15px" th:text="${recipe.getDirections()}"></td>
-            <td style="padding-right: 35px">
-                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
-                        style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
-                    Edit
-                </button>
-            </td>
         </tr>
         </tbody>
     </table>
+</div>
 
     <!-- View Recipe Modal -->
     <div th:each="recipe :${recipes}">
@@ -132,7 +124,7 @@
         </div>
     </div>
     <!-- End of Create Recipe Modal -->
-</div>
+
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 

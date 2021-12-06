@@ -42,17 +42,17 @@ public class CreateRecipeController {
         return "redirect:/recipes";
     }
 
-    @PostMapping("/editrecipe/{id}")
-    public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
-        model.addAttribute("recipe", recipe);
-        User user = userService.findById(1L).get();
-        try{
-            Long recipeId = Long.valueOf(pathId);
-            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDirections(), recipe.getIngredients());
-        }
-        catch (Exception exception){
-            throw new RuntimeException("Invalid id in path");
-        }
-     return "redirect:/home";
-    }
+//    @PostMapping("/editrecipe/{id}")
+//    public String editRecipe(@ModelAttribute Recipe recipe, @PathVariable("id") String pathId, Model model) {
+//        model.addAttribute("recipe", recipe);
+//        User user = userService.findById(1L).get();
+//        try{
+//            Long recipeId = Long.valueOf(pathId);
+//            recipeService.updateRecipeTitleDirections(recipeId, recipe.getTitle(), recipe.getDirections(), recipe.getIngredients());
+//        }
+//        catch (Exception exception){
+//            throw new RuntimeException("Invalid id in path");
+//        }
+//     return "redirect:/home";
+//    }
 }
