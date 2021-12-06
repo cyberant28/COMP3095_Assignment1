@@ -66,17 +66,13 @@ class WelcomeController {
     public String viewfavorites(Model model) {
         User user = userService.findById(1L).get();
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
-//        model.addAttribute("recipes", user.getRecipes());
-//        model.addAttribute("search" , new String());
         return "recipes/viewfavorites";
     }
 
     @GetMapping({"/viewdetails"})
     public String viewdetails(Model model) {
         User user = userService.findById(1L).get();
-//        model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
         model.addAttribute("recipes", user.getRecipes());
-//        model.addAttribute("search" , new String());
         return "recipes/viewdetails";
     }
 

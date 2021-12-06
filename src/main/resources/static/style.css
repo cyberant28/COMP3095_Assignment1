@@ -14,7 +14,7 @@ Authored by Gus Beltran - 101225087
 body {
     background-image: url("/images/food-bg.jpg")!important;
     background-attachment: fixed;
-    background-size: auto;
+    background-size: cover;
 }
 
 .nav > li > a:hover,
