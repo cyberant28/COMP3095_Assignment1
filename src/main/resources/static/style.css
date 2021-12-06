@@ -13,7 +13,7 @@ Authored by Gus Beltran - 101225087
 
 body {
     background-image: url("/images/food-bg.jpg")!important;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
@@ -139,8 +139,8 @@ a {
 
 .bgImg {
     background-image: url("/images/food-bg.jpg")!important;
-    background-size: cover;
-    background-repeat: no-repeat;
+    /*background-size: inherit!important;*/
+    /*background-repeat: no-repeat;*/
 }
 
 .profileImg {
@@ -152,7 +152,7 @@ a {
     color: white;
     font-weight: bolder;
     font-family: 'Noto Serif Display', serif;
-    font-size: 1.5rem!important;
+    font-size: 1.9rem!important;
 }
 
 .tabFont {
@@ -234,7 +234,8 @@ a {
 }
 
 .bg-navbar {
-    background: goldenrod;
+    background: #064672;
+    border-radius: 50px!important;
 }
 
 
