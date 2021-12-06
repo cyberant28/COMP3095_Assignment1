@@ -152,7 +152,7 @@ a {
     color: white;
     font-weight: bolder;
     font-family: 'Noto Serif Display', serif;
-    font-size: 1.5rem!important;
+    font-size: 1.9rem!important;
 }
 
 .tabFont {
@@ -234,5 +234,5 @@ a {
 }
 
 .bg-navbar {
-    background: goldenrod;
+    background: #064672;
 }
