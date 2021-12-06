@@ -46,6 +46,7 @@ class WelcomeController {
     @GetMapping({"","/","/home"})
     public String welcome(Model model) {
         User user = userService.findById(1L).get();
+        model.addAttribute("meals", mealService.findAll());
         model.addAttribute("favoriteRecipes", user.getFavouriteRecipes());
         model.addAttribute("recipes", user.getRecipes());
         model.addAttribute("search" , new String());

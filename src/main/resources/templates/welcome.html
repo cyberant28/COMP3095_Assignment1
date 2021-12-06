@@ -20,13 +20,13 @@
 <!-- End of Small Tab Navbar -->
 
 <!-- Start of Main Menu - PROFILE -->
-<div class="tab-content mT50">
-    <div id="home" class="tab-pane fade in active">
-        <div class="transbox col-centered" style="width: 50%; margin-top: 35px;">
-            <div class="transbox2 text-center col-centered" style="width: 95%">
-                <span>Chef</span><p>Gordon Ramsay</p>
-                <span>Creating culinary delights since:</span><p>1990</p>
-                <span>Nicknamed:</span><p>Chef Michelin</p>
+    <div class="tab-content mT50">
+        <div id="home" class="tab-pane fade in active">
+            <div class="transbox col-centered" style="width: 50%; margin-top: 35px;">
+                <div class="transbox2 text-center col-centered" style="width: 95%">
+                    <span>Chef</span><p>Gordon Ramsay</p>
+                    <span>Creating culinary delights since:</span><p>1990</p>
+                    <span>Nicknamed:</span><p>Chef Michelin</p>
                 <div class="dummyBox">
                     <div class="profileText"><span>3</span> Total Created Recipes</div>
                     <div class="profileText"><span>5</span> Meals planned</div>
@@ -38,10 +38,32 @@
 
     <div id="menu1" class="tab-pane fade">
         <!-- CONTENT -->
-        <div class="row text-center" style="width: 75%; margin: 25px auto">
-            <div class="col-xs-2" th:each="favorite : ${favoriteRecipes}">
-                <a class="cursor" data-toggle="modal" th:attr="data-target='#viewFavoriteRecipe'+${favorite.getId() }"><img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/></a>
-                <div class="tfontColor recipeFont stroke" th:text="${favorite.title}"></div>
+        <div th:each="recipe :${favoriteRecipes}">
+            <div class="" style="margin-top: 50px" th:attr="id='viewFavoriteRecipe'+${recipe.getId() }" tabindex="-1" role="dialog" aria-labelledby="viewRecipe" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center modalTextColor tabFont" id="viewRecipeTitle" th:text="${recipe.title}">"[Name of the selected recipe]"</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container" style="height: 200px!important; width: 100%">
+                                <div th:if="${recipe.checkIfFavouritedBy(1)}">
+                                    <!-- TODO why doesnt glyphicon work? -->
+                                    <form th:action="@{|/removefav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                        <button class="btn btn-success" type="submit"> Remove from Favourites</button>
+                                    </form>
+                                </div>
+                                <div th:unless="${recipe.checkIfFavouritedBy(1)}">
+                                    <form th:action="@{|/addfav/${recipe.getId()}|}" th:object="${recipe}" method="post">
+                                        <button class="btn btn-primary" type="submit"> Save to Favourites</button>
+                                    </form>
+                                </div>
+                                <h5>Instructions</h5>
+                                <div th:text="${recipe.getDirections()}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END of CONTENT -->
@@ -86,35 +108,31 @@
 
     <!-- Start of Small Tab Menu PLANNED MEALS -->
     <div id="menu2" class="tab-pane fade">
-
-        <div class="row text-center recipeFont tfontColor" style="width: 75%; margin: 25px auto">
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/bake.png"/></a>
-                <div>Tiramisu Cake</div>
-                <div>December 10, 2021</div>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/bagel.png"/></a>
-                <div>Cream Cheese Special Bagel</div>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/rolled-oats.png"/></a>
-                <div>Rolled Oats</div>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/emoji/96/000000/shrimp.png"/></a>
-                <div>Sea Food Delights</div>
-                <div>November 23, 2021</div>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/color/96/000000/thanksgiving.png"/></a>
-                <div>Thanksgiving Turkey</div>
-            </div>
-            <div class="col-xs-2">
-                <a class="cursor" data-toggle="modal" data-target="#meal"><img src="https://img.icons8.com/fluency/96/000000/paella.png"/></a>
-                <div>Paella</div>
-                <div>December 21, 2021</div>
-            </div>
+        <div class="d-flex" style="margin-top: 75px; background-color: rgba( 0,0,0,0.8); border-radius: 45px;">
+            <h1 class="titleFont stroke text-center" style="color: white; border: solid 3px black; background-color: black; padding: 5px;">Meal List</h1>
+            <table class="table text-warning" style="color: white; margin-top: 50px">
+                <thead>
+                <tr>
+                    <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name of Recipe</th>
+                    <th style="font-weight: bolder; font-size: 1.8rem;">Author</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="meal :${meals}" style="">
+                    <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
+                        <a class="cursor" th:text="${meal.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${meal.getId() }"></a>
+                    </td>
+                    <td style="padding-top: 15px" th:text="${meal.getMealAuthor()['userName']}"></td>
+                    <td style="padding-right: 35px">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editMeal'+${meal.getId()}"
+                                style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- End of Small Tab Menu PLANNED MEALS -->
@@ -122,19 +140,32 @@
     <!-- Start of Small Tab Menu MY RECIPES -->
     <div id="menu3" class="tab-pane fade">
         <!-- CONTENT -->
-        <div class="row text-center" style="width: 75%; margin: 25px auto">
-            <!-- Shows existing recipes -->
-            <div class="col-xs-2" th:each="recipe :${recipes}">
-                <a class="cursor" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }">
-                    <img src="https://img.icons8.com/fluency/96/000000/real-food-for-meals.png"/>
-                </a>
-                <div class="tfontColor recipeFont stroke" th:text="${recipe.title}"></div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}" >
-                    Edit
-                </button>
-            </div>
-            <!-- existing recipes ends -->
+        <div class="d-flex" style="margin-top: 75px; background-color: rgba( 0,0,0,0.8); border-radius: 45px;">
+        <table class="table text-warning" style="color: white; margin-top: 50px">
+            <thead>
+            <tr>
+                <th style="font-weight: bolder; font-size: 1.8rem; padding-left: 50px;">Name of Recipe</th>
+                <th style="font-weight: bolder; font-size: 1.8rem;">Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipe :${recipes}" style="">
+                <td class="" style="font-weight: bolder; font-size: 2.2rem; padding: 10px 50px 10px;">
+                    <a class="cursor" th:text="${recipe.title}" data-toggle="modal" th:attr="data-target='#viewRecipe'+${recipe.getId() }"></a>
+                </td>
+                <td style="padding-top: 15px" th:text="${recipe.getDirections()}"></td>
+                <td style="padding-right: 35px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#editRecipe'+${recipe.getId()}"
+                            style="background-color: rgba( 0, 0, 0, 0.5); border: solid 2px blue; font-weight: bolder; color: dodgerblue;">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         </div>
+        <!-- existing recipes ends -->
     </div>
     <!-- End of Small Tab Menu MY RECIPES -->
     <!-- END of CONTENT -->
@@ -211,6 +242,35 @@
             </div>
         </div>
         <!-- End of View Recipe Modal -->
+
+    <!-- Edit Meal Modal -->
+    <div th:each="meal :${meals}">
+        <div class="modal fade" style="margin-top: 250px" th:attr="id='editMeal'+${meal.getId()}" tabindex="-1" role="dialog" aria-labelledby="editMeal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center modalTextColor tabFont" id="Title">Edit Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{|/editmeal/${meal.getId()}|}" th:object="${meal}" method="post">
+                            <div class="form-group">
+                                <label th:attr="for= ${meal.getTitle()}" >Title</label>
+                                <input type="text" class="form-control" th:attr="id= ${meal.getTitle()}" name="title" th:value="*{title}" required="required">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Edit Meal Modal -->
 
 
 </div>
